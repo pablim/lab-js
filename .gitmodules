@@ -1,0 +1,6 @@
+[submodule "shared"]
+	path = shared
+	url = https://github.com/pablim/assets.git
+[submodule "assets"]
+	path = assets
+	url = https://github.com/pablim/assets.git

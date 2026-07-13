@@ -109,7 +109,7 @@
 				// Marcador com imagem				
 				var marker = new google.maps.Marker({position:latlon,
 					map:map, 
-					icon:"../../Storage/imagens/imagens_alunos/pablo2.png",
+					icon:"/assets/imagens/imagens_alunos/pablo2.png",
 					title:"Pablo Vaz Gondim Faria"});
 
 				// Círculo
@@ -164,7 +164,7 @@
 				var marker = new google.maps.Marker({
 					position:latlon,
 					map:map,
-					icon:"../../Storage/imagens/imagens_alunos/" + imagem,
+					icon:"/assets/imagens/imagens_alunos/" + imagem,
 					title:i+1 + " - " + nome
 				});
 				google.maps.event.addListener(marker, 'click', function() {
@@ -183,7 +183,7 @@
 
 				for (var i = 0; i < alunos.length; i++) {
 					linhas += "<tr><td>" + alunos[i].id + "</td>" 
-						+ "<td><img class=\"mini\" src=\"../../Storage/imagens/imagens_alunos/" + alunos[i].imagem +"\"</td>" 
+						+ "<td><img class=\"mini\" src=\"/assets/imagens/imagens_alunos/" + alunos[i].imagem +"\"</td>" 
 						+ "<td>" 
 						+ "<div class=\"info\">"
 						+ "<div class=\"nomes\">" + alunos[i].nome + "</div>"
@@ -276,7 +276,7 @@
 					<button onclick="dados()">Gerar Dados</button>
 				</div>
 				<div id="add">
-					<input type="image" src="../../../Storage/imagens/iconeadd3.jpg" onclick="adicionar()" />
+					<input type="image" src="/assets/imagens/iconeadd3.jpg" onclick="adicionar()" />
 					<input type="text" id="nomeCad" class="" placeholder="Nome" />
 					<input type="text" id="cidadeCad" class="" placeholder="Cidade, Estado" />
 				</div>
