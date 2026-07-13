@@ -1,0 +1,89 @@
+<template id="credito_template">
+  <link rel="stylesheet" type="text/css" href="../css/w3.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="resources/css/sailor-blue-theme-2018.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/util.css" /> -->
+  <link rel="stylesheet" type="text/css" href="./Credito/style.css" />
+  <!-- Fonte para números -->
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+  <div id="parcela_container" 
+      class="flex-container parcela-aberta parcela-item w3-theme">
+
+    <div class="info-container flex-container-vertical w3-theme-d2">
+      
+      <div class="parcela-header flex-container w3-theme-d2">
+        <div id="nome" class=""></div>
+        <div class="w3-hide-large w3-hide-medium">
+          <button
+              class="w3-button w3-left w3-theme-d2 w3-hide-small">
+            &#8942;
+          </button>
+        </div>
+      </div>
+      
+      <div class="parcela-body flex-container w3-theme">
+  
+        <div class="flex-container-vertical">
+          <div class="flex-container w3-theme">
+            <div class="vencimento w3-theme w3-center line-height-1">
+              <div class="">VENCIMENTO</div>
+              <div class="dia-semana-venc optima "></div>
+              <div class="data-extenso-venc optima" ></div>
+              <!-- <div class="flex-container">
+                <div class="flex-container">
+                  <div class="dia">31</div>
+                  <div class="mes">JAN</div>
+                </div>
+                <div class="ano">2020</div>
+              </div> -->
+            </div> 
+  
+            <div class="pagamento w3-theme w3-center line-height-1">  
+              <div class="">RECEBIMENTO</div>
+              <div class="dia-semana-pag optima">N/N</div>
+              <div class="data-extenso-pag optima">N N N</div>
+            </div> 
+  
+            <div class="w3-theme w3-center parcela line-height-1">
+              <div>PARC</div>
+              <div class="parc-atual"></div>
+              <div class="parc-total"></div>
+            </div>
+          </div>
+  
+          <div class="datalhes-container flex-container w3-theme-d1">
+            <div class="forma-pagamento"></div>
+            <div class="estabelecimento"></div>
+          </div>
+        </div>
+  
+        <div class="valor-container w3-theme-d3 flex-container-vertical line-height-1 ">
+          <span >
+            <span>R$</span>
+            <span class="valor abril-fatface"></span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+    <div class="action-container w3-hide-small acoes-parcela acoes-parcela-">
+    
+      <div class="links-container ">
+        <a id="pagar_btn" class="pagar-btn botao" >
+          Recebido
+        </a>
+        <a id="editar_btn" class="editar-btn botao">
+          Editar
+        </a>
+        <a id="ver_btn" class="ver-btn botao" >
+          Ver
+        </a>
+        <a id="remover_btn" class="remover-btn botao">
+          Remover
+        </a>
+      </div>
+    </div>
+  </div>
+</template>

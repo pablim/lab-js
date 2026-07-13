@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/codeFormat.css">  
+</head>
+<body>
+	<section>
+		<h1>loading and fetchpriority</h1>
+
+		<h2>Eager image</h2>	
+		
+		<img id="eager-image" 
+			width="200"
+			src="../../../Storage/imagens/flor.jpg" 
+			alt="Fruits" 
+			loading="eager" 
+			fetchpriority="high"> 
+		
+		<code id="eager-image-code">
+			&lt;img ... loaging="eager"&gt;
+		</code>
+		<div>Loads immediately </div>
+		<div>fetchpriority="high" Tell the browser this image matters more than other images</div>
+		
+		<p>Continue para o exemplo lazy </p>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+
+		<h2>Lazy image</h2>	
+		<div>
+			Waits until the user scrolls near it <br>
+			Olhe na ferramenta de rede do navegador a imagem só carrega quando 
+			o usuário rola até ela
+		</div>
+		<img id="lazy-image"  
+			src="../../../Storage/imagens/flor.jpg" 
+			alt="Flower" 
+			loading="lazy"
+			width="200">
+
+		<code id="lazy-image-code"></code>
+		<div style="width: 50%; text-align: justify;">
+			One thing to be careful about. Never use loading="lazy" on images 
+			visible when the page first opens. Those images should load 
+			immediately. Deferring them increases your Largest Contentful Paint 
+			time, which affects both user experience and search rankings.
+			Always include width and height with lazy loaded images. Without 
+			them, the layout shifts when the image arrives, which is jarring 
+			for users and hurts your Cumulative Layout Shift score.
+		</div>
+		<br>
+		<h2>Lazy iframe</h2>
+		<div>Works on iframes too </div>
+		<iframe src="./scrolled-table.html" title="Map" loading="lazy"></iframe>
+		
+		<h2>Fetch Priority</h2>
+		<code>
+			&lt;script ... fetchpriority="low" defer&gt;
+		</code>
+		This script is not critical, let it wait
+		<br><br>
+
+		<script src="analytics.js" fetchpriority="low" defer></script>
+
+		Works on preloads too
+		<link id="preload" rel="preload" href="hero.jpg" as="image" fetchpriority="high">
+		<link id="preload2" rel="preload" href="secondary-font.woff2" as="font" fetchpriority="low" crossorigin>
+		<code id="preload-ex-code"></code>
+		<br>
+		<code id="preload-ex2-code"></code>
+		<br>
+		<div style="width: 50%; text-align: justify;">
+			The most impactful use is on your LCP image.
+	
+			fetchpriority="high" and loading="eager" are doing different things here. eager 
+			means do not defer this image. fetchpriority="high" means when competing with 
+			other resources for bandwidth, this one goes first. Both belong on your hero 
+			image.
+	
+			The low value is useful when you are preloading something that is not needed 
+			for the initial render and you do not want it competing with resources that are.
+		</div>
+
+	</section>
+
+	<script type="module">
+		import { mirrorCodeHTML } from "../../src/mirrorCode.js";
+		mirrorCodeHTML("eager-image", "eager-image-code")
+		mirrorCodeHTML("lazy-image", "lazy-image-code")
+		mirrorCodeHTML("preload", "preload-ex-code")
+		mirrorCodeHTML("preload2", "preload-ex2-code")
+	</script>
+</body>
+</html>

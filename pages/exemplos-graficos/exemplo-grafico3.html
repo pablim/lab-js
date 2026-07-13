@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="lib/epoch-0.8.4/dist/js/epoch.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="lib/epoch-0.8.4/dist/css/epoch.min.css">
+
+  </head>
+  <body>
+
+    <div id="area" class="epoch category10" style="height: 200px;"></div>
+
+    <script type="text/javascript">
+      var data = [
+        { label: 'Layer 1', values: [ {x: 0, y: 0}, {x: 1, y: 5}, {x: 2, y: 2} ] },
+        { label: 'Layer 2', values: [ {x: 0, y: 0}, {x: 1, y: 1}, {x: 2, y: 4} ] }
+      ];
+
+      var areaChartInstance = $('#area').epoch({
+          type: 'area',
+          data: data,
+          axes: ['left', 'bottom']
+      });
+    </script>
+
+
+    <div id="areaChart" style="width: 800px; height: 200px"></div>
+
+    <script type="text/javascript">
+
+      var areaChartData = 
+      var myVar = setInterval(function() {
+
+        theTime = Date.now();
+        areaChartData = [
+          // The first layer
+          {
+            label: "Layer 1",
+            values: [ {time: theTime, y: 100}, {time: 1370044801, y: 1000} ]
+          },
+
+          // The second layer
+          {
+            label: "Layer 2",
+            values: [ {time: theTime, y: 78}, {time: 1370044801, y: 98} ]
+          },
+
+
+        ];
+      }, 1000);
+
+      // var areaChartData = [
+      //   // The first layer
+      //   {
+      //     label: "Layer 1",
+      //     values: [ {time: 1370044800, y: 100}, {time: 1370044801, y: 1000} ]
+      //   },
+      //
+      //   // The second layer
+      //   {
+      //     label: "Layer 2",
+      //     values: [ {time: 1370044800, y: 78}, {time: 1370044801, y: 98} ]
+      //   },
+      //
+      //
+      // ];
+
+    </script>
+    <script>
+      $('#areaChart').epoch({
+        type: 'time.area',
+        data: areaChartData,
+        axes: ['left', 'bottom']
+      });
+    </script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 2px solid red;
+
+        }
+
+        video {
+            border: 2px solid green;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video autoplay></video>
+        <canvas></canvas>
+    </div>
+
+    <script >
+
+        if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+            getDevices()
+            getStream().then(async (mediaStream) => {
+                const video = document.querySelector('video');
+                // video.setAttribute('autoplay', '');
+                // video.setAttribute('muted', '');
+                // video.setAttribute('playsinline', '')
+
+                video.srcObject = mediaStream
+                
+                console.log('video', video);
+                
+                video.play()
+            })
+
+            async function getStream() {
+                const options = {
+                    video: {
+                        width: 1280,
+                        height: 720,
+                        facingMode: 'user'
+                    }
+                }
+
+                const stream = await navigator.mediaDevices.getUserMedia(options)
+                return stream
+            }
+    
+            async function getDevices() {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                console.log(devices);
+            }
+        }
+
+
+    </script>
+</body>
+</html>

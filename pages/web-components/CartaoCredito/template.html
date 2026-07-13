@@ -1,0 +1,52 @@
+<template id="cartao_credito">
+  <link rel="stylesheet" type="text/css" href="../css/w3.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="resources/css/sailor-blue-theme-2018.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/util.css" />-->
+  <link rel="stylesheet" type="text/css" href="./CartaoCredito/style.css" /> 
+  
+  <!-- Fonte para números -->
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+  
+  <div class="card bg-gradient-primary" style="height: 100%">
+    <div class="card-body">
+      <div class="row justify-content-between align-items-center">
+        <div id="nome_cartao_demo" class="text-white surtitle">
+        </div>
+        <div class="col-auto">
+          <span class="badge badge-lg badge-success">Active</span>
+        </div>
+      </div>
+      <div class="my-4">
+        <span class="h6 surtitle text-light">
+          Card number
+        </span>
+        <div class="card-serial-number text-white">
+          <div class="card-number-group-1" style="width: 25%;text-align: center">XXXX</div>
+          <div class="card-number-group-2" style="width: 25%;text-align: center">XXXX</div>
+          <div class="card-number-group-3" style="width: 25%;text-align: center">XXXX</div>
+          <div class="card-number-group-4 ultimo-grupo-numero" 
+            style="width: 25%;text-align: center">XXXX</div>
+        </div>
+      </div>
+      <div class="flex-container info-nome-data">
+        <div class="flex-container-vertical nome">
+          <span class="h6 surtitle text-light">Name</span>
+          <span id="nome_titular" class="d-block h3 text-white">
+          </span>
+        </div>
+        <div class="flex-container-vertical data-vencimento">
+          <span class="h6 surtitle text-light">Expiry date</span>
+          <span id="vencimento_demo" class="d-block h3 text-white">
+          </span>
+        </div>
+        <div class="">
+          <img id="bandeira" alt="" width="48" height="30">
+        </div>
+      </div>
+    </div>
+  </div>	
+
+  
+</template>

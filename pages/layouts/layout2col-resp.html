@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+	
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<style type="text/css">
+
+			/*
+			Layout de duas colunas.
+			Enquanto o conteúdo não ultrapassa o tamanho da viewport o rodapé 
+			fica fixo no final da viewport.
+			Quando o conteúdo ou a coluna lateral ultrapassa o tamanho da 
+			viewport o rodapé cresce com o conteúdo.
+			Autor: Pablo Vaz
+			*/
+
+			body {
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				font-size: 14px;
+				background-color: #888a85;
+				margin:0;
+			}
+
+			.header {
+				font-size: 18px;
+				height: 10vh;
+				text-align: center;  
+				background-color: #E4EB91;
+			}
+
+			.left {
+				min-height: 5vh;
+				width: 15%;
+				text-align: center;  
+				background-color: #E4E6EB;
+				float: left;
+			}
+
+			.main {
+				min-height: 85vh;
+				background-color: #14E6EB;
+				overflow: auto;
+				text-align: center;
+			}
+
+			.footer {
+				font-size: 16px;
+				text-align: center;
+				height: 5vh;
+				vertical-align: middle;
+				background-color: #8E969D;
+				clear: left;
+			}
+
+			/* Dispositivos com até 767px de largura. */
+			@media screen and (max-width: 767px) {
+			    body {
+			        background-color: lightgreen;
+			    }
+
+				.left {
+					width: 100%;
+					float: none;
+				}
+
+				.main {
+					min-height: 80vh;
+				}
+			    
+			}
+
+			@media screen and (min-width: 768px) and (max-width: 991px) {
+			    body {
+			        background-color: blue;
+			    }
+
+			    .left {
+			    	width: 100%;
+					float: none;
+				}
+
+				.main {
+					min-height: 80vh;
+				}
+
+			}
+
+			@media screen and (min-width: 992px) and (max-width: 1999px) {
+			    body {
+			        background-color: red;
+			    }
+			}
+
+			@media screen and (min-width: 1200px){
+			    body {
+			        background-color: orange;
+			    }
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			Cabeçalho
+		</div>
+		
+		<div class="left">
+			Conteúdo <br />
+		</div>
+		
+		<div class="main">
+			Conteúdo <br />
+		</div>
+		<div class="footer">
+			Rodapé
+		</div>
+	</body>
+</html>

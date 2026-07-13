@@ -1,0 +1,58 @@
+table.pivot-table, 
+table.pivot-table-fragment {
+    font-family: sans-serif;
+	border-spacing: 0;
+	border-bottom: 4px solid teal;
+	width: 100%
+}
+table.pivot-table thead tr th:first-child, 
+table.pivot-table-fragment thead tr th:first-child{
+    border-radius: 5px 0 0 0;
+}
+table.pivot-table thead tr th:last-child,
+table.pivot-table-fragment tr th:last-child{
+    border-radius: 0 5px 0 0;
+}
+table.pivot-table tr:last-child td, 
+table.pivot-table-fragment tr:last-child td {
+    border: none
+}
+table.pivot-table th,
+table.pivot-table-fragment th{
+	border: 1px solid teal;
+    background-color: teal;
+    color: white;
+	text-align: left;
+}
+table.pivot-table td, 
+table.pivot-table th,
+table.pivot-table-fragment td, 
+table.pivot-table-fragment th{
+    padding: 15px;
+}
+table.pivot-table-fragment th {
+	text-align: center;
+	width: 50%;
+}
+table.pivot-table tr:nth-child(even) ,
+table.pivot-table-fragment tr:nth-child(even) {
+    background-color: silver;
+}
+table.pivot-table tr:nth-child(odd),
+table.pivot-table-fragment tr:nth-child(odd){
+    background-color: white;
+}
+table.pivot-table-fragment {
+	margin-bottom: 10px;
+}
+div[id^="pivot-container"] {}
+.pivot-container-show {
+	display: block;
+}
+.pivot-container-hide,
+.pivot-table-hide {
+	display: none;
+}
+.pivot-table-show {
+	display: table;
+}

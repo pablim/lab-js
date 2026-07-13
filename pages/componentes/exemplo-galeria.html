@@ -1,0 +1,44 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
+	<head>
+		<title>Galeria de fotos em Javascript</title>
+
+		<style type="text/css" media="all">
+
+			body {opacity:0.9;}
+
+		</style>
+
+		<script type="text/javascript">
+		function exibir(imagens) {
+			//Informamos o ID da tag IMG que irá exibir a galeria
+			var imagem = document.getElementById("galeria");
+
+			//Informamos as imagens a serem exibidas pela galeria
+			switch(imagens) {
+				case "01":
+				imagem.src = "media/imagens/dunstan.jpg";
+				break;
+
+				case "02":
+				imagem.src = "media/imagens/flor.jpg";
+				break;
+
+				case "03":
+				imagem.src = "media/imagens/shape.jpg";
+				break;
+			}
+		}
+		</script>
+	</head>
+
+	<body onload="exibir('01')">
+		Navegue na nossa galeria: 
+		<a href="#" onclick="javascript: exibir('01');"><img src="media/imagens/dunstan.jpg" width="105" height="105"></a>
+		<a href="#" onclick="javascript: exibir('02');"><img src="media/imagens/flor.jpg" width="105" height="105" padding="5px"></a> 
+		<a href="#" onclick="javascript: exibir('03');"><img src="media/imagens/shape.jpg" width="105" height="105"></a>
+		<img id="galeria" width="300" height="300" >
+	</body>
+</html>

@@ -1,0 +1,275 @@
+<html>
+    <head>
+
+        <style>
+
+            :root {
+                /* --main-anim-duration: 4s;
+                --main-anim-dalay: 0s;
+                --secondary-anim-dalay: 1s;
+
+                --show-hide-anim-duration: 2s;
+                --show-anim-delay: 2.5s; */
+
+                --main-anim-duration: 2s;
+                --main-anim-dalay: 0s;
+                --secondary-anim-dalay: 0.5s;
+
+                --show-hide-anim-duration: 1s;
+                --show-anim-delay: 1.25s;
+            }
+
+            .container-controls {
+                display: flex;
+                width: 100%;
+            }
+            .container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-itens: center;
+                gap: 8px;    
+            }
+
+            div {
+                width: 643px;
+                height: 420px;
+                text-align: center;
+            }
+
+            .previous {
+                background-color: red;
+                transform: translateX(-55%) scale(0.7);
+                display: block;
+                position: absolute;
+                box-shadow: 0px 4px 50px 0px #535AFF1A;
+            }
+
+            .active {
+                box-shadow: 0px 4px 50px 0px #535AFF1A;
+                position: relative;
+                z-index: 1;
+                background-color: blue;
+                transform: translateX(0%) scale(1);
+            }
+
+            .next {
+                background-color: green;
+                transform: translateX(55%) scale(0.7);
+                display: block;
+                position: absolute;
+                box-shadow: 0px 4px 50px 0px #535AFF1A;
+            }
+
+            .opac {
+                opacity: 0;
+            }
+
+            .hide-next, .hide-previous {
+                display: none;
+            }
+
+            .backward {
+                z-index: 0;
+            } 
+
+            .active-to-next {  
+                animation-name: active-to-next-anim, backward-anim;
+                animation-duration: var(--main-anim-duration), var(--main-anim-duration);
+                animation-delay: var(--main-anim-dalay), var(--secondary-anim-dalay);
+            }
+
+            .previous-to-active {  
+                animation-name: previous-to-active-anim, foward;
+                animation-duration: var(--main-anim-duration), var(--main-anim-duration);
+                animation-delay: var(--main-anim-dalay), var(--secondary-anim-dalay);
+            }
+
+            .active-to-previous {  
+                animation-name: active-to-previous-anim, backward-anim;
+                animation-duration: var(--main-anim-duration), var(--main-anim-duration);
+                animation-delay: var(--main-anim-dalay), var(--secondary-anim-dalay); 
+            }
+
+            .next-to-active {  
+                animation-name: next-to-active-anim, foward;
+                animation-duration: var(--main-anim-duration), var(--main-anim-duration);
+                animation-delay: var(--main-anim-dalay), var(--secondary-anim-dalay);
+            }
+
+            .to-show {
+                animation: to-show-anim var(--show-hide-anim-duration);
+                animation-delay: var(--show-anim-delay);
+            }
+
+            .to-hide {
+                animation: to-hide-anim var(--show-hide-anim-duration);
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes active-to-next-anim {
+                0% {transform: translateX(0%);}
+                50% {transform: translateX(55%);}
+                100% {transform: translateX(55%) scale(0.7);}
+            }
+            
+            @keyframes previous-to-active-anim {
+                0% {transform: translateX(-55%) scale(0.7);}
+                50% {transform: translateX(-55%) scale(1);}
+                100% {transform: translateX(0%);}
+            }
+
+            @keyframes active-to-previous-anim {
+                0% {transform: translateX(0%);}
+                50% {transform: translateX(-55%);}
+                100% {transform: translateX(-55%) scale(0.7);}
+            }
+
+            @keyframes next-to-active-anim {
+                0% {transform: translateX(55%) scale(0.7);}
+                50% {transform: translateX(55%) scale(1);}
+                100% {transform: translateX(0%);}
+            }
+
+            @keyframes foward {
+                0% {z-index: 0;}
+                100% {z-index: 1;}
+            }
+
+            @keyframes backward-anim {
+                0% {z-index: 1;}
+                100% {z-index: 0;}
+            }
+
+            @keyframes to-show-anim {
+                0% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+
+            @keyframes to-hide-anim {
+                0% {opacity: 1;}
+                100% {opacity: 0;}
+            }
+
+            
+
+        </style>
+        
+
+    </head>
+    <body>
+        <div class="container-controls">
+            <button class="nextButton">next</button>
+            <div class="container">
+                <div class="hide-previous">Hide previous</div>
+                <div class="previous">Previous</div>
+                <div class="active">Active</div>
+                <div class="next">Next</div>      
+                <div class="hide-next">Hide next</div>
+            </div>
+            <button class="previousButton">previous</button>
+        </div>
+
+        <script>
+            var nextButton = document.getElementsByClassName("nextButton")[0]
+            var previousButton = document.getElementsByClassName("previousButton")[0]
+
+            const getCarouselElements = () => {
+
+                const next = document.getElementsByClassName("next")[0]
+                const previous = document.getElementsByClassName("previous")[0]
+                const active = document.getElementsByClassName("active")[0]
+                const hideNext = document.getElementsByClassName("hide-next")[0]
+                const hidePrevious = document.getElementsByClassName("hide-previous")[0]
+
+                return {
+                    next,
+                    previous,
+                    active,
+                    hideNext,
+                    hidePrevious
+                }
+            }
+
+            previousButton.addEventListener("click", (e) => {
+                const {
+                    next,
+                    previous,
+                    active,
+                    hideNext,
+                    hidePrevious
+                } = getCarouselElements()
+
+                active.classList.add("active-to-next")
+                previous.classList.add("previous-to-active")
+                next.classList.add("to-hide")
+                
+                hidePrevious?.classList.remove("hide-previous")
+                hidePrevious?.classList.add("previous")
+                hidePrevious?.classList.add("opac")
+                hidePrevious?.classList.add("backward")
+                hidePrevious?.classList.add("to-show")
+                
+                setTimeout(() => {
+                    active.classList.add("next")
+                    active.classList.remove("backward")
+                    active.classList.remove("active-to-next")
+                    active.classList.remove("active")
+                    
+                    previous.classList.add("active")
+                    previous.classList.remove("foward")
+                    previous.classList.remove("previous-to-active")
+                    previous.classList.remove("previous")
+
+                    next.classList.add("hide-next")
+                    next.classList.remove("next")
+                    next.classList.remove("to-hide")
+
+                    hidePrevious.classList.remove("backward")
+                    hidePrevious.classList.remove("to-show")
+                    hidePrevious.classList.remove("opac")
+                    
+                }, 2000)
+            })
+
+            nextButton.addEventListener("click", (e) => {
+                const {
+                    next,
+                    previous,
+                    active,
+                    hideNext,
+                    hidePrevious
+                } = getCarouselElements()
+
+                active.classList.add("active-to-previous")
+                next.classList.add("next-to-active")
+                previous.classList.add("to-hide")
+
+                hideNext?.classList.remove("hide-next")
+                hideNext?.classList.add("next")
+                hideNext?.classList.add("opac")
+                hideNext?.classList.add("backward")
+                hideNext?.classList.add("to-show")
+                
+                setTimeout(() => {
+                    active.classList.add("previous")
+                    active.classList.remove("active")
+                    active.classList.remove("active-to-previous")
+
+                    next.classList.add("active")
+                    next.classList.remove("next")
+                    next.classList.remove("next-to-active")
+
+                    previous.classList.add("hide-previous")
+                    previous.classList.remove("previous")
+                    previous.classList.remove("to-hide")
+
+                    hideNext.classList.remove("backward")
+                    hideNext.classList.remove("to-show")
+                    hideNext.classList.remove("opac")
+                }, 2000)
+            })
+
+        </script>
+    </body>
+</html>

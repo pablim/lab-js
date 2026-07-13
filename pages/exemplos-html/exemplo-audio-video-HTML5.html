@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Áudio</title>
+
+	</head>
+	<body>
+
+		<!-- Se o atributo autoplay estiver presente o atributo preload é 
+		ignorado. -->
+
+		<audio controls autoplay mediagroup="sinc">
+			<source src="media/audio/adele.mp3#t=30,50" type="audio/mp3" />
+			<p>Não suportado</p>
+		</audio>
+
+
+		<audio controls autoplay  >
+			<source src="media/audio/adele.mp3#t=30,50" type="audio/mp3" />
+			<p>Não suportado</p>
+		</audio>
+
+
+		<video controls preload="metadata" poster="imagens/flor.jpg">
+
+			<!-- Fornece o video/audio. É possível e aconselhavel adicionar 
+			mais de um formato de video/audio através do elemento source -->
+			<source src="media/video/amostravideo.mp4" type="video/mp4" />
+			<source src="media/video/amostravideo.ogg" type="video/ogg" />  
+			
+			<!-- Para legendas usa-se o elemento track-->
+			<track kind="subtitles" label="legendas" src="" srclang="pt-br"/>
+
+			<!-- Caso o tipo do arquivo não seja suportado a mensagem que 
+			estiver dentro do elemento video ou audio será exibida. -->
+			<p>Não há suporte para reprodução de vídeo.</p>
+		</video>
+
+	</body>
+</html>

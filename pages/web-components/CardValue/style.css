@@ -1,0 +1,7 @@
+.card {
+    width: calc(100% - 11px);
+}
+
+.card div {
+    width: 200px;
+}

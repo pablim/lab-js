@@ -1,0 +1,115 @@
+
+html {
+}
+
+body {
+	margin: 2px;
+}
+
+#container {	
+	float: left;
+	width: 25%;
+	height: 600px;
+	/*overflow: scroll;*/
+	/*border: 1px solid red;*/
+}
+
+#acoes {
+	margin-bottom: 2px;
+	height: 250px;
+	/*border: 1px solid blue;*/
+}
+
+#campos {
+	/*border: 1px solid blue;*/
+	border-bottom: 1px solid silver;
+	height: 200px;	
+}
+
+#campos p {
+	/*border: 1px solid;*/
+	height: 140px;
+}
+
+#campos button {
+	width: 340px;
+	height: 30px;
+	/*border: none;
+	background-color: #7FFF00;*/
+}
+
+#add {
+	padding: 4px 0;
+}
+
+#add input {
+	float: left;
+}
+
+#add input[type="text"]{
+	/*border: 1px solid blue;*/
+	width: 135px;
+	height: 35px;
+	padding-left: 5px;
+}
+
+#containerTabela {
+	height: 345px;
+	overflow: scroll;
+	/*border: 1px solid green;*/
+}
+
+table {
+	clear: left;
+	/*border: 1px solid;*/
+	border-collapse: collapse;
+	margin-right: 2px;
+	height: 550px;
+}
+
+table td, table th {
+	/*border: 1px solid;*/
+}
+
+th {
+	background-color: white;
+}
+
+table td .info {
+	padding: 5px;
+}
+
+table td .nomes {
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+table td .cidades {
+	font-size: 10pt;
+	color: #8B8989;
+}
+
+
+#numero { }
+#foto {}
+#nome {}
+/*#cidade {}*/
+/*#estado {}*/
+
+#mapholder {
+	height: 600px;
+	width: 75%;
+	border-left: 1px solid silver;
+}
+
+.mini {
+	width: 40px;
+	height: 45px;
+}
+
+#dados {
+	margin-top: 20px;
+}
+
+
+

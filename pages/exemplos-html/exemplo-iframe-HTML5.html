@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>iFrame</title>
+		<style type="text/css">
+			body {margin:20px;}
+
+			#principal {
+				float: left;
+				width: 500px; 
+				height: 500px; 			
+				margin: 0;
+				padding: 0;
+				border: 1px solid;
+			} 
+			img{
+				width: 150px;
+				height: 150px;
+			}
+
+			.imgs { 
+				float: left;
+				text-align: center;
+				width: 160px;
+				height: 160px;
+				border: 1px solid;
+				margin: 1px;
+			}
+			#secundario{
+				float: right;
+				width: 500px; 
+				height: 500px; 
+				border: 1px solid;			
+			}
+			
+		</style>
+	</head>
+	<body>
+
+		<!-- Os atributos width e height são utilizados apenas para indicar ao 
+		navegador o tamanho do conteúdo a ser incorporado. Não se deve fazer 
+		redimensionamentos nas páginas HTML. Caso seja necessário o 
+		redimensionamento deve ser realizado pelas CSS. -->
+
+		<!-- Quando se incorpora páginas externas pode-se criar riscos de 
+		seguraça a própria página. O atributo sandbox realiza uma serie de 
+		bloqueios para evitar esses riscos. Somente especificando sandbox já 
+		são criados uma serie de bloqueios. Mas, também pode liberar algumas 
+		operações especificando-as ao sandbox. Por exemplo, allow-forms (libera 
+		o envio de formulários), allow-pointer-lock (libera o uso da API 
+		pointer-lock que rastreia o mouse), allow-popups (libera os popups), 
+		allow-same-origin (permite acesso ao conteúdo originado no servidor da 
+		página que está sendo incorporada e que muitas vezes é feita pelos 
+		scripts), allow-scripts (libera as rotinas Javascript), 
+		allow-top-navigation (libera a navegação pela página.) -->
+
+		<!-- O atributo seamless indica ao navegador para incorporar o conteúdo 
+		externo como se fosse um contéudo da própria página (sem bordas ou sem 
+		barra de rolagens).-->
+
+		<!-- Pode-se passar todo conteúdo a ser apresentado pelo iframe pelo 
+		atributo srcdoc. Porém, declarando esse atributo não faz mais sentido 
+		declarar o atributo src.-->
+
+		<iframe width="380" height="267" seamless 
+			srcdoc="<h1>MINHA PÁGINA INCORPORADA!</h1>">
+		</iframe>
+
+		<!--
+		<iframe width="280" height="167" src="//www.youtube.com/embed/RlQEoJaLQRA">
+		</iframe>
+		-->
+		
+
+		<div id="principal">	
+			<div class="imgs">
+				<a href="../../Storage/imagens/oculos.jpg" target="frame">
+					<img src="../../Storage/imagens/oculos.jpg"></a>	<!---->
+			</div>
+			<div class="imgs">
+				<a href="../../Storage/imagens/rolamentos.jpg" target="frame">
+					<img src="../../Storage/imagens/rolamentos.jpg"></a>	
+			</div>
+			<div class="imgs">
+				<a href="../../Storage/imagens/shape.jpg" target="frame">
+					<img src="../../Storage/imagens/shape.jpg"></a>
+			</div>
+			<div class="imgs">
+				<a href="../../Storage/imagens/tenis.jpg" target="frame">
+					<img src="../../Storage/imagens/tenis.jpg"></a>	
+			</div>
+			<div class="imgs">
+				<a href="../../Storage/imagens/shape3.jpg" target="frame">
+					<img src="../../Storage/imagens/shape3.jpg"></a>
+			</div>		
+		</div>
+		<div id="secundario">
+			<iframe src="../../Storage/imagens/oculos.jpg" 
+				name="frame" width="300" height="300" border="1" ></iframe>
+		</div>	
+	</body>
+</html>

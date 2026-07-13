@@ -1,0 +1,183 @@
+<html>
+    <head>
+
+        <style>
+            .container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-itens: center;
+                gap: 8px;    
+            }
+
+            div {
+            width: 643px;
+            height: 420px;
+            text-align: center;
+            }
+
+            .hide-next, .hide-previous {
+            display: none;
+            }
+
+            .previous {
+            background-color: red;
+            transform: translateX(-55%) scale(0.7);
+            display: block;
+            position: absolute;
+            z-index: 1;
+            box-shadow: 0px 4px 50px 0px #535AFF1A;
+            }
+
+            .active {
+            box-shadow: 0px 4px 50px 0px #535AFF1A;
+            position: relative;
+            z-index: 2;
+            background-color: blue;
+            transform: translateX(0%) scale(1);
+            }
+
+            .next {
+            background-color: green;
+            transform: translateX(55%) scale(0.7);
+            display: block;
+            position: absolute;
+            z-index: 1;
+            box-shadow: 0px 4px 50px 0px #535AFF1A;
+            }
+
+            .foward {
+            z-index: 2;
+            }
+
+            .backward {
+            z-index: 1;
+            }
+
+            .active-to-right {  
+            animation-name: activetoright;
+            animation-duration: 4s;
+            }
+
+            .left-to-active {  
+            animation-name: lefttoactive;
+            animation-duration: 4s;
+            }
+
+            .active-to-left {  
+            animation-name: activetoleft;
+            animation-duration: 4s;
+            }
+
+            .right-to-active {  
+            animation-name: righttoactive;
+            animation-duration: 4s;
+            }
+
+            @keyframes activetoright {
+            0% {transform: translateX(0%);}
+            50% {transform: translateX(55%);}
+            100% {transform: translateX(55%) scale(0.7);}
+            }
+            
+            @keyframes lefttoactive {
+            0% {transform: translateX(-55%) scale(0.7);}
+            50% {transform: translateX(-55%) scale(1);}
+            100% {transform: translateX(0%);}
+            }
+
+            @keyframes activetoleft {
+            0% {transform: translateX(0%);}
+            50% {transform: translateX(-55%);}
+            100% {transform: translateX(-55%) scale(0.7);}
+            }
+
+            @keyframes righttoactive {
+            0% {transform: translateX(55%) scale(0.7);}
+            50% {transform: translateX(55%) scale(1);}
+            100% {transform: translateX(0%);}
+            }
+
+        </style>
+        
+
+    </head>
+    <body>
+        <div class="container">
+        <div class="hide-previous">Hide previous</div>
+        <div class="previous">Previous</div>
+        <div class="active">Active</div>
+        <div class="next">Next</div>      
+        <div class="hide-next">Hide next</div>
+        </div>
+
+        <script>
+            var next = document.getElementsByClassName("next")[0]
+            var previous = document.getElementsByClassName("previous")[0]
+            var active = document.getElementsByClassName("active")[0]
+            var hideNext = document.getElementsByClassName("hide-next")[0]
+            var hidePrevious = document.getElementsByClassName("hide-previous")[0]
+
+            previous.addEventListener("click", (e) => {
+
+            active.classList.add("active-to-right")
+            previous.classList.add("left-to-active")
+            
+            setTimeout(() => {
+                active.classList.add("backward")
+                previous.classList.add("foward")
+                
+                next.classList.add("hide-next")
+                next.classList.remove("next")
+                
+                hidePrevious.classList.remove("hide-previous")
+                hidePrevious.classList.add("previous")
+            }, 2000)
+            
+            setTimeout(() => {
+                active.classList.add("next")
+                active.classList.remove("backward")
+                active.classList.remove("active-to-right")
+                active.classList.remove("active")
+                
+                previous.classList.add("active")
+                previous.classList.remove("foward")
+                previous.classList.remove("left-to-active")
+                previous.classList.remove("previous")
+                /*previous.classList.add("active")
+                previous.classList.remove("previous")
+                
+                active.classList.remove("active")
+                active.classList.add("next")*/
+            }, 4000)
+            })
+
+            next.addEventListener("click", (e) => {
+            active.classList.add("active-to-left")
+            setTimeout(() => {
+                active.classList.add("backward")
+            }, 2000)
+            setTimeout(() => {
+                active.classList.add("previous")
+                active.classList.remove("active")
+            }, 4000)
+            
+            next.classList.add("right-to-active")
+            setTimeout(() => {
+                next.classList.add("foward")
+                
+                previous.classList.add("hide-previous")
+                previous.classList.remove("previous")
+                
+                hideNext.classList.add("next")
+                hideNext.classList.remove("hide-next")
+            }, 2000)
+            setTimeout(() => {
+                next.classList.add("active")
+                next.classList.remove("next")
+            }, 4000)
+            })
+
+        </script>
+    </body>
+</html>

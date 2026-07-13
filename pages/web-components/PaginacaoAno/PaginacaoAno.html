@@ -1,0 +1,47 @@
+<template id="paginacao_ano_template">
+  <link rel="stylesheet" type="text/css" href="resources/css/w3.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/sailor-blue-theme-2018.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/util.css" />
+  <link rel="stylesheet" type="text/css" href="components/PaginacaoAno/paginacaoAno.css" />
+
+  <div class="pag-mes-desp w3-bar sticky w3-theme-d3" >
+    <button class="prev w3-bar-item w3-button w3-theme-d3">
+      <img src="resources/imagens/icones/baseline_arrow_back_black_18dp.png"> 
+      Previous
+    </button>
+    <button id="botao_mes_ano" class="year w3-bar-item w3-button w3-theme-d4"
+        onclick="selectAnoMes()">
+    </button>
+    <button class="next w3-bar-item w3-button w3-theme-d3">
+      Next <img src="resources/imagens/icones/baseline_arrow_forward_black_18dp.png">
+    </button>
+  </div>
+  
+  
+  <style>
+    .pag-mes-desp button {
+      width:33.3% !important;
+    }
+  </style>
+  <!-- </div> -->
+  <script type="text/javascript">
+  
+    function selectAnoMes() {
+  
+      $("#box_select_ano").toggleClass("w3-show")
+  
+      width = $("#box_select_ano").width();
+      width2 = $("#botao_mes_ano").outerWidth();
+  
+      $("#box_select_ano").width(width2);
+  
+      top = $("#botao_mes_ano").offset().top
+      left = $("#botao_mes_ano").offset().left
+
+      $("#box_select_ano").css({
+          left:left, top:top,
+      })
+    }
+  </script>
+</template>

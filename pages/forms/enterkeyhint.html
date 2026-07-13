@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+How Enterkeyhint Works
+
+The enterkeyhint attribute changes the mobile keyboard's action button to match 
+what the user is actually doing.
+<form id="signup-form">
+  <div class="form-step">
+    <label for="name">Full Name</label>
+    <input type="text" 
+           id="name" 
+           name="name"
+           enterkeyhint="next"
+           placeholder="John Doe"
+           required>
+  </div>
+  
+  <div class="form-step">
+    <label for="email">Email</label>
+    <input type="email" 
+           id="email" 
+           name="email"
+           enterkeyhint="next"
+           placeholder="you@example.com"
+           required>
+  </div>
+  
+  <div class="form-step">
+    <label for="phone">Phone Number</label>
+    <input type="tel" 
+           id="phone" 
+           name="phone"
+           enterkeyhint="next"
+           placeholder="123-456-7890"
+           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  </div>
+  
+  <div class="form-step">
+    <label for="password">Password</label>
+    <input type="password" 
+           id="password" 
+           name="password"
+           enterkeyhint="done"
+           placeholder="••••••••"
+           required>
+  </div>
+  
+  <button type="submit">Create Account</button>
+</form>
+Why enterkeyhint matters:
+
+    Makes mobile forms feel native and intuitive
+    Users know exactly what will happen when they tap that button
+    Works on iOS and Android
+    Zero JavaScript required it’s just HTML
+    Improves conversion rates by making forms less frustrating
+
+
+</body>
+</html>

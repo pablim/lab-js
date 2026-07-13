@@ -1,0 +1,60 @@
+class MySearchBarAlphabetic extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById('my-search-bar-alphabetic');
+        let templateContent = template.content;
+
+        const shadowRoot = this.attachShadow({ mode: 'open' })
+            .appendChild(templateContent.cloneNode(true));
+    }
+
+    // when the element is inserted into the DOM
+    connectedCallback() {
+        debugger
+        const template = this;
+        let lista = document.getElementById(this.lista);
+        let letters = this.shadowRoot.querySelectorAll('.char')
+        lista.style.scrollBehavior= 'smooth'
+        
+        letters.forEach(function(element, index) {
+            console.log(element)
+            console.log(index)
+            element.addEventListener("click", function(event) {
+                let e = lista.querySelector("."+this.dataset.letter)
+                if (e) 
+                    e.scrollIntoView(); 
+            })
+        }) 
+        //document.getElementsByTagName('my-search-bar-alphabetic')[0].shadowRoot.querySelectorAll('.char')
+        // this.addEventListener('click')
+        //const node = document.importNode(template.content, true);
+        //this.appendChild(node);
+    }
+
+    // when the element is removed from the DOM
+    disconnectedCallback() {}
+
+    static get observedAttributes() {
+        return [/* array of attribute names to monitor for changes */];
+    }
+
+    // when an observed attribute changed, or is added or removed
+    attributeChangedCallback(attrName, oldVal, newVal) {}
+
+    // when the element has been moved to a new document
+    adoptedCallback() {}
+
+
+
+    get lista() {
+        debugger
+        return this.getAttribute('lista');
+    }
+
+    set lista(newValue) {
+        debugger
+        this.setAttribute('lista', newValue);
+    }
+}
+
+customElements.define('my-search-bar-alphabetic', MySearchBarAlphabetic)

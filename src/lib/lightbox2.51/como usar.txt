@@ -1,0 +1,29 @@
+
+How to use
+Part 1 - Setup
+
+    Lightbox 2 uses the jQuery framework. Load jQuery and the Lightbox javascript files in the proper order.
+
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/lightbox.js"></script>
+
+    Include the Lightbox CSS file.
+
+    <link href="css/lightbox.css" rel="stylesheet" />
+
+    Check the CSS and make sure the referenced prev.png and next.png files are in the right location. Also, make sure the loading.gif and close.png files as referenced near the top of the lightbox.js file are in the right location.
+
+Part 2 - Activate
+
+    Add a rel="lightbox" attribute to any link tag to activate Lightbox.
+
+    <a href="images/image-1.jpg" rel="lightbox" title="my caption">image #1</a>
+
+    Optional: Use the title attribute if you want to show a caption.
+    If you have a set of related images that you would like to group, follow step one but additionally include a group name between square brackets in the rel attribute.
+
+    <a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
+    <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
+    <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
+
+    No limits to the number of image sets per page or how many images are allowed in each set. Go nuts!

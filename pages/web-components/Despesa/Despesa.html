@@ -1,0 +1,59 @@
+<template id="despesa_template">
+  <link rel="stylesheet" type="text/css" href="resources/css/w3.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/sailor-blue-theme-2018.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/util.css" />
+  <link rel="stylesheet" type="text/css" href="components/Despesa/despesa.css" />
+  <!-- Fonte para números -->
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+  <div class="parcela parcela-paga w3-theme-d3" 
+        style="margin-bottom: 1px; width: 100%; height:200px">
+    <div class="w3-theme">
+      <div class="w3-display-container" style="height:200px;">
+  
+        <div class="w3-display-topleft w3-padding line-height-1">
+          <div id="nome" class="w3-xlarge"></div>
+          <span id="descricao" class="w3-small"></span>
+        </div>
+  
+        <div class="w3-display-topright w3-padding line-height-1">
+          <span id="categoria" class="w3-small"></span>
+        </div>
+  
+        <!-- <div id="preview_label" class="w3-center ">
+          <h1 class="w3-xxxlarge">Preview</h1>
+        </div> -->
+  
+        <div class="w3-display-middle line-height-1">
+          <div class="parcela-numero w3-hide" style="float:right">
+            <span id="numero_parcelas" class="w3-large" ></span>x
+            <span class="w3-large" >
+              <span class="w3-large">R$</span>
+              <span id="valor_parcela"></span>
+            </span>
+          </div>
+          <div class="valor-container w3-hide" style="clear:both">
+            <span class="w3-xxxlarge" >
+              <span class="w3-large">R$</span>
+              <span id="valor"></span>
+            </span>
+          </div>
+          <div class="">
+            <span id="forma_pagamento"class="w3-small"></span>
+          </div>
+        </div>
+  
+        <div class="w3-display-bottomleft w3-padding line-height-1">
+          <span id="estabelecimento" class="w3-small"></span>
+        </div>
+  
+        <div class="w3-display-bottomright w3-padding line-height-1">
+          <span id="data_compra"class="w3-small"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</template>

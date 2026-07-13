@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form oninput="calculateTotal()">
+        <div class="cart-item">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" 
+                value="1" min="1" max="100">
+        </div>
+        
+        <div class="cart-item">
+            <label for="price">Price per item:</label>
+            <input type="number" id="price" name="price" 
+                value="29.99" min="0" step="0.01">
+        </div>
+        
+        <div class="cart-total">
+            <strong>Total: $</strong>
+            <output id="total" for="quantity price">29.99</output>
+        </div>
+    </form>
+    <script>
+        function calculateTotal() {
+        const quantity = document.getElementById('quantity').value;
+        const price = document.getElementById('price').value;
+        const total = (quantity * price).toFixed(2);
+        
+        document.getElementById('total').textContent = total;
+        }
+    </script>
+<style>
+        .cart-item {
+        margin-bottom: 1rem;
+        }
+        .cart-total {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: #f5f5f5;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        }
+        output {
+        font-weight: bold;
+        color: #2563eb;
+        }
+    </style>
+    
+</body>
+</html>

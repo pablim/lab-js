@@ -1,0 +1,132 @@
+:root {
+    --table-height: 300px
+}
+
+table.scrolled-table {
+	display: flex;
+	border: none;
+	height: var(--table-height);
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scroll-snap-type: y mandatory;
+}
+
+table.scrolled-table thead {
+	display:flex;
+	height: inherit;
+	position: absolute;
+	width: calc(50% - 12px);
+}
+
+table.scrolled-table thead tr {
+	width: 100%;
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+}
+
+table.scrolled-table thead tr th {
+	flex: 1;
+	text-align: center;
+}
+
+table.scrolled-table thead tr th:last-child { border-radius: 0 0 0 5px }
+
+table.scrolled-table tbody {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	left: 50%;
+	width: 50%;
+	height: inherit;
+}
+
+table.scrolled-table tbody tr {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: var(--table-height);
+}
+
+table.scrolled-table tbody tr td { flex: 1 }
+table.scrolled-table tr { scroll-snap-align: start }
+table.scrolled-table td, 
+table.scrolled-table th { padding: 15px }
+
+@media screen and (min-width: 600px) {
+
+    table.scrolled-table.responsive {
+		display: table;
+		height: revert;
+		scroll-behavior: revert;
+		scrollbar-width: revert;
+		scroll-snap-type: revert;
+	}
+
+	table.scrolled-table.responsive thead {
+		display: revert;
+		height: inherit;
+		position: initial;
+	}
+
+	table.scrolled-table.responsive thead tr {
+		height: inherit;
+		display: revert;
+	}
+
+	table.scrolled-table.responsive thead tr th { text-align: revert }
+
+	table.scrolled-table.responsive thead tr th:last-child { 
+		border-radius: revert;
+	}
+
+	table.scrolled-table.responsive tbody {
+		display: revert;
+		position: revert;
+		height: revert;
+	}
+
+	table.scrolled-table.responsive tbody tr {
+		display: table-row;
+		min-height: revert;
+	}
+
+	table.scrolled-table.responsive tr { scroll-snap-align: revert }
+
+	/* Styling again */
+	table.scrolled-table.responsive {
+		border-spacing: 0;
+		font-family: sans-serif;
+		border-bottom: 4px solid teal;
+		width: 100%
+	}
+
+	table.scrolled-table.responsive thead tr th:first-child {
+		border-radius: 5px 0 0 0;
+	}
+
+	table.scrolled-table.responsive thead tr th:last-child {
+		border-radius: 0 5px 0 0;
+	}
+
+	table.scrolled-table.responsive tr:last-child td { border: none }
+
+	table.scrolled-table.responsive th {
+		border: 1px solid teal;
+		background-color: teal;
+		color: white;
+		text-align: left;
+	}
+
+	table.scrolled-table.responsive td, 
+	table.scrolled-table.responsive th { padding: 15px }
+
+	table.scrolled-table.responsive tr:nth-child(even) { 
+		background-color: silver;
+	}
+
+	table.scrolled-table.responsive tr:nth-child(odd) {
+		background-color: white;
+	}
+}

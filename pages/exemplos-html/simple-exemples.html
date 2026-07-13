@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<title>Página HTML</title>
+		<script type="text/javascript">
+			
+
+
+		</script>
+	</head>
+	<body>
+	
+	<h3>Modificar o conteúdo</h3>
+	<button 
+		onclick="document.getElementById('demo1').innerHTML='Testing. Hours: ' + Date()">Click</button>
+	<p id="demo1"></p>
+
+
+	<h3>Modificar atributos</h3>
+	<button
+		onclick="document.getElementById('demo-attr').src='../../Storage/imagens/pic_bulbon.gif'">Turn on</button>
+	<img id="demo-attr" src="../../Storage/imagens/pic_bulboff.gif" />
+
+
+	<h3>Modificar css</h3>	
+	<button
+		onclick="document.getElementById('demo-increase').style.width='500px'">Increase</button>
+	<p id="demo-increase" style="width:300px;background-color:gray;">Click on button and change my widht</p>
+
+
+	<h3>Esconder e exibir</h3>	
+	<button
+		onclick="document.getElementById('demo-hide').style.display='none'">Hide</button>
+	<button	
+		onclick="document.getElementById('demo-hide').style.display='block'">Show</button>
+	<p id="demo-hide">Hide and show me</p>
+
+	</body>
+</html>

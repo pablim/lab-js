@@ -1,0 +1,173 @@
+<!-- Indica ao navegador qual a versão da HTML foi usada na página. Com o HTML5 
+basta colocar o termo html como tipo de documento. 
+
+<!DOCTYPE html>
+
+Na versão 4.01 da HTML podem ser inseridas três tipos de declarações:
+
+O DTD HTML 4.01 Strict inclui todos os elementos e atributos que não são 
+obsoletos ou não aparecem em documentos frameset 
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+		"http://www.w3.org/TR/html4/strict.dtd">
+
+O DTD HTML 4.01 Transitional inclui todo o DTD strict mais os elementos e 
+atributos obsoletos (a maioria dos quais dizem respeito apresentação visual). 
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+O DTD HTML 4.01 Frameset inclui tudo do DTD trasitional mais frames também.  
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+        "http://www.w3.org/TR/html4/frameset.dtd">
+
+A URI em cada tipo de declaração permite aos agentes do usuário realizar o 
+download do DTD e qualquer conjunto de entitades que for necessário.
+
+-->
+<!DOCTYPE html>
+
+<!-- Bibliografia:
+Prof. Marcos André S. Kutova, Vídeo Cabeçalho das Páginas, Introdução à 
+HTML e CSS - Pós Graduação em Desenvolvimento de Sistemas Web -->
+
+<!-- Recomenda-se que sempre se utiliza o atributo lang pois, ele é importante 
+para as traduções automáticas de página, para a sintetização de voz do conteúdo 
+da página e para outras operações.-->
+<html lang="pt-br">
+
+	<head>
+		<title>Minha Página</title>
+		
+		<!-- O elemento meta é usado para informar metadados sobre a página, ou 
+		seja, informações usadas para a descrição das características da 
+		página. O atributo charset define o conjunto de caracteres que foi 
+		utilizado para gerar a página. O conjunto de caracteres UTF-8 é aceito 
+		universalmente e portanto o mais recomendado.-->
+		<meta charset="utf-8" />
+
+		<!-- No elemento meta a propriedade http-equiv e content também podem 
+		ser usadas para especifica a codificação de caracteres do documento 
+		porem, o uso do valor "content-type" serve apenas para compatibilidade 
+		com sistemas antigos. O recomendável agora é usar o atributo charset. -->
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+		<!-- Também pode ser especificado um estilo padrão para pǵaina. -->
+		<meta http-equiv="default-style" content="caminhoEstilo.css">
+
+		<!-- Informações sobre a página -->
+		<meta name="description" content="página de exemplo" />
+		<meta name="projeto" content="Projeto Pós Graduação" />
+		<meta name="author" content="Pablo" />
+		<meta name="keywords" content="HTML, CSS, JavaScript" />
+
+		<!-- Instrução HTTP pode ser usada quando não for possivel na resposta 
+		HTTP que vem do servidor. Também podem ser definidos COOKIES. Porém não 
+		é recomendavel utilzar essas instruções. Existem mecanismos mais 
+		eficiente para realizar essas tarefas. -->
+		<meta http-equiv="refresh" content="20"; URL="http://google.com">
+
+		<!-- O terceiro tipo de informação que pode ser passada para o elemento 
+		meta é uma instrução HTTP para quando não for possível passa-la na 
+		resposta HTTP que vem do servidor. Exemplos, redirecionamento de 
+		páginas e a definição de cookies. No redirecionamento de página podemos 
+		indicar ao navegador a redirecionar para outra página após alguns 
+		segundos como também recarregar a própria página. Mais essa prática não 
+		é recomendavél, pois é negativa do ponto de vista da usabilidade e 
+		outros recursos como AJAX oferecem alternativas mais elegantes e 
+		eficientes, assim como para definição de cookies.-->
+		<!--<meta http-equiv="refresh" content="5; URL=pagina2.html?id=3">-->
+
+		<!--O elemento link é utilizado para criar uma relação entre a página 
+		e outros recursos quaisquer. Este elemento é utilizado para inserir 
+		estilos CSS aos elementos da página. -->
+		<link rel="stylesheet" href="estilos.css" />
+
+		<!-- Especifica estilos para esta página somente. -->
+		<style type="text/css">
+			div #teste {
+				color: red;
+			}
+		</style>
+
+		<!-- O elemento script é utilizado para inserir um código javascript 
+		contido em outro arquivo. Este elemento mesmo sendo vazio deve ser 
+		fechado por sua respectiva tag de fechamento. -->
+		<script src="rotinas.js"></script>
+
+		<!-- O elemento script também pode ser usado para inserir um código 
+		javascript no cabeçalho. Isso é realizado quando o código será 
+		executado exclusivamente na página. -->
+		<script>
+			function hora() {
+				var hora = new Date().toLocaleTimeString();
+				document.getElementById('hora').innerHTML = hora;
+			}
+		</script>
+
+		<!-- O elemento base permite especificar um qual será o endereço base 
+		da página para ser possível especificar URLs relativas nos links. Assim 
+		um link especificado no corpo do documento como, por exemplo, 
+		<a href="arquivos.html">Link</a> indica o endereço: 
+		localhost/Diretorio1/Diretorio2/Diretorio3/arquivos.html-->
+		<base href="/Diretorio1/Diretorio2/Diretorio3/" />
+
+	</head>
+
+	<body>
+
+		<!--Utilizado para citações. Utilize o atributo site para especificar a fonte da citação quando for necessário.-->
+		<blockquote site="http://www.google.com">
+			<p>Deus está nas coisas mais simples!</p>
+		</blockquote>
+
+		<!-- Apresenta o texto na página como ele é escrito. O elemento pre é 
+		utilizado quando os espaçamentos e as quebras de linhas devem ser 
+		respeitados.-->
+		<pre>
+
+			Está            como eu   escrevi               aqui!
+
+			<!--Utilizado para apresentar trechos de códigos fonte.-->
+			<code>
+				public void reproduzir(String musica) {
+					Player player = new Player(musica);
+				} 
+			</code>
+
+			<!-- Utilizado para saídas de sistemas. -->
+			<samp>Saída de sistema.</samp>
+		</pre>
+
+		<!-- Utilizado para dar importância ao treCcho de texto.-->
+		<strong>importante</strong>
+
+		<!-- Utlizado para dar enfase. -->
+		<em>nunca</em>
+
+		<mark>mark O que é isso</mark><br />
+		<q>q O que é isso</q><br />
+		<s>s O que é isso</s><br />
+		<u>u O que é isso</u><br />
+
+<!-- Numeric character references specify the code position of a character in the document character set. Numeric character references may take two forms:
+
+    The syntax "&#D;", where D is a decimal number, refers to the ISO 10646 decimal character number D.
+    The syntax "&#xH;" or "&#XH;", where H is a hexadecimal number, refers to the ISO 10646 hexadecimal character number H. Hexadecimal numbers in numeric character references are case-insensitive.
+-->
+		<p>Referência a caracteres numéricos: <br>
+		&#229; <!-- referencia em decimal --> 
+		&#xE5; <!-- referencia em hexadecimal -->
+		&#Xe5;
+		&#x6C34;
+
+<!--
+		In order to give authors a more intuitive way of referring to characters in the document character set, HTML offers a set of character entity references. Character entity references use symbolic names so that authors need not remember code positions. For example, the character entity reference &aring; refers to the lowercase "a" character topped with a ring; "&aring;" is easier to remember than &#229;.-->
+
+		&aring; 
+<!-- Character entity references are case-sensitive. Thus, &Aring; refers to a different character (uppercase A, ring) than &aring; (lowercase a, ring).  -->
+		&Aring;
+
+	</body>
+</html>

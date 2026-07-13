@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+	<head>
+		<title>AJAX</title>
+
+		<script type="text/javascript">
+			
+			function loadXMLDoc(){
+
+				var xmlhttp;
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp=new XMLHttpRequest();
+				}
+				else {
+					// code for IE6, IE5
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+
+				/* 
+					A propriedade onreadystatechange recebe uma função como 
+					valor, ou o nome de uma função. O evento onreadystatechange 
+					é disparado toda vez que o estado de readyState muda.
+				*/
+				xmlhttp.onreadystatechange = function() {
+
+					/*
+						readyState armazena o estado do objeto XMLHttpRequest. 
+						Que pode ser:
+
+						0 - O pedido não foi inicializado;
+						1 - O pedido foi configurado;
+						2 - O pedido foi enviado;
+						3 - O pedido está sendo processado;
+						4 - O pedido está completo.
+
+						status armazena o status da resposta: 
+						
+						200 - OK;
+						404 - Page not found.
+
+						Quando readyState é 4 e status é 200, a resposta está 
+						pronta.
+					*/
+					if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+
+						/*
+							Para receber a resposta do servidor use as 
+							propriedades responseText (recebe os dados da 
+							resposta como uma string) ou responseXML (recebe os 
+							dados da resposta como dados em XML) do objeto 
+							XMLHttpRequest. Se a resposta do servidor não for 
+							em XML, use responseText. A propriedade 
+							responseText retorna a resposta como uma string.
+	
+							document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+
+							Se a resposta do servidor está em XML, e você quer 
+							converte-la em objetos XML, use responseXML.
+
+							doc = xmlhttp.responseXML;
+							txt = "";
+							contatos = doc.getElementsByTagName("contato");
+
+							for (i = 0; i < contatos.length; i++) {
+								txt = txt + contatos[i].childNodes[0].childNodes[0].nodeValue 
+										+ " - " + contatos[i].childNodes[1].childNodes[0].nodeValue + "<br>";
+							}
+							document.getElementById("myDiv").innerHTML=txt;
+
+						*/
+						document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+					}
+				}
+
+				/*
+					O método open(method,url,async) especifica o tipo da 
+					requisição (GET ou POST), a URL (localização do arquivo no 
+					sevidor), e se a requisição (async) deve ser manipulada de 
+					forma síncrona (false) ou assíncrona (true). O arquivo no 
+					servidor pode ser qualquer tipo de arquivo, como .txt and 
+					.xml, ou arquivos de script .asp e .php (que podem realizar 
+					ações no servidor antes do retorno da resposta). 
+					Quando usar async=true no método xmlhttp.open, especifique 
+					uma função no evento onreadystatechange para ser executada 
+					quando a resposta estiver pronta. Usar async=false não é 
+					recomendado, porém para pequenas requisições pode ser 
+					utilizado. Lembre-se o javascript não irá continuar a 
+					executar, até que a resposta do servidor esteja pronta. Se 
+					o servidor está ocupado ou lento, a aplicação irá travar ou 
+					parar. 
+
+					xmlhttp.open("POST","ajax.php",true);
+
+					O método send(string) envia a requisição ao servidor. A 
+					string é usada somente nas requisições com o método POST. 
+
+					xmlhttp.send();
+				*/
+				xmlhttp.open("GET","ajax.php",true);
+				xmlhttp.send();
+
+				/*
+					Com o método GET pode-se adicionar parâmetros a URL. Esses 
+					parâmetros são visíveis ao script no seridor.
+
+					xmlhttp.open("GET","ajax2.php?nome=pablo",true);
+
+					Passando uma URL simples pode-se obter um resultado em 
+					cache. Para evitar isso adicione um ID único à URL:
+
+					xmlhttp.open("GET","ajax2.php?t=" + Math.random(),true);
+
+					Pode-se utilizar o método POST como em um formulário HTML, 
+					adicione um header com a função setRequestHeader(). 
+					Especifique os dados que você deseja enviar no método 
+					send().
+
+					xmlhttp.open("POST","ajax2.php",true);
+					xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					xmlhttp.send("nome=pablo&sobrenome=vaz");
+
+					A função setRequestHeader(header,value) adiciona um 
+					cabeçalho HTTP na requisição. header: especifica o nome do 
+					cabeçalho. value: especifica o valor do cabeçalho.
+
+					Quando usar async=false, não escreva uma fução em 
+					onreadystatechange - apenas coloque o código depois da 
+					função send().
+
+					xmlhttp.open("GET","ajax_info.txt",false);
+					xmlhttp.send();
+					document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+
+				*/
+			}
+
+			/*
+				Usando uma Callback Function.
+
+				Uma callback function é uma função passada como parametro a 
+				outra função. Se você tem mais que uma tarefa AJAX em sua 
+				aplicação, você deve criar uma função padrão para criar o 
+				objeto XMLHttpRequest, e chamar-la para cada tarefa AJAX. A 
+				função deve conter a URL e o que fazer em onreadystatechange (O 
+				que provavelmente é diferente para cada chamada).
+
+				function myFunction(){
+					loadXMLDoc("ajax_info.txt",function(){
+						if (xmlhttp.readyState==4 && xmlhttp.status==200){
+							document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+						}
+					});
+				}
+			*/
+		</script>
+	</head>
+	<body>
+
+		<h1>AJAX</h1>
+		<button type="button" onclick="loadXMLDoc()">Change Content</button>
+		<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+
+	</body>
+
+
+
+
+	<!-- 
+		Referências: 
+		
+		http://www.w3schools.com/ajax/default.asp
+		Puc Minas Virtual - Pós Graduação - Desenvolvimento de Sistemas Web. 
+		Prof. Marco Rodrigo Costa.
+
+	-->
+
+</html>

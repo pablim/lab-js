@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<title></title>
+		<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src=""></script>
+        <link rel="stylesheet" type="text/css" href="css/styleRadioButton.css" media="screen" />
+    	<link rel="stylesheet" href="../css/codeFormat.css">
+
+		<style type="text/css">
+
+			form {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 8px;
+			}
+
+			.field {
+				display: flex;
+				flex-direction: column;
+
+				border: 1px solid #ccc;
+
+				input {
+					height: 36px;
+
+					&[type=image] {
+						width: fit-content;
+					}
+				}
+
+				.info {
+					font-size: 10pt;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<form id="myForm">
+
+			<div class="field">
+				<label for="volume">Volume:</label>
+				<input type="range" id="volume" name="volume" 
+						min="0" max="100" value="50"
+						oninput="volumeOutput.value = this.value">
+				
+				<output id="volumeOutput" for="volume">50</output>%
+			</div>
+
+			<div class="field">
+				<section>
+					<h1>Fields</h1>
+		
+					<div style="display: grid;">
+						<label for="theme-color">Choose a theme color:</label>
+						<input type="color" id="theme-color">
+						
+						<input id="theme-color" list="color-presets" 
+							placeholder="Start typing or select...">
+				
+						<div class="info" style="font-size: 12px; width: 600px;">
+							The datalist element lets you show recommended options, a kind of 
+							preset selection. You just use option elements to define your suggestions. The datalist 
+							gets an ID and the input references it with the list attribute. Done. 
+							You’ve got suggestions for the user. And this works with other input 
+							types too: type="time", type="url".
+							It’s basically like an autocomplete. But still, I have to say datalist 
+							support is a bit inconsistent. Firefox, for example, doesn’t fully 
+							support it. And every browser and operating system renders it 
+							differently, which makes the UX a bit uneven. But for simple use cases, 
+							you can get a lot out of inputs without any libraries or code.
+						</div>
+					
+				
+						<datalist id="color-presets">
+							<option value="#FF5733">#FF5733 - Vibrant Orange</option>
+							<option value="#33FF57">#33FF57 - Fresh Green</option>
+							<option value="#3357FF">#3357FF - Deep Blue</option>
+							<option value="#F033FF">#F033FF - Bright Purple</option>
+							<option value="#FFD700">#FFD700 - Gold</option>
+						</datalist>
+				
+						<br>
+				
+						<!-- Time suggestions -->
+						<input type="time" list="meeting-times">
+						<datalist id="meeting-times">
+							<option value="09:00">
+							<option value="10:00">
+							<option value="14:00">
+							<option value="16:00">
+						</datalist>
+				
+						<!-- URL suggestions -->
+						<input type="url" list="popular-sites">
+						<datalist id="popular-sites">
+							<option value="https://github.com">
+							<option value="https://stackoverflow.com">
+							<option value="https://developer.mozilla.org">
+						</datalist>
+					</div>
+				</section>
+
+				<style>
+					input:invalid {
+						border: 2px solid red;
+					}
+				</style>
+				<input type="email" placeholder="Enter your email" required>
+				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"           
+					placeholder="123-456-7890">>
+
+				<!-- Date pickers -->
+				<input type="date">
+				<input type="datetime-local">
+				<input type="month">
+				<input type="week">
+				<input type="time">
+
+				<!-- Search with built-in clear button -->
+				<input type="search" placeholder="Search...">
+				<!-- Range slider -->
+				<input type="range" min="0" max="100" value="50">
+				<!-- Color picker -->
+				<input type="color" value="#3357FF">
+			</div>
+
+			<div class="field">
+
+				<h3>Input mode</h3>
+				
+				Digits only, without type="number" side effects
+				<input type="text" inputmode="numeric">
+
+				Digits plus decimal point, right for prices
+				<input type="text" inputmode="decimal">
+
+				Telephone keypad with * and #
+				<input type="text" inputmode="tel">
+
+				Email keyboard with @ shortcut
+				<input type="email" inputmode="email">
+
+				URL keyboard with / and .com
+				<input type="text" inputmode="url">
+
+				Search keyboard, enter key labeled Search
+				<input type="search" inputmode="search">
+			</div>
+
+			<div class="field">
+				<h3>Autocomplete</h3>
+				<label for="name">Nome:</label>
+				<input id="name" autocomplete="section-primary name" >
+				<label for="lastName">Sobrenome:</label>
+				<input id="lastName" autocomplete="section-primary family-name">
+				<label for="email">Email:</label>
+				<input id="email" type="email" autocomplete="section-primary email">
+				
+				<label for="endereco">Endereço:</label>
+				<input id="endereco" autocomplete="section-secondary street-address" >
+				<label for="pais">País:</label>
+				<input id="pais" autocomplete="section-secondary country-name">
+
+				<code>
+					autocomplete="on" - O navegador pode preencher automaticamente o campo com base em valores previamente inseridos pelo usuário.
+				</code>
+				off - The browser is not permitted to automatically enter or select a value for this field. It is possible that the document or application provides its own autocomplete feature, or that security concerns require that the field's value not be automatically entered.
+				on - The browser is allowed to automatically complete the input. No guidance is provided as to the type of data expected in the field, so the browser may use its own judgement.
+				Optionally, a token whose first eight characters are an ASCII case-insensitive match for the string "section-", meaning that the field belongs to the named group.
+				<a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill-field">
+					https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill-field
+				</a>
+			</div>
+
+			<div class="field">
+				<input type="checkbox" id="c1" name="cc" />
+				<label for="c1"><span></span>Check Box 1</label>
+				
+				<input type="checkbox" id="c2" name="cc" />
+				<label for="c2"><span></span>Check Box 2</label>
+				
+				<input type="radio" id="r1" name="rr" />
+				<label for="r1"><span></span>Radio Button 1</label>
+				
+				<input type="radio" id="r2" name="rr" />
+				<label for="r2"><span></span>Radio Button 2</label>
+			</div>
+
+			<div class="field">
+		        <label>Hora: </label>
+				<input type=time min="11:00" max="21:00" step="900">
+			</div>
+			<div class="field">
+				<!--Campo do tipo url (type="url"). Representa um campo que recebe um 
+				URL válido (por exemplo, http://www.google.com). Caso o URL não seja 
+				válido o campo indicará que a sintaxe está incorreta.-->
+				URL <input type="url" /> <br>
+			</div>
+
+			<div class="field">
+				<!-- Campo do tipo email (type="email"). Representa um campo que recebe 
+				um e-mail válido. Caso o endereço de e-mail não sejá válido o campo 
+				indicará que a sintaxe está incorreta.-->
+				Email <input type="email" autocomplete="off"/> <br>
+			</div>
+
+			<div class="field">
+				<select id="selecao" name="selecao">
+					<option value=""> Opções </option>
+					<option value="1"> Opção 1 </option>
+					<option value="2"> Opção 2 </option>
+					<option value="3"> Opção 3 </option>
+					<option value="4"> Opção 4 </option>
+				</select>
+			</div>
+
+			<div class="field">
+				<select multiple required name="act2">
+					<option value="s1">It Sucks to Be Me (Reprise)
+					<option value="s2">There is Life Outside Your Apartment
+					<option value="s3">The More You Ruv Someone
+					<option value="s4">Schadenfreude
+					<option value="s5">I Wish I Could Go Back to College
+					<option value="s6">The Money Song
+					<option value="s7">School for Monsters
+					<option value="s8">The Money Song (Reprise)
+					<option value="s9">There's a Fine, Fine Line (Reprise)
+					<option value="s10">What Do You Do With a B.A. in English? (Reprise)
+					<option value="s11">For Now
+				</select>
+			</div>
+
+			<div class="field">
+				<select name="c">
+					<optgroup label="8.01 Physics I: Classical Mechanics">
+					<option value="8.01.1">Lecture 01: Powers of Ten
+					<option value="8.01.2">Lecture 02: 1D Kinematics
+					<option value="8.01.3">Lecture 03: Vectors
+					<optgroup label="8.02 Electricity and Magnestism">
+					<option value="8.02.1">Lecture 01: What holds our world together?
+					<option value="8.02.2">Lecture 02: Electric Field
+					<option value="8.02.3">Lecture 03: Electric Flux
+					<optgroup label="8.03 Physics III: Vibrations and Waves">
+					<option value="8.03.1">Lecture 01: Periodic Phenomenon
+					<option value="8.03.2">Lecture 02: Beats
+					<option value="8.03.3">Lecture 03: Forced Oscillations with Damping
+				</select>
+			</div>
+
+			<div class="field">
+				<!-- Campo do tipo range. Representa uma faixa de valores. -->
+				<input type="range" name="x" min="100" max="700" step="9.09090909" 
+					value="150.090909"/>
+			</div>
+
+			<div class="field">
+				<label for="">
+					Números de 0 a 9 seguidos de três letras minúsculas
+				</label>
+				<!--O atributo pattern especifica um padrão a ser seguido no 
+				preenchimento do campo utilizando espressões regulares. Pode-se 
+				descrever o padrão no atributo title para que seja apresentado ao 
+				usuário quando o campo não for preenchido corretamente.-->
+				<input type="text" pattern="[0-9][a-z]{3}" 
+					title="Números de 0 a 9 seguidos de três letras minúsculas"/>
+					<div class="info">
+						O atributo pattern especifica um padrão a ser seguido no 
+						preenchimento do campo utilizando espressões regulares. Pode-se 
+						descrever o padrão no atributo title para que seja apresentado ao 
+						usuário quando o campo não for preenchido corretamente.
+					</div>
+			</div>
+
+			<div class="field">
+				<label for="">Emails</label>
+				<!-- 
+					O atributo multiple permite indicar mais de um valor a ao campo.
+					O atributo list define um elemento que lista opções predefinidas 
+					para o usuário.
+				-->
+				<input type="email" list="lista" multiple />
+				<datalist id="lista">
+					<option value="1">valor1@a.com</option>
+					<option value="2">valor2@a.com</option> 
+					<option value="3">valor3@a.com</option> 
+					<option value="4">valor4@a.com</option> 
+				</datalist>
+				<div class="info">Input com lista</div>
+			</div>
+			
+			<div class="field">
+
+				<!-- O atributo accept indica ao agente do usuário quais tipos de 
+				arquivos selecionados. O atributo multiple permite que seja 
+				selecionado mais de um arquivo.-->
+				<input type="file" id="arquivo" name="arquivo" accept="audio/*" 
+					multiple />
+			</div>
+
+
+			<div class="field">
+				<!-- Campo do tipo image, representa um botão que envia as 
+				informações no formulário. Além disso, também envia uma coordenada x e 
+				uma coordenada y referentes ao ponto onde a imagem foi clicada.-->
+				<input type="image" src="../../Storage/imagens/setaDireita.png"/>
+			</div>
+
+			<div class="field">
+				<input type="submit" name="Enviar" value="Enviar"/>
+			</div>
+		</form>
+
+		<script>
+			myForm.addEventListener('submit', function () {
+				console.log('aqui 1');
+			})
+			myForm.addEventListener('submit', (e) => {
+				console.log('aqui 2');
+			});
+			myForm.addEventListener('submit', (e) => {
+				console.log('aqui 3');
+			});
+    </script>
+	</body>
+</html>

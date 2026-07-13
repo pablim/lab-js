@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+
+		<meta charset="utf-8"> 
+		<title>Canvas</title>
+
+		<style type="text/css">
+			#canvas {
+				border: 1px solid;
+			}
+			
+		</style>
+
+	</head>
+	<body>
+		
+		<!-- Um canvas é um grid bidimensional. O canto superior esquerdo 
+		possui a cordenada (0,0) -->
+		<canvas id="canvas" width="500" height="500" >
+		</canvas>
+
+		<img id="scream" src="../../../Storage/imagens/pintura.jpg" alt="The Scream" width="220" height="277">
+
+		<script type="text/javascript">
+
+			// Pega o elemento canvas.
+			var c = document.getElementById("canvas");
+
+			/* 
+				O objeto getctx("2d") é um objeto embutido na HTML5, com 
+				muitas propriedades e métodos para desenhar trajetos, caixas, 
+				circulos, textos, imagens e varias outros.
+			*/
+			var ctx = c.getContext("2d");
+
+			/* 
+				A propriedade fillStyle é a cor de preenchimento da forma, pode 
+				ser uma cor CSS, um gradiente, ou um padrão. A cor padrão de 
+				preenchimento é #000000 (preta).
+			*/
+			ctx.fillStyle = "#FF2040";
+
+			// O método fillRect desenha um retangulo. fillRect(x,y,width,height)
+			ctx.fillRect(10,50,150,75);
+
+			/*
+				Para desenhar linhas usamos os métodos moveTo(x,y) que define o 
+				ponto de início da linha, o método lineTo(x,y) que define o 
+				ponto final da linha e um dos métodos de desenho como o método 
+				stroke().
+			*/
+			ctx.moveTo(0,0);
+			ctx.lineTo(500, 500);
+			ctx.stroke();
+
+			// Para começar um novo caminho utilizamos o método beginPath();
+			ctx.beginPath();
+			ctx.moveTo(0,100);
+			ctx.lineTo(400, 500);
+			ctx.stroke();
+
+			/* 
+				Para desenhar círculos usamos o método arc(x,y,r,start,stop) 
+				e devemos usar um dos métodos de pintura, como o stroke() ou 
+				fill().
+			*/
+			ctx.beginPath();
+			ctx.arc(300,100,80,0,2*Math.PI);
+			ctx.stroke();
+
+
+			/*
+				Para desenhar textos usamos a propriedade font que define o 
+				tamanho e o tipo da fonte, o método fillText(text,x,y) que 
+				desenha um texto preenchido ou o método strokeText(text,x,y) 
+				que desenha um texto sem preenchimento.
+			*/
+			ctx.font = "30px Arial";
+			ctx.fillText("Hello World",10,400);
+			ctx.strokeText("Hello World",10,450);
+
+			/*
+				Para criar gradientes podemos usar dois métodos 
+				createLinearGradient(x,y,x1,y1) que cria um gradiente linear e 
+				createRadialGradient(x,y,r,x1,y1,r1) que cria um gradiente 
+				circular/radial. Uma vez que obtemos um objeto gradiente, nós 
+				devemos adicionar duas ou mais cores de parada. O método 
+				addColorStop() especifica a cor de parada, e sua posição ao 
+				longo do gradiente. As posições do gradiente podem ser qualquer 
+				uma entre 0 e 1. Use gradientes, especificando as propriedades 
+				fillStyle ou strokeStyle para o gradiente, e então desenhe a 
+				forma como, um retangulo, texto ou uma linha.
+			*/
+			// Criando o gradiente.
+			var grd = ctx.createLinearGradient(0,0,900,0);
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+
+			// Preenchendo com gradiente.
+			ctx.fillStyle = grd; 
+			ctx.fillRect(320,410,150,80);
+
+			// Criando o gradiente circular.
+			var grd = ctx.createRadialGradient(75,50,125,90,60,100);
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(300,200,150,80);
+
+			/*
+				Para desenhar imagens é utilizado o método drawImage(image,x,y);
+			*/
+			var img = document.getElementById("scream");
+			ctx.drawImage(img, 30, 30);
+
+
+//Exemplo.
+/*
+for (var x = 0.5; x < 500; x += 10) {
+  ctx.moveTo(x, 0);
+  ctx.lineTo(x, 375);
+}
+	
+for (var y = 0.5; y < 375; y += 10) {
+  ctx.moveTo(0, y);
+  ctx.lineTo(500, y);
+}
+
+ctx.strokeStyle = "#eee";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(0, 40);
+ctx.lineTo(240, 40);
+ctx.moveTo(260, 40);
+ctx.lineTo(500, 40);
+ctx.moveTo(495, 35);
+ctx.lineTo(500, 40);
+ctx.lineTo(495, 45);
+ctx.strokeStyle = "#000";
+ctx.stroke();
+ctx.moveTo(60, 0);
+ctx.lineTo(60, 153);
+ctx.moveTo(60, 173);
+ctx.lineTo(60, 375);
+ctx.moveTo(65, 370);
+ctx.lineTo(60, 375);
+ctx.lineTo(55, 370);
+
+ctx.strokeStyle = "#000";
+ctx.stroke();
+
+*/
+		</script>
+	</body>
+
+<!-- 
+	Referências:
+	Puc Minas Virtual - Pós Graduação - Desenvolvimento de Sistemas Web. 
+		Prof. Marco Rodrigo Costa.
+
+http://diveintohtml5.com.br/canvas.html
+ -->
+
+</html>

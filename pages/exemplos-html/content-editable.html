@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+<div contenteditable="true" 
+    spellcheck="true"
+     style="border: 1px solid #ccc; padding: 1rem; min-height: 100px;">
+  Click here and start typing. You can edit this text directly!
+</div>
+
+<div contenteditable="plaintext-only"
+     style="border: 1px solid #ccc; padding: 1rem;">
+  This only accepts plain text. 
+  Try pasting formatted content it strips all formatting!
+</div>
+Why contenteditable is powerful:
+
+    Build rich text editors without any library
+    Create inline editing interfaces (click to edit)
+    Perfect for note-taking apps, CMSs, collaborative tools
+    Works with document.execCommand() for formatting (bold, italic, lists, links)
+    Can be combined with spellcheck and autocorrect attributes
+
+A word of caution: Contenteditable can be tricky with complex formatting. For 
+production apps, you might still want a library like Quill or ProseMirror. But 
+for simple use cases? It’s genuinely elegant and works great out of the box.
+
+
+</body>
+</html>

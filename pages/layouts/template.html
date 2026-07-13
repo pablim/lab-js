@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+
+        <!-- O módulo Template Layout cria funcionalidades capazes de construir
+        layouts de alto nível destinados a tarefas complexas, tais como
+        posicionamento e alinhamento de "widgets" em interfaces gráficas de
+        usuários ou construção de um grid para layout de uma página ou janela.
+        Em particular, tais tarefas se referem ao desenvolvimento de porjetos
+        nos quais a ordem de apresentação visual é diferente da ordem dos
+        elementos no código do documento. A estilização de uma página web, um
+        formulário ou uma interface gráfica pode ser dividida em duas partes:
+        definição do grid e especificação de fontes, cores, margens etc. para
+        os elementos da página. Essas duas partes não são completamente
+        independentes, pois uma vez que o modelo CSS1 de layout  posicionamento
+        estabelece regras de layout (ou posicionamento) dos elementos-filhos de
+        um container dependentes do próprio container, fica implícita a
+        dependência. Tal dependência pode ser classificada como política de
+        posicionamento baseado em container. Esse módulo altera a plítica de layout 
+        estabelecida pelas CSS1 e cria uma política chamada posicionamento baseado 
+        em template. Segundo essa política, cada elemento container é capaz de 
+        conter seu própirio grid invisível para alinhamento e posicionamento.-->
+
+        <!-- Para navegadores que ainda não suportam esse módulo existe um plugin 
+        desenvolvido pelo alemão Alexis Richard Pieter Devéria. Download do 
+        pluguin: https://code.google.com/p/css-template-layout/ -->
+
+        <script src="../../src/jquery-2.1.1.js"></script>
+        <script src="../../src/jquery.tpl_layout1.1.6.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Inicialização do plugin de Tamplate Layout.
+                $.setTemplateLayout();
+            });
+        </script>
+
+        <style>
+
+            /* O mecanismos de contrução de Tamplate Layout segue duas diretrizes 
+            gerais: 1 - cada um dos boxes do layout deve ser designado por uma 
+            letra do alfabeto (sem acentuações), minúscula ou maiúscula, de livre 
+            escolha do autor. 2 - espaçamentos horizontais (entre colunas) são 
+            representados por um ponto. Existem apenas duas propriedades e um 
+            pseudoelemento para contrução de layouts com uso das 
+            funcionalidades do Módulo Template Layout: display, position e 
+            ::slot(); */
+
+			body {
+                font: 14px sans-serif;
+                width: 100%;
+                margin: 0;
+            }
+
+
+            /* O seletor da regra CSS é o box container do layout. Pode ser 
+            body ou qualquer outro elemento container. */
+            body {
+
+                /* A propriedade display recebe um conjunto de strings que irão 
+                definir o layout. Cada letra diferente representa uma coluna. A 
+                string que representar uma coluna maior que as outras deve 
+                preencher a string com letras repetidas. As strings devem ter o 
+                mesmo tamanho daquela que tiver maior extensão no layout. Olhe 
+				para o layout com as letras designativas como se fosse uma 
+				tabela com suas linhas, células e colunas. Cada letra ou ponto 
+				é uma célula. Se uma coluna engloba duas ou mais células da 
+				coluna vizinha (rowspan), o número de células nas duas ou mais 
+				linhas é dois. */
+
+                display:    "aaaaa" / 50px
+							"....." 
+                            "b.c.d" / 400px
+							"....." 
+							"eeeee" 
+							20% 0% 70% 0% 10%;
+
+                /* A altura de cada box é expecificada na frente da string, 
+				referente àquela linha, separada por uma barra (/). Por padrão, 
+				a altura dos boxes do layout expande-se automaticamente para 
+				acomodar o contéudo nelas inserido. A largura das colunas é 
+				adicionada no final da regra. Cada porcentagem corresponde a 
+				uma coluna. A definição da largura das colunas não é 
+				obrigatória, neste caso todas as colunas terão a mesma largura.
+				Tanto a largura quanto a altura podem ser declaradas com uso 
+				das propriedades width e height diretamente nos boxes; contudo, 
+				isso só é possível em layouts nos quais não existam 
+				espaçamentos, pois, nesses casos, ao contrário dos boxes, não 
+				há um seletor para espaçamentos.
+
+				Layout totalmente fluido:
+
+                display:    "aaaaa"
+                            "b.c.d"
+							"eeeee"
+							20% 0% 70% 0% 10%;
+
+				Definindo o valor em porcentagem, o layout se torna um layout 
+				fluido. Ou seja, preenche toda a largura da tela, qualquer que 
+				seja a resolução ou o tamanho da janela do usuário. Ao 
+				contrário de um layout com larguras fixas em pixels. 
+
+				Layout fluido com uma coluna elástica: 
+
+                display:    "aaaaa"
+                            "b.c.d"
+							"eeeee"
+							* 5px 200px 5px 150px;
+
+				O caractere * (curinga) é usado para declarações de largura e 
+				altura, indicando todo o comprimento que falta para se estender 
+				até os limites do container. A coluna do curinga costuma 
+				desaparecer quando o browser é redimensionado a um tamanho 
+				pequeno.
+
+				Layout fluido com duas (ou mais) colunas elásticas: 
+
+                display:    "aaaaa"
+                            "b.c.d"
+							"eeeee"
+							* 5px 22.5% 5px 150px;
+
+				A coluna definida com o valor em porcentagem sempre irá ocupar 
+				um tamanho proporcional ao da janela do navegador. Neste caso a 
+				coluna do curinga não desparece quando o browser é 
+				redimensionado a um tamanho pequeno.
+
+				Layoute fixo centralizado na tela: 
+
+                display:    ".aaaaa."
+                            ".b.c.d."
+							".eeeee."
+							* 400px 5px 200px 5px 150px *;
+
+				Deve-se informar um ponto no início e no final de de cada 
+				string para indicar um espaçamento no lado esquerda e no lado 
+				direito. A largura de cada lado é definida com o curinga *, ou 
+				seja, cada lado terá a largura necessária para completar a 
+				largura total do container. Neste caso, não há necessidade de 
+				declarar margens automáticas, como é feito com CSS2.
+
+				Pode-se utilizar ainda três palabras-chave e uma função para 
+				definir largura de colunas, min-content, max-content, 
+				fit-content e a função minmax().
+
+				min-content - A largura da coluna se ajusta à largura do seu 
+				box com conteúdo mínimo.
+
+				max-content - A largura da coluna se ajusta à largura do seu 
+				box com conteúdo máximo.
+
+				fit-content - A largura da coluna se ajusta às larguras mínima 
+				e máxima, de acordo com o tamanho da janela.
+
+				minmax(m, n) - A largura da coluna é personalizada para ajuste 
+				a uma largura mínima especificada no parâmetro m e máxima 
+				especificada no parâmetro, de acordo com o tamanho da janela.
+
+				display:    ".aa." / 60px
+							".bc." / 400px
+                            ".bd." / 60px
+							".ee." / 60px
+
+							* minmax(100px, 250px) 800px *;
+
+				A coluna onde foi apliacada a função minmax() se torna uma 
+				coluna elástica, adaptando sua largura entre aqueles dois 
+				valores, de acordo com o tamanho da janela. O valor total da 
+				largura do layout vai de um mínimo igual a 
+				100px + 800px = 900px até um valor máximo de 
+				250px + 800px = 1050px. 
+				
+	
+ 				*/
+
+
+				display:    ".aa." / 60px
+							".bc." / 400px
+                            ".bd." / 60px
+							".ee." / 60px
+
+							* minmax(100px, 250px) 800px *;
+
+            }
+
+			/*
+				A propriedade position define a posição de cada box no layout, 
+				tomando como referência a letra que foi atribuída ao na 
+				descrição do layout na regra display.
+			*/
+            #topo {position: a;}
+            #esquerdo {position: b;}
+            #centro {position: c;}
+			#direito {position: d;}
+			#rodape {position: e;}
+
+			/*
+				A propriedade position admite ainda o valor same, que posiciona 
+				o box de forma identica ao último box posicionado com o uso de 
+				uma letra da especificação do layout.
+			*/			
+			.complemento {
+				background: yellow; 
+				position: same;
+			}
+
+			/*
+				O pseudoelemento ::slot() casa com os boxes criados pela regra 
+				CSS que define o layout. As únicas propriedades CSS 
+				estilizavéis com o uso desse pseudoelemento são, background-*, 
+				vertical-align (valores: top, middle e baseline) e overflow. O 
+				W3C estuda a inclusão, nessa lista, das propriedades 
+				block-flow, direction e boxshadow.
+			*/
+            body::slot(a) {background: blue;}
+            body::slot(b) {background: red; vertical-align: middle;}
+            body::slot(c) {background: green;}
+            body::slot(d) {background: pink;}
+            body::slot(e) {background: silver;}
+
+			/*
+				No modelo com tabelas, a expansão de células de acordo com os 
+				conteúdos é automática; no modelo template layout, isso não é 
+				possível. No modelo com tabelas, é possível justapor bordas de 
+				células adjacentes; no modelo template layout, não é. No modelo 
+				tabelas, a sequência de linas e células é fixa e depende da 
+				marcação HTML; no modelo template layout, é possível alterar a 
+				sequência com regras CSS.
+
+				É importante ressaltar que boxes posicionados com template 
+				layout se comportam como se fossem posicionados segundo as 
+				regras das CSS2 para efeito da ordem de empilhamento, ou seja, 
+				pode-se fazer uso da propriedade z-index para alterar aquela 
+				ordem.
+			*/
+
+        </style>
+
+	</head>
+    <body> 
+
+        <div id="topo">
+		</div>
+        <div id="esquerdo">
+			Olá mundo.
+		</div>
+        <div id="centro">
+		</div>
+		<div class="complemento">aqui</div>
+		<div id="direito">
+		</div>
+		<div class="complemento">aqui</div>
+		<div id="rodape">
+		</div>
+
+    </body>
+</html>

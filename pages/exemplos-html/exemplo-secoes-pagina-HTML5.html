@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+	<!-- Bibliografia:
+	Prof. Marcos André S. Kutova, Vídeo Modelo de Conteúdo da HTML, Organização 
+	do Conteúdo - Pós Graduação em Desenvolvimento de Sistemas Web -->
+
+<html lang="pt-br">
+	<head>
+
+		<meta charset="utf-8"> 
+		<title></title>
+
+		<script type="text/javascript" src=""></script>
+		<style type="text/css"></style>
+
+	</head>
+	<body>
+		
+		<!-- Na HTML 5 Agora há sete tipos de conteúdo que são: Metadata, Flow, 
+		Sectioning, Heading, Phrasing, Embedded, Interactive -->
+
+		<!-- 
+		Metadata: define as condições de apresentação da página ou 
+		comportamento do resto do conteúdo. Estabelece relação com outros 
+		documentos. Ex.: base, command, link, meta, noscript, script, style, 
+		title.
+
+		Flow: define o conteúdo da página. Engloba todas os elementos que podem 
+		ser apresentados para o usuário. Todos os elementos da página são do 
+		tipo flow. Mesmo que alguns elementos sejam de outro tipo.
+
+		Sectioning: define as seções da página. Ex.: article, section, aside, 
+		nav.
+
+		Heading: define os títulos das seções. Ex.: h1, h2, h3, h4, h5, h6.
+
+		Phrasing: define o texto ou os elementos que marcam o texto. Esse tipo 
+		de conteúdo é semelhante ao tipo de conteúdo de linha da HTML 4 Ex.: a, 
+		abbr, area, audio, embed, i, iframe, video. etc.
+
+		Embedded: incorpora recursos externos ao documento. Ex.: audio, canvas, 
+		embed, iframe, img, math, object, svg, video.
+
+		Interactive: define conteúdos interativos. Ex.: a, audio button, 
+		details, embed, iframe, img, input, keygen, label, menu, object, select, 
+		textarea, video.
+
+		 -->
+
+		<!-- O elemento body é uma seção única que engloba todo o conteúdo. O 
+		elemento section define uma seção genérica da página. Se for preciso 
+		organizar um bloco de informações apenas para formatação com a CSS é 
+		recomendavel usar o elemento div. Esse elemento cria uma divisão que 
+		não possui qualquer significado, tanto que nem faz parte do tipo de 
+		conteúdo do tipo sectioning. O elemento article define uma seção 
+		autosuficiente e que pode ser redistribuída. O elemento aside define 
+		uma seção de conteúdo secundário, relacionado ao conteúdo principal. O 
+		elemento nav define uma seção que contém links para navegação. Cada 
+		seção deve conter um título, isso é feito através dos elementos de h1 a 
+		h6. -->
+
+		<!-- O elemento nav define uma seção para links de navegação (menus das 
+		páginas). Porém, nem todo link ou grupo de links precisa estar dentro 
+		de um elemento nav. Os links de um elemento nav devem ser independentes 
+		do conteúdo exibido na página.-->
+		<nav></nav>
+
+		<!-- O elemento main deve aparecer somente uma vez em cada página. Ele 
+		engloba todo o conteúdo central da página, ou seja, o contéudo que é 
+		único, já excluindo as informações repetidas em todas as página como, 
+		barra de navegação, informações de direitos autorais, logomarca, 
+		formulário de pesquisa, etc. -->		
+		<main>
+
+			<!-- Logo depois do body o h1 é o título da página. -->
+			<h1>Título da página</h1>
+
+			<!-- O elemento section define uma seção genérica da página. Agrupa 
+			informações interrelacionadas que somente fazem sentido se estiverem 
+			juntas. Exemplo: Em uma receita culinária, os ingredientes ficariam 
+			em uma seção e o modo de preparo em outra seção. -->
+			<section>
+				<!-- O elemento header define informações introdutórias sobre a 
+				seção. Exemplo: o título da seção, apoio navegacional (somente 
+				no escopo da seção), data de publicação, resumo ou apresentação 
+				do conteúdo. -->
+				<header>
+					<h2>Título da primeira seção</h2>
+				</header>
+
+				<!-- O elemento footer define informações de rodapé, como 
+				direitos autorais, links relacionados e forma de contato. -->
+				<footer></footer>
+
+				<!-- Os elementos header e footer não criam novas seções na 
+				estrutura do documento. -->
+			</section>
+
+			<section>
+				<header>
+					<h2>Título da segunda seção</h2>
+				</header>
+				<footer></footer>
+			</section>
+
+			<!-- O elemento article define uma seção autossufiente e que pode 
+			ser redistribuída. Ou seja representa um bloco de informações 
+			completo. A princípio esse conteúdo pode ser extraído da página e 
+			redistribuído em outras páginas. -->
+			<article>
+				<header>
+					<h3> Informaçoes autosuficientes. </h3>
+				</header>
+				<footer></footer>
+			</article>
+
+			<!-- Define uma seção de conteúdo secundário, relacionado ao 
+			conteúdo principal. Exemplos: tabelas, diagramas, entrevistas e etc. 
+			tudo relacionado ao conteúdo principal. -->
+			<aside>
+				
+			</aside>
+
+			<section>
+				<header>
+					<h2>Título da terceira seção</h2>
+				</header>
+				<section>
+					<header>
+						<h3>Título da primeira subseção da terceira seção</h3>
+					</header>
+					<footer></footer>
+				</section>
+				<footer></footer>
+			</section>
+
+			<!-- Essa alternativa sem a divisão implicita em seções é completamente 
+			equivalente a alternativa com seções. Os títulos criam seções no 
+			documento mesmo que de forma implícita. Com isso, devemos tomar cuidado 
+			para não criar seções não desejáveis. -->
+			<h1>Título da página</h1>
+			<h2>Título da primeira seção</h2>
+			<h2>Título da segunda seção</h2>
+			<h2>Título da terceira seção</h2>
+			<h3>Título da primeira subseção da terceira seção</h3>
+
+			<!-- Essa organização do documento em seções nos permite gerar uma 
+			lista dos tópicos do documento (document outline) usados em 
+			navegadores utilizados por pessoas cegas, isso facilita dos 
+			usuários. -->
+		</main>
+	</body>
+</html>

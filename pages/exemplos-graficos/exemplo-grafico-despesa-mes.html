@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <!-- <script src="d3.js"></script> -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="jspdf.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
+    <script src="js/c3.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/c3.css">
+
+  </head>
+  <body>
+
+    <?php $mesAtual = date("m");?>
+    <?php $ano = date("Y");?>
+    <?php $datas = [];?>
+    <?php $receitas = [];?>
+
+    <?php
+
+      $mes = $mesAtual;
+      $dia = 1;
+      while ($mesAtual == $mes) {
+
+        $data = date("Y-m-d",mktime(0,0,0,$mesAtual,$dia,$ano));
+        $mes = date("m",mktime(0,0,0,$mesAtual,$dia,$ano));
+
+        $dia += 1;
+        if ($mes == $mesAtual) {
+          $datas[] = "'".$data."'";
+          $receitas[] = 2000;
+        }
+
+      }
+
+
+    ?>
+
+
+
+    <div id="chart"></div>
+
+    <script type="text/javascript">
+
+      var chart = c3.generate({
+        data: {
+          bindto: 'chart',
+          x: 'x',
+          columns: [
+            // ['x', '2019-01-01', '2019-01-02', '2019-01-03', '2019-01-04',
+            //     '2019-01-05', '2019-01-06'],
+            ['x', <?=implode(",", $datas)?>],
+            ['Receitas', <?=implode(",", $receitas)?>],
+            ['Despesas', 1250, 1500, 700, 990, 457, 350]
+          ],
+          types: {
+            Receitas: 'area',
+            Despesas: 'area'
+          }
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              // rotate: 90,
+              multiline: false,
+              format: '%d/%m/%Y'
+            },
+            height: 120,
+            label: {
+              text: 'meses',
+              position: 'outer-center'
+            }
+          },
+          y: {
+            label: {
+              text: 'valor em R$',
+              position: 'outer-middle'
+            }
+          }
+        },
+       //  grid: {
+       //   x: {
+       //       show: true
+       //   },
+       //   y: {
+       //       show: true
+       //   }
+       // }
+      });
+
+      // setTimeout(function () {
+      //     chart2.load({
+      //         columns: [
+      //             ['data3', 400, 500, 450, 700, 600, 500]
+      //         ]
+      //     });
+      // }, 1000);
+
+    </script>
+
+  </body>
+</html>

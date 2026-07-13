@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Layout com Nav Bar e Menu Lateral</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Nav Bar */
+        .nav-bar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .brand-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .nav-options {
+            display: flex;
+        }
+        
+        .nav-option {
+            margin-left: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        /* Menu Lateral */
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            height: calc(100vh - 50px);
+            background-color: #f5f5f5;
+            overflow-y: auto;
+            padding-top: 50px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        
+        .sidebar-toggle {
+            position: absolute;
+            top: 10px;
+            left: 160px;
+            color: #fff;
+            background-color: #333;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .sidebar-toggle:hover {
+            background-color: #555;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .sidebar-expand-button {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            background-color: #333;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .sidebar-expand-button:hover {
+            background-color: #555;
+        }
+        
+        /* Conteúdo */
+        .content {
+            margin-left: 200px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        
+        /* Rodapé */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+        <div class="brand-name">Minha Marca</div>
+        <div class="nav-options">
+            <a class="nav-option" href="#">Opção 1</a>
+            <a class="nav-option" href="#">Opção 2</a>
+            <a class="nav-option" href="#">Opção 3</a>
+        </div>
+    </div>
+    
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+        <ul>
+            <li><img src="https://via.placeholder.com/40" alt="Opção 1"></li>
+            <li><img src="https://via.placeholder.com/40" alt="Opção 2"></li>
+            <li><img src="https://via.placeholder.com/40" alt="Opção 3"></li>
+            <li><img src="https://via.placeholder.com/40" alt="Opção 4"></li>
+            <li><img src="https://via.placeholder.com/40" alt="Opção 5"></li>
+        </ul>
+        <div class="sidebar-expand-button" onclick="expandSidebar()">Expandir</div>
+    </div>
+    
+    <!-- Conteúdo -->
+    <div class="content">
+        <!-- Conteúdo da página aqui -->
+    </div>
+    
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>Entre em contato:</p>
+        <a href="#">Telefone</a>
+        <a href="#">E-mail</a>
+        <a href="#">Endereço</a>
+    </div>
+
+    <script>
+        function expandSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+</html>

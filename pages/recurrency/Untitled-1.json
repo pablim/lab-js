@@ -1,0 +1,30 @@
+{
+    "recurrency[data][name]":"Teste novo",
+    "recurrency[initialDate]":"2026-05-06",
+    "recurrency[option]":"{\"p\":\"w\", \"f\":1, \"w\":3}",
+    "recurrency[excludeDates]":[
+        "2026-05-27",
+        "2026-05-13",
+        "2026-05-06",
+        "2026-06-10",
+        "2026-06-24",
+        "2026-07-08",
+        "2026-07-29"
+    ],
+
+
+    
+    "recurency[period][0]": {
+        "start": "2026-05-13",
+        "end": "2026-05-27",
+        "excluded": true,
+        
+        "start": "2026-05-13",
+        "end": "-1",
+        "excluded": true,
+
+        "start": "-1",
+        "end": "2026-05-27",
+        "excluded": true
+    }
+}

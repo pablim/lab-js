@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #menu {
+            width: 200px;
+            height: 100px;
+            background-color: lightgray;
+        }
+
+        #menu::backdrop {
+            width: 100%;
+            height: 100%;
+            background-color: #00000055;
+        }
+
+        #menu:popover-open, #warning:popover-open {
+            width: 200px;
+            height: 100px;
+        }
+
+        #warning::backdrop {
+            width: 400px;
+            height: 200px;
+            background-color: #00000055;
+            position: absolute;
+            left: calc(100% - 400px);
+            bottom: calc(100% - 200px);
+        }
+       
+        #warning:popover-open {
+            position: absolute;
+            left: calc(100% - 350px);
+            bottom: calc(100% - 200px);
+        }
+
+        [popovertargetaction=hide] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: none;
+        }
+
+
+
+        /* [inert] {
+            opacity: 0.5;
+            pointer-events: none;
+            user-select: none;
+        } */
+    </style>
+</head>
+<body>
+
+    <button popovertarget="menu" popovertargetaction="show">Open</button>
+    <div id="menu" 
+        popover 
+        onbeforetoggle="console.log('before toggle')" 
+        ontoggle="console.log('after toggled')"
+    >
+        Menu <br><br>
+
+        <button popovertarget="warning" popovertargetaction="show">Open</button>
+        <button popovertarget="menu" popovertargetaction="hide">x</button>
+
+        <div id="warning" popover="hint">
+            Warning <br><br>
+            <button popovertarget="warning" popovertargetaction="hide">
+                x
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+

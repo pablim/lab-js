@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<video id="cam"></video>
+
+
+	<script src="instascan.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		const scanner = new Instascan.Scanner({
+			video: document.getElementById('cam')
+		})
+		scanner.addListener('scan', content => {
+			console.log(content);
+		})
+		Instascan.Camera.getCameras().then(cameras => {
+			if (cameras.length > 0){
+				console.log(cameras)
+				//scanner.start(cameras[0])
+
+			}
+		})
+	</script>
+</body>
+</html>

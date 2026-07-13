@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+<form oninput="calculateBMI()">
+  <label>
+    Weight (kg):
+    <input type="number" id="weight" value="70" min="1">
+  </label>
+  
+  <label>
+    Height (cm):
+    <input type="number" id="height" value="175" min="1">
+  </label>
+  
+  <p>
+    Your BMI: 
+    <output id="bmi" for="weight height">22.9</output>
+  </p>
+</form>
+Why Use Output Instead of Span?
+
+To be clear, functionally it doesn’t give you any real advantage. You could 
+just use a span instead. But output is semantically correct. And that’s what 
+HTML is about. You mark up text, hypertext, according to what it actually is.
+
+You declare what a heading is, what a paragraph is, what a dialog is, what an 
+input is. And you can also declare what an output field is.
+
+And that has practical benefits:
+
+    For accessibility: A screen reader understands this is the result and it can 
+    announce it without moving focus away from the controls that influence that 
+    result
+    The for attribute provides relevant context: The sum is calculated based on 
+    values A and B
+    An output element isn’t focusable by default, which is correct, even though 
+    it is inside of a form where it belongs
+
+So, good for accessibility and it makes your HTML cleaner and nicer.
+
+
+</body>
+</html>

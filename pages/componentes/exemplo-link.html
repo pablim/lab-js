@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualização de sites nos próprios links</title>
+		<script type="text/javascript">
+			
+			function visualiza(obj) {
+				var link = obj.getAttribute("href");
+				// obj.innerHTML = obj.innerHTML + "<iframe src=" + obj.getAttribute("href") + "></iframe> ";
+				obj.nextSibling.innerHTML = "<iframe src=" + obj.getAttribute("href") + "></iframe> ";
+			}
+
+		</script>
+	</head>
+	<body>
+		<p>Passe o mouse:</p>
+		<a href="https://www.google.com" onmouseover="visualiza(this)"> Google </a><div></div>
+	</body>
+</html>

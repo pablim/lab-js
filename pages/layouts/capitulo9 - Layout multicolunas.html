@@ -1,0 +1,1107 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<style type="text/css" media="all">
+
+		.tab2 { margin-left: 15px; }
+		.tab3 { margin-left: 30px; }
+		.tab4 { margin-left: 45px; }
+		.tab5 { margin-left: 60px; }
+
+		.igualar1 { margin-right: 20px; }
+		
+		.tabela1 tr td { border: 1px solid black; }
+
+		.tabelaCabecalho tr:first-child { background-color: green; }
+
+		.cont1 {
+			border: 1px solid black;
+			padding: 5px;
+		}
+
+		.over { overflow: hidden; }
+
+		.tam1 {
+			width: 700px;
+			height: 150px;
+			padding-top: 30px;
+		}
+
+		.tam2 {
+			width: 900px;
+			height: 150px;
+			padding-top: 30px;
+			padding-left: 10px;
+		}
+
+		#exemplo1 {
+			-moz-column-count: 4;
+			-webkit-column-count: 4;
+			column-count: 4;
+			padding: 0 10px;
+			border: 1px solid;
+		}
+
+		#exemplo2 {
+			-moz-column-count: 4;
+			-webkit-column-count: 4;
+			column-count: 4;
+			padding: 0 10px;
+			border: 1px solid;
+			max-height: 100px;
+			overflow: auto;
+		}
+
+		#exemplo3 {
+			-moz-column-width: 150px;
+			-webkit-column-width: 150px;
+			column-width: 150px;
+			padding: 0 10px;
+			border: 1px solid;
+		}
+
+		#exemplo4 {
+			-moz-column-count: 4;
+			-webkit-column-count: 4;
+			column-count: 4;
+
+			-moz-column-gap: 60px;
+			-webkit-column-gap: 60px;
+			column-gap: 60px;
+		}
+
+		#exemplo5 {
+			-moz-column-count: 4;
+			 -webkit-column-count: 4;
+			 column-count: 4;
+
+			 -moz-column-rule: 2px dotted #000;
+			 -webkit-column-rule: 2px dotted #000;
+			 column-rule: 2px dotted #000;
+		}
+
+		#exemplo6 {
+			-moz-column-count: 4;
+			 -webkit-column-count: 4;
+			 column-count: 4;
+
+			 -moz-column-gap: 60px;
+			 -webkit-column-gap: 60px;
+			 column-gap: 60px;
+
+			 -moz-column-rule: 8px solid #ccc;
+			 -webkit-column-rule: 8px solid #ccc;
+			 column-rule: 8px solid #ccc;
+		}
+
+		.exemplo7-8 {
+			-moz-column-count: 4;
+			-webkit-column-count: 4;
+			column-count: 4;
+		}
+
+		.exemplo7-8 h4 {
+			 text-align: center;
+			 background: #ccc;
+			 margin: 0;
+		}
+
+		#exemplo8 h4 {
+			-moz-column-span: all;
+			-webkit-column-span: all;
+			column-span: all;
+		}
+
+		.exemplo9-10 {
+			-moz-column-count: 4;
+			-webkit-column-count: 4;
+			column-count: 4;
+
+			-moz-column-gap: 18px;
+			-webkit-column-gap: 18px;
+			column-gap: 18px;
+
+			-moz-column-rule: 3px double #000;
+			-webkit-column-rule: 3px double #000;
+			column-rule: 3px double #000;
+			text-align: justify;
+		}
+
+		#exemplo10  h4 {
+			-moz-break-before: column;
+			-webkit-break-before: column;
+			break-before: column;
+			text-align: center;
+		}
+
+		#exemplo10 p {
+			break-inside: avoid;
+		}
+
+		#exemplo11 .multi-colunas {
+			-moz-column-count: 3;
+			-webkit-column-count: 3;
+			column-count: 3;
+
+			-moz-column-gap: 18px;
+			-webkit-column-gap: 18px;
+			column-gap: 18px;
+
+			-moz-column-rule: 3px double #000;
+			-webkit-column-rule: 3px double #000;
+			column-rule: 3px double #000;
+
+			text-align: justify;
+		}
+
+		#exemplo11 p {
+			-moz-break-inside: avoid;
+			-webkit-break-inside: avoid;
+			break-inside: avoid;
+		}
+
+		#exemplo11 p.a {
+			-moz-break-before: column;
+			-webkit-break-before: column;
+			break-before: column;
+		}
+
+		#exemplo11 .overflow {
+			width: 220px;
+			height: 40px;
+			padding: 0;
+			margin: 0;
+			background: #ccc;
+			-moz-break-after: avoid;
+			-webkit-break-after: avoid;
+			break-after: avoid;
+		}
+
+		#exemplo12 .multi-colunas {
+			max-height: 160px;
+			-moz-column-count: 3;
+			-webkit-column-count: 3;
+			column-count: 3;
+
+			-moz-column-gap: 18px;
+			-webkit-column-gap: 18px;
+			column-gap: 18px;
+
+			-moz-column-rule: 3px double #000;
+			-webkit-column-rule: 3px double #000;
+			column-rule: 3px double #000;
+
+			text-align: justify;
+		}
+
+	</style>
+</head>
+	<body>
+		
+		<h2>Layout multicolunas</h2>
+
+		Atualmente o navegador Opera suporta nativamente a maioria das 
+		funcionalidades desse módulo. Os navegadores Firefox, Chrome e Safari 
+		suportam com uso dos prefixos <i>-moz-</i> e <i>-webkit-</i><p />
+
+		As proprieadades CSS para criar e estiliza elementos multicolunas são 
+		listadas a seguir:<p />
+
+		<ul>
+			<li>column-count</li>
+			<li>column-width</li>
+			<li>columns</li>
+			<li>column-gap</li>
+			<li>column-rule</li>
+			<li>column-span</li>
+			<li>column-fill</li>
+			<li>break-before</li>
+			<li>break-after</li>
+			<li>break-inside</li>
+		</ul>
+
+		<h4>column-count</h4>
+
+		Essa propriedade se destina a definir o número de colunas a ser criado 
+		em um elemento. Os valores possíveis para ess propriedade são: 
+		<i>auto</i> e <i>inteiro</i>. O valor padrão é <i>auto</i> e significa 
+		que não há divisão em colunas ou que a divisão é definida por outra 
+		propriedade (por exemplo: <i>column-width</i>). O valor <i>inteiro</i> 
+		é um número inteiro maior que zero, definindo a quantidade de boxes 
+		colunas a serem inseridos no elemento multicolunas.<p />
+		
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<br />
+		&nbsp;padding: 0 10px;<br />
+		&nbsp;border: 1px solid;<br />
+		}<p />
+
+		<div id="exemplo1">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj
+			ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja fjhfiqoerj
+			ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj
+			ajdfakdj fkjdf kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj
+			ajdfak djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh fiqoerj
+			ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf jafjafjhf iqoerj
+			ajdfakd jfkjdfkda jfka jdfkd jfkajdfçkdjfjç fjafajd fhjahf jafja fjhf iqoerj
+			ajdfa kdjfkjd fkdajfk ajdf kdjfkaj dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj
+			ajdfa kdjf kj dfkdajf kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj
+			ajdfakdj fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj hfiqoerj
+			ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj ahfjafj afjhfiqoe rj
+			ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç fjafa jdfhjahf jafj afjhfiqoerj
+			ajdfakdjf kjdfkdaj fkajdf kdjfk ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj
+			ajdf akdjfk jdfkd ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj
+			ajd fakdjfkjdfkdajfkajdfkdjfkajdfçkdj fjçfj afaj dfhja hfjafj afjhfi qoerj
+			ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h jahfjafjaf jhfiqoerj
+		</div><p />
+
+		Podemos definir uma altura fixa para as colunas e, em resoluções para 
+		as quais a altura definida seja insuficiente para acomodar o conteúdo, 
+		fazer aparecer uma barra de rolagem vertical.<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<br />
+		&nbsp;max-height: 100px;<br />
+		&nbsp;overflow: auto;<br />
+		}<p />
+		
+		<div id="exemplo2">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoer ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj
+			ajdfakdj fkjdf kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj 
+			afjhfi qoerj
+			ajdfak djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj 
+			afjafjh fiqoerj
+			ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf 
+		</div><p />
+
+		<h4>column-width</h4>
+
+		Essa propriedade define a largura das colunas a serem ciradas em um 
+		elemento. Os valores possíves para essa propriedade são: <i>auto</i> ou 
+		uma medida CSS. O valor padrão é auto e sigifica que não há divisão em 
+		colunas ou que a divisão é definida por outra propriedade (por exemplo: 	
+		<i>column-count</i>). O valor medida CSS deve ser maior do que zero, 
+		definindo a largura dos boxes colunas a serem inseridos no elemento 
+		multicolunas.<p />
+
+		Ao contrário da propriedade <i>column-count</i>, para qual o número de 
+		colunas é fixo, essa propriedade faz com que o número de colunas seja 
+		dinâmico, ou seja, a quantidade de columnas necessárias para acomodar o 
+		conteúdo depende da resolução.<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-width: 150px;<br />
+		&nbsp;-webkit-column-width: 150px;<br />
+		&nbsp;column-width: 150px;<br />
+		}<p />
+
+		<div id="exemplo3">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj
+			ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja fjhfiqoerj
+			ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj
+			ajdfakdj fkjdf kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj
+			ajdfak djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh fiqoerj
+			ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf jafjafjhf iqoerj
+			ajdfakd jfkjdfkda jfka jdfkd jfkajdfçkdjfjç fjafajd fhjahf jafja fjhf iqoerj
+			ajdfa kdjfkjd fkdajfk ajdf kdjfkaj dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj
+			ajdfa kdjf kj dfkdajf kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj
+			ajdfakdj fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj hfiqoerj
+			ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj ahfjafj afjhfiqoe rj
+			ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç fjafa jdfhjahf jafj afjhfiqoerj
+			ajdfakdjf kjdfkdaj fkajdf kdjfk ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj
+			ajdf akdjfk jdfkd ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj
+			ajd fakdjfkjdfkdajfkajdfkdjfkajdfçkdj fjçfj afaj dfhja hfjafj afjhfi qoerj
+			ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h jahfjafjaf jhfiqoerj
+		</div><p />
+
+		<h4>columns</h4>
+
+		Essa propriedade é a forma abreviada de se definir <i>column-count</i> 
+		e <i>column-width</i>.
+
+		.multi-colunas {<br />
+		&nbsp;-moz-columns: 4 150px;<br />
+		&nbsp;-webkit-columns: 4 150px;<br />
+		&nbsp;columns: 4 150px;<br />
+		}<p />
+
+		O primeiro valor é referente a propriedade <i>column-count</i> e o 
+		segundo valor é referente a propriedade <i>column-width</i>. A forma 
+		abreviada admite a declaração de dois valores ou de um valor, e, nesse 
+		caso, o valor omitido é considerado como <i>auto</i>. Nenhum navegador 
+		atual suporta essa propriedade abreviada.<p />
+
+		<h4>column-gap</h4>
+
+		Essa propriedade se destina a definir a largura das colunas a serem 
+		criadas em um elemento. Os valores possíveis para essa propriedade são: 
+		<i>normal</i> ou uma medida CSS. O valor padrão é <i>normal</i> e 
+		significa que o espaçamento entre colunas será calculado pelo 
+		navegador. O valor recomendado pela especificação para a largura do 
+		espaçamento entre colunas é de <i>1em</i>. O valor medida CSS deve ser 
+		maior do que zero.<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<p />
+
+		&nbsp;-moz-column-gap: 60px;<br />
+		&nbsp;-webkit-column-gap: 60px;<br />
+		&nbsp;column-gap: 60px;<br />
+		}<p />
+
+		<div id="exemplo4">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+			kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj ajdfak 
+			djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh 
+			fiqoerj ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf iqoerj ajdfakd jfkjdfkda jfka jdfkd jfkajdfçkdjfjç 
+			fjafajd fhjahf jafja fjhf iqoerj ajdfa kdjfkjd fkdajfk ajdf kdjfkaj 
+			dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj ajdfa kdjf kj dfkdajf 
+			kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj ajdfakdj 
+			fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj 
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj 
+			hfiqoerj ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj 
+			ahfjafj afjhfiqoe rj ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç 
+			fjafa jdfhjahf jafj afjhfiqoerj ajdfakdjf kjdfkdaj fkajdf kdjfk 
+			ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj ajdf akdjfk jdfkd 
+			ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj ajd 
+			fakdjfk jdfkdajfk ajdfkdjfka jdfçkdj fjçfj afaj dfhja hfjafj afjhfi 
+			qoerj ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h 
+			jahfjafjaf jhfiqoerj
+		</div><p />
+
+		<h4>column-rule</h4>
+
+		Essa propriedade se destina a definir uma barra vertical entre as 
+		colunas. É permitido que se defina espessura, estilo e cor da barra. Os 
+		valores possíveis para essa propriedade são: uma medida CSS para 
+		espessura, em estilo de borda, uma cor e <i>transparent</i>.<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<p />
+
+		&nbsp;-moz-column-rule: 2px dotted #000;<br />
+		&nbsp;-webkit-column-rule: 2px dotted #000;<br />
+		&nbsp;column-rule: 2px dotted #000;<br />
+		}<p />
+
+		<div id="exemplo5">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+			kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj ajdfak 
+			djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh 
+			fiqoerj ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf iqoerj ajdfakd jfkjdfkda jfka jdfkd jfkajdfçkdjfjç 
+			fjafajd fhjahf jafja fjhf iqoerj ajdfa kdjfkjd fkdajfk ajdf kdjfkaj 
+			dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj ajdfa kdjf kj dfkdajf 
+			kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj ajdfakdj 
+			fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj 
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj 
+			hfiqoerj ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj 
+			ahfjafj afjhfiqoe rj ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç 
+			fjafa jdfhjahf jafj afjhfiqoerj ajdfakdjf kjdfkdaj fkajdf kdjfk 
+			ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj ajdf akdjfk jdfkd 
+			ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj ajd 
+			fakdjfk jdfkdajfk ajdfkdjfka jdfçkdj fjçfj afaj dfhja hfjafj afjhfi 
+			qoerj ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h 
+			jahfjafjaf jhfiqoerj
+		</div><p />
+
+		.multi-colunas2 {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<p />
+
+		&nbsp;-moz-column-gap: 60px;<br />
+		&nbsp;-webkit-column-gap: 60px;<br />
+		&nbsp;column-gap: 60px;<p />
+
+		&nbsp;-moz-column-rule: 8px solid #ccc;<br />
+		&nbsp;-webkit-column-rule: 8px solid #ccc;<br />
+		&nbsp;column-rule: 8px solid #ccc;<br />
+		}<p />
+
+		<div id="exemplo6">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+			kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj ajdfak 
+			djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh 
+			fiqoerj ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf iqoerj ajdfakd jfkjdfkda jfka jdfkd jfkajdfçkdjfjç 
+			fjafajd fhjahf jafja fjhf iqoerj ajdfa kdjfkjd fkdajfk ajdf kdjfkaj 
+			dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj ajdfa kdjf kj dfkdajf 
+			kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj ajdfakdj 
+			fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj 
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj 
+			hfiqoerj ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj 
+			ahfjafj afjhfiqoe rj ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç 
+			fjafa jdfhjahf jafj afjhfiqoerj ajdfakdjf kjdfkdaj fkajdf kdjfk 
+			ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj ajdf akdjfk jdfkd 
+			ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj ajd 
+			fakdjfk jdfkdajfk ajdfkdjfka jdfçkdj fjçfj afaj dfhja hfjafj afjhfi 
+			qoerj ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h 
+			jahfjafjaf jhfiqoerj
+		</div><p />
+
+		Podemos preencher toda a largura que separa as colunas com uma barra 
+		vertical, bastando, para issso, declarar a espessura da barra igual ao 
+		valor de <i>column-gap</i>.<p />
+
+		Essa propriedade é naverdade uma abreviatura para as propriedades 
+		<i>column-rule-width, colum-rule-style</i> e <i>column-rule-color</i>. 
+		Então pode-se escrever:<p />
+
+		.multi-colunas2 {<br />
+		&nbsp;column-rule-width:: 8px;<br />
+		&nbsp;column-rule-style: solid;<br />
+		&nbsp;column-rule-color: #ccc;<br />
+		}<p />
+		
+		<h4>column-span</h4>
+
+		Essa propriedade se destina a fazer com que um elemento contido no box 
+		multicoluna se estenda por toda a largura do box, como se não houvesse 
+		colunas no sentido horizontal do elemento. Os valores possíveis para 
+		essa propriedade são: <i>none</i> e<i>all</i>. O valor padrão é 
+		<i>none</i> e faz com que o elemento permaneça confiando na sua coluna. 
+		O valor <i>all</i> estende o elemento por todas as colunas.<p />
+
+		Essa propriedade é suportada nativamente pelo navegador Opera e pelos 
+		navegadores Safari e Chrome, com uso do prefixo <i>-webkit-</i>.<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<br />
+		}<p />
+		
+		.multi-colunas2 {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<br />
+		}<p />
+
+		h4 {<br />
+		&nbsp;text-align: center;<br />
+		&nbsp;background: #ccc;<br />
+		&nbsp;margin: 0;<br />
+		}<p />
+
+		.multi-colunas2 h4 {<br />
+		&nbsp;-moz-column-span: all;<br />
+		&nbsp;-webkit-column-span: all;<br />
+		&nbsp;column-span: all;<br />
+		}<p />
+
+		<div class="exemplo7-8">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+			kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj ajdfak 
+			djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh 
+			fiqoerj ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf <h4>Conteúdo do cabeçalho nível quatro</h4> 
+			fjafajd fhjahf jafja fjhf iqoerj ajdfa kdjfkjd fkdajfk ajdf kdjfkaj 
+			dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj ajdfa kdjf kj dfkdajf 
+			kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj ajdfakdj 
+			fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj 
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj 
+			hfiqoerj ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj 
+			ahfjafj afjhfiqoe rj ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç 
+			fjafa jdfhjahf jafj afjhfiqoerj ajdfakdjf kjdfkdaj fkajdf kdjfk 
+			ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj ajdf akdjfk jdfkd 
+			ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj ajd 
+			fakdjfk jdfkdajfk ajdfkdjfka jdfçkdj fjçfj afaj dfhja hfjafj afjhfi 
+			qoerj ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h 
+			jahfjafjaf jhfiqoerj
+		</div><p />
+
+		<div class="exemplo7-8" id="exemplo8">
+			ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+			hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+			hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+			çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+			çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+			djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+			kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj afjhfi qoerj ajdfak 
+			djfkjdfkd ajfkaj dfkdjfkaj dfçkd jfjçfj afajd fhjahfj afjafjh 
+			fiqoerj ajdfakdjfk jdfkda jfkajd fkdjf k ajdfçkdj fjçfjafa jdfhjahf 
+			jafjafjhf <h4>Conteúdo do cabeçalho nível quatro</h4> 
+			fjafajd fhjahf jafja fjhf iqoerj ajdfa kdjfkjd fkdajfk ajdf kdjfkaj 
+			dfçk djfjçfja fajdfhjahf jafjaf jhfiqo erj ajdfa kdjf kj dfkdajf 
+			kajd fk djfk ajdfçkdj fjçfj afajdfhjah fjafjaf jhfiqoerj ajdfakdj 
+			fkjdfkda jfk ajdfkd jfkajd fçkdjfjçfj afajdfhjahfja fjaf jhfiqoerj 
+			ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf hjahfjaf jafj 
+			hfiqoerj ajdf akdjfkjdfkd ajfka jdfkdjf kajdfç kdjfjçf jafajdfhj 
+			ahfjafj afjhfiqoe rj ajd fakdjfkjdfkda jfkajdfk djfkajdfç kdjfjç 
+			fjafa jdfhjahf jafj afjhfiqoerj ajdfakdjf kjdfkdaj fkajdf kdjfk 
+			ajdfçk djfjçf jafaj dfhja hfjafjafjh fiqoerj ajdf akdjfk jdfkd 
+			ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj hfiqoerj ajd 
+			fakdjfk jdfkdajfk ajdfkdjfka jdfçkdj fjçfj afaj dfhja hfjafj afjhfi 
+			qoerj ajd fakdjf kjdf kdajfka jdfkdjf kajdfç kdjfj çfjafajdf h 
+			jahfjafjaf jhfiqoerj
+		</div><p />
+
+		Obs: <b>o navegador Firefox não suporta</b> a propriedade column-span mesmo 
+		com -moz-column-span.<p />
+
+		<h4>column-fill</h4>
+
+		Essa propriedade se destina a definir como o conteúdo será distribuído 
+		pelas colunas. Os valores possíveis para essa propriedade são: 
+		<i>auto</i> e <i>balance</i>. O valor padrão é <i>auto</i> e faz com 
+		que o conteúdo preencha as colunas sequencialmente. O valor 
+		<i>balance</i> faz com que o agente de usuário tente, se for possível, 
+		distribuir o conteúdo igualmente pelas colunas.<p />
+
+		Essa propriedade atualmente não é suportada por nenhum navegador, e sua 
+		sintaxe é conforme mostrado a seguir: <p />
+
+		.multi-colunas {<br />
+		&nbsp;column-fill: balance;<br />
+		}<p />
+
+		<h3>break-*</h3>
+
+		<h4>break-before e break-after</h4>
+
+		Essas propriedades se destinam a controlar a quebra de colunas/páginas, 
+		tendo como referência o ponto imediatamente antes (break-before) ou 
+		depois (break-after) do elemento para a qual foi definida. Os valores 
+		possíveis e seus significados são:<p />
+
+		<table class="tabelaCabecalho tabela1">
+			<tr>
+				<td>Valor</td>
+				<td>Descrição</td>
+			</tr>
+			<tr>
+				<td>auto</td>
+				<td>
+					Não há controle de quebra. Esse pe o valor padrão da 
+					propriedade.
+				</td>
+			</tr>
+			<tr>
+				<td>always</td>
+				<td>
+					Força quebra de página antes (break-before) ou depois 
+					(break-after) do elemento
+				</td>
+			</tr>
+			<tr>
+				<td>avoid</td>
+				<td>
+					Evita quebra de coluna/página antes (break-before) ou 
+					depois (break-after) do elemento
+				</td>
+			</tr>
+			<tr>
+				<td>left</td>
+				<td>
+					Força a quebra de uma ou duas páginas antes (break-before) 
+					ou depois (break-after) do elemento e faz com que a próxima 
+					página seja formatada como página esquerda.
+				</td>
+			</tr>
+			<tr>
+				<td>right</td>
+				<td>
+					Força a quebra de uma ou duas páginas antes (break-before) 
+					ou depois (break-after) do elemento e faz com que a próxima 
+					página seja formatada como página direita.
+				</td>
+			</tr>
+			<tr>
+				<td>page</td>
+				<td>
+					Força quebra de página antes (break-before) ou depois 
+					(break-after) do elemento.
+				</td>
+			</tr>
+			<tr>
+				<td>column</td>
+				<td>
+					Força quebra de coluna antes (break-before) ou depois 
+					(break-after) do elemento.
+				</td>
+			</tr>
+			<tr>
+				<td>avoid-page</td>
+				<td>
+					Evita quebra de página antes (break-before) ou depois 
+					(break-after) do elemento.
+				</td>
+			</tr>
+			<tr>
+				<td>avoid-column</td>
+				<td>
+					Evita quebra de coluna antes (break-before) ou depois 
+					(break-after) do elemento.
+				</td>
+			</tr>
+		</table><p />
+
+		Note que algumas propriedades se aplicam a colunas e páginas, outras 
+		somente a colunas e outras ainda somente a páginas.<p />
+
+		<h4>break-inside</h4>
+
+		Essa propriedade se destina a controlar a quebra de colunas/páginas, 
+		tendo como referência o conteúdo do elemento para o qual foi definido. 
+		Os valores possíveis e seus significados são: <p />
+
+		<table class="tabelaCabecalho tabela1">
+			<tr>
+				<td>Valor</td>
+				<td>Descrição</td>
+			</tr>
+			<tr>
+				<td>auto</td>
+				<td>
+					Não há controle de quebra. Esse pe o valor padrão da 
+					propriedade.
+				</td>
+			</tr>
+			<tr>
+				<td>avoid</td>
+				<td>
+					Evita quebra de coluna/página dentro do conteúdo do 
+					elemento.
+				</td>
+			</tr>
+			<tr>
+				<td>avoid-page</td>
+				<td>Evita quebra de página dentro do conteúdo do elemento.</td>
+			</tr>
+			<tr>
+				<td>avoid-column</td>
+				<td>Evita quebra de coluna dentro do conteúdo do elemento.</td>
+			</tr>
+		</table><p />
+
+		Note que algumas propriedades se aplicam a colunas e páginas, outras 
+		somente a colunas e outras ainda somente a páginas.<p />
+
+		As propriedades <i>break-before, break-after</i> e <i>break-inside</i> 
+		atualmente são suportadas somente pelo navegador Opera.<p />
+
+		Exemplos:<p />
+
+		.multi-colunas {<br />
+		&nbsp;-moz-column-count: 4;<br />
+		&nbsp;-webkit-column-count: 4;<br />
+		&nbsp;column-count: 4;<p />
+
+		&nbsp;-moz-column-gap: 18px;<br />
+		&nbsp;-webkit-column-gap: 18px;<br />
+		&nbsp;column-gap: 18px;<p />
+
+		&nbsp;-moz-column-rule: 3px double #000;<br />
+		&nbsp;-webkit-column-rule: 3px double #000;<br />
+		&nbsp;column-rule: 3px double #000;<br />
+
+		&nbsp;text-align: justify;<br />
+		}<p />
+
+		<div>&lt;div class="multi-colunas"&gt;</div>
+		<div class="tab2">&nbsp;&lt;h4&gt;Cabeçalho 1&lt;/h4&gt;</div>
+		<div class="tab2">
+			&nbsp;&lt;p&gt;ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja 
+			fajdfhjah fjafjafj...&nbsp;&lt;/p&gt;
+		</div>
+		<div class="tab2">&nbsp;&lt;h4&gt;Cabeçalho 2&lt;/h4&gt;</div>
+		<div class="tab2">
+			&nbsp;&lt;p&gt;kdajfka jdfkd jfkajdfç kdjfjçfjafaj dfhjahfjafj 
+			afjhfi qoerj ajdfak...&nbsp;&lt;/p&gt;
+		</div>
+		<div class="tab2">&nbsp;&lt;h4&gt;Cabeçalho 3&lt;/h4&gt;</div>
+		<div class="tab2">
+			&nbsp;&lt;p&gt;ajdfakdjfk jdfkda jfkajdfk djfkajdf çkdjfjçfj afajdf 
+			hjahfjaf jafj...&nbsp;&lt;/p&gt;
+		</div>
+		<div class="tab2">&nbsp;&lt;h4&gt;Cabeçalho 4&lt;/h4&gt;</div>
+		<div class="tab2">
+			&nbsp;&lt;p&gt;ajfkaj dfkdjfkaj dfçk djfjçfj afajdfh jahfjafjafj 
+			hfiqoerj ajd...&nbsp;&lt;/p&gt;
+		</div>
+		<div>&lt;/div&gt;</div><p />
+
+		<div class="exemplo9-10">
+			<h4>Cabeçalho 1</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f  
+			</p>
+			<h4>Cabeçalho 2</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk
+			<h4>Cabeçalho 3</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+			<h4>Cabeçalho 4</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+			<p>
+		</div><p />
+
+		Vamos aplicar a propriedade <i>break-*</i><p />
+		
+		h4 {<br />
+		&nbsp;-moz-break-before: column;<br />
+		&nbsp;-webkit-break-before: column;<br />
+		&nbsp;break-before: column;<br />
+		&nbsp;text-align: center;<br />
+		}<p />
+
+		p {<br />
+		&nbsp;break-inside: avoid;<br />
+		}<p />
+
+		<div class="exemplo9-10" id="exemplo10">
+			<h4>Cabeçalho 1</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f  
+			</p>
+			<h4>Cabeçalho 2</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk
+			<h4>Cabeçalho 3</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+			<h4>Cabeçalho 4</h4>
+			<p>
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+			<p>
+		</div><p />
+
+		<h3>Overflow</h3>
+
+		<h4>Overflow de elemento</h4>
+
+		Se um elemento conteúdo de uma coluna tiver largura maior do que a 
+		largura de coluna, ele será interrompido quando seu limite direito 
+		alcançar o meio do espaçamento entre as colunas (column-gap), fazendo 
+		com que o trecho em overflow à coluna se torne invisível.<p />
+
+		<div>.multi-colunas {</div>
+		<div class="tab2">-moz-column-count: 3;</div>
+		<div class="tab2">-webkit-column-count: 3;</div>
+		<div class="tab2">column-count: 3;</div><br />
+
+		<div class="tab2">-moz-column-gap: 18px;</div>
+		<div class="tab2">-webkit-column-gap: 18px;</div>
+		<div class="tab2">column-gap: 18px;</div><br />
+
+		<div class="tab2">-moz-column-rule: 3px double #000;</div>
+		<div class="tab2">-webkit-column-rule: 3px double #000;</div>
+		<div class="tab2">column-rule: 3px double #000;</div><br />
+
+		<div class="tab2">text-align: justify;</div>
+		<div>}<p />
+
+		<div>p {</div>
+		<div class="tab2">-moz-break-inside: avoid;</div>
+		<div class="tab2">-webkit-break-inside: avoid;</div>
+		<div class="tab2">break-inside: avoid;</div>
+		<div>}<p />
+
+		<div>p.a {</div>
+		<div class="tab2">-moz-break-before: column;</div>
+		<div class="tab2">-webkit-break-inside: avoid;</div>
+		<div class="tab2">break-inside: avoid;</div>
+		<div>}<p />
+
+		<div>.overflow {</div>
+		<div class="tab2">width: 220px;</div>
+		<div class="tab2">height: 40px;</div>
+		<div class="tab2">padding: 0;</div>
+		<div class="tab2">margin: 0;</div>
+		<div class="tab2">background: #ccc;</div>
+		<div class="tab2">-moz-break-after: avoid;</div>
+		<div class="tab2">-webkit-break-after: avoid;</div>
+		<div class="tab2">break-after: avoid;</div>
+		<div>}<p />
+
+		<div>&lt;div class="multi-colunas"&gt;</div>
+		<div class="tab2">&lt;div class="overflow"&gt;div.overflow&lt;/div&gt;</div>
+		<div class="tab2">&lt;p&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div class="tab2">&lt;p class="a"&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div class="tab2">&lt;p class="a"&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div>&lt;/div&gt;</div><p />
+
+		<div id="exemplo11">
+			<div class="multi-colunas">
+				<div class="overflow">div.overflow</div>
+				<p>
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+				</p>
+				<p class="a">
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+				</p>
+				<p class="a">
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+				</p>
+			</div>
+		</div>
+
+		Redimensione a janela do navegador para que a largura da coluna seja 
+		menor do que a largura do div.overflow e perceba que o div.overflow foi 
+		interrompido no meio do espaçamento entre colunas.<p />
+
+		<h4>Overflow de coluna</h4>
+
+		É perfeitamente possível ocorrer o caso em que um elemento multicolunas 
+		tenha uma quantidade de colunas cuja soma das larguras seja maior do 
+		que a largura do elemento. Nesse caso, as colunas excedentes e seus 
+		respectivos conteúdos ultrapassarão o limite direito de elemento. As 
+		colunas além dequele limite são chamadas de colunas em overflow.<p />
+
+		O aparecimento de colunas em overflow poderá ocorrer em um dos 
+		seguintes casos:
+
+		<ul>
+			<li>
+				quando se declara uma altura fixa para o elemento coluna (uso 
+				das declarações <i>heigth</i> ou <i>max-heigth</i>);
+			</li>
+			<li>
+				em determinadas situações, quando se declara <i>break_*</i> 
+				para elementos nas colunas;
+			</li>
+			<li>
+				em determinadas situações, quando a largura da página tem 
+				dimensões limitadas.
+			</li>
+		</ul><p />
+
+		<div>.multi-colunas {</div>
+		<div class="tab2">max-height: 160px;</div>
+		<div class="tab2">-moz-column-count: 3;</div>
+		<div class="tab2">-webkit-column-count: 3;</div>
+		<div class="tab2">column-count: 3;</div><br />
+
+		<div class="tab2">-moz-column-gap: 18px;</div>
+		<div class="tab2">-webkit-column-gap: 18px;</div>
+		<div class="tab2">column-gap: 18px;</div><br />
+
+		<div class="tab2">-moz-column-rule: 3px double #000;</div>
+		<div class="tab2">-webkit-column-rule: 3px double #000;</div>
+		<div class="tab2">column-rule: 3px double #000;</div><br />
+
+		<div class="tab2">text-align: justify;</div>
+		<div>}<p />
+
+		<div>&lt;div class="multi-colunas"&gt;</div>
+		<div class="tab2">&lt;p&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div class="tab2">&lt;p class="a"&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div class="tab2">&lt;p class="a"&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div class="tab2">&lt;p&gt;</div>
+		<div class="tab3">
+				ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah 
+				fjafjafj hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk 
+				djfjçfj afajdf hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk 
+				dajfkajdfk djfkajdfçkdjfj çfja fajdfhjahfj afjafjhfiqoerj 
+				ajdfakdj fkjdfkdajf kajdfkdjfkajd f çkdjfjçf jafajd fhjahfjafja 
+				fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk djfkajdfçkdjfj 
+				çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf
+		</div>
+		<div class="tab2">&lt;/p&gt;</div>
+		<div>&lt;/div&gt;</div><p />
+
+		<div id="exemplo12">
+			<div class="multi-colunas">
+				<p>
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+				</p>
+				<p class="a">
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+				</p>
+				<p class="a">
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+				</p>
+				<p>
+					ajdfakd jfkjdfk dajfk ajdfkdj fkajdfçkdjf jçfja fajdfhjah fjafjafj 
+					hfiqoerj ajdfak djfkjdfk dajfka jdfkdjf kajdfçk djfjçfj afajdf 
+					hjahfjaf jafj hfiqoerj ajdfakd jfkjdfk dajfkajdfk djfkajdfçkdjfj 
+					çfja fajdfhjahfj afjafjhfiqoerj ajdfakdj fkjdfkdajf kajdfkdjfkajd f 
+					çkdjfjçf jafajd fhjahfjafja fjhfiqoerj ajdfakdjf kjdfkd ajfkajdfk 
+					djfkajdfçkdjfj çfjafajdfhjahfja fjafjhfiqoe rj ajdfakdj fkjdf 
+				</p>
+			</div>
+		</div><p />
+
+		Observe que forçamos um overflow de coluna ao declarar para o elemento 
+		div.multicolunas uma altura máxima de 160px. Atualmente, somente o 
+		navegador Opera apresenta esse comportamento para colunas em overflow.
+
+
+
+
+
+
+
+	</body>
+</html>

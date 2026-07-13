@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        const EMAIL = "vazsk8@gmail.com";
+        const TOKEN = "9BDE4A7BB4A1484A8A95CCD288F4A116";
+
+        const TEST_EMAIL_PAG="c79573477594212764152@sandbox.pagseguro.com.br";
+
+        const NOTIFICATION_URL = "https://eevent.com.br/retorno.php";
+        const TEST_NOTIFICATION_URL = "localhost/eevent.com/retorno.php";
+
+        const URL = "https://ws.pagseguro.uol.com.br/v2/transactions";
+        const URL_SESSION = "https://ws.pagseguro.uol.com.br/v2/sessions";
+        const URL_NOTIFICATION = "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/";
+        const URL_DIRECT_PAG = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+
+        const TEST_URL = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions";
+        const TEST_URL_SESSION = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
+        const TEST_URL_NOTIFICATION = "https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/";
+        const TEST_URL_DIRECT_PAG = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+
+
+        // static function consultaNotificacao($notificationCode) {
+        //     $data = [];
+        //     $xml = "";
+        //     $resposta = "";
+        //     $url = TEST_URL_NOTIFICATION . $notificationCode . "?email=" . EMAIL . "&token=" . TOKEN;
+
+        //     var_dump(http_build_query($data));
+
+        //     $params = array('http'=>array('method'=>'GET','content'=>http_build_query($data)));
+        //     $context= stream_context_create($params);
+        //     $stream= fopen($url, 'r', false, $context);
+
+        //     if ($stream != false) {
+        //         while (!feof($stream)) {
+        //             $xml = fgets($stream);
+        //         }
+        //         fclose($stream);
+        //     }
+
+        //     $resposta = simplexml_load_string($xml);
+        //     return $resposta;
+        // }
+
+        function checkout($itens, $codigoPedido, $valor, $dadosPagamento, $pessoa) {
+
+            if (dadosPagamento["tokenCartao"] != "" && 
+                    dadosPagamento["identificacaoComprador"] != "") {
+
+                // $endereco = $pessoa->getEndereco();
+                // $enderecoCobranca = $dadosPagamento["enderecoCobranca"];
+
+                //Dados a serem enviados via requisição POST
+                data = {
+                    email: EMAIL, //"vazsk8@gmail.com";
+                    token: TOKEN, //"9BDE4A7BB4A1484A8A95CCD288F4A116";
+                    paymentMode: "default",
+                    paymentMethod: "creditCard",
+                    receiverEmail: EMAIL, //"vazsk8@gmail.com";
+                    currency: "BRL",
+                    extraAmount: "0.00",
+                    itemId1: "0001",
+                    itemDescription1: "Ingressos",
+                    itemAmount1:  "300", // pegar valor
+                    itemQuantity1: "1",
+                    notificationURL: TEST_NOTIFICATION_URL, //"https://sualoja.com.br/notifica.html";
+                    reference: "REF1234", // $codigoPedido //"REF1234";
+            
+                    senderName: "Jose Comprador", //$pessoa->getNome(); //"Jose Comprador";
+                    senderCPF: "22111944785", //$pessoa->getCpf(); //"22111944785";
+                    senderAreaCode: "37",
+                    senderPhone: "56273440", // $pessoa->getTelefone();//"56273440";
+                    senderEmail: TEST_EMAIL_PAG, //$pessoa->getEmail();//"c79573477594212764152@sandbox.pagseguro.com.br";
+                    senderHash: $dadosPagamento['identificacaoComprador'],
+            
+                    shippingAddressStreet: "Av. Brig. Faria Lima", // $endereco->getLogradouro(); //"Av. Brig. Faria Lima";
+                    shippingAddressNumber: "1384",  // $endereco->getNumero(); //"1384";
+                    shippingAddressComplement: "5o andar",  // $endereco->getComplemento(); //"5o andar";
+                    shippingAddressDistrict: "Jardim Paulistano",  // $endereco->getBairro(); //"Jardim Paulistano";
+                    shippingAddressPostalCode: "01452002",  // $endereco->getCep(); //"01452002";
+                    shippingAddressCity: "Sao Paulo",  // $endereco->getCidade()->getNome(); //"Sao Paulo";
+                    shippingAddressState: "SP",  // $endereco->getEstado()->getSigla(); //"SP";
+                    shippingAddressCountry: "BRA",
+                    shippingType: "1",
+                    shippingCost: "0.00",
+            
+                    creditCardToken: "", // $dadosPagamento['tokenCartao'];
+                    installmentQuantity: "1", // $dadosPagamento['parcelas']; //"1";
+                    installmentValue: "300", // $valor . ".00";
+                    noInterestInstallmentQuantity: "6", // $dadosPagamento['parcSemJuros']; //"6"; // Parcelas sem juros
+            
+                    creditCardHolderName: "Jose Comprador", // $dadosPagamento["nome"];//"Jose Comprador";
+                    creditCardHolderCPF: "22111944785", // $dadosPagamento["cpf"]; //"22111944785"; // Obrigatório
+                    creditCardHolderBirthDate: "27/10/1987", // "";//"27/10/1987";
+                    creditCardHolderAreaCode: "11", // "";//"11";
+                    creditCardHolderPhone: "56273440", //"56273440";
+            
+                    billingAddressStreet: "Av. Brig. Faria Lima", // $enderecoCobranca->getLogradouro(); //"Av. Brig. Faria Lima";
+                    billingAddressNumber: "1384", // $enderecoCobranca->getNumero(); //"1384";
+                    billingAddressComplement: "5o andar", // $enderecoCobranca->getComplemento(); //"5o andar";
+                    billingAddressDistrict: "Jardim Paulistano", // $enderecoCobranca->getBairro(); //"Jardim Paulistano";
+                    billingAddressPostalCode: "01452002", // $enderecoCobranca->getCep(); //"01452002";
+                    billingAddressCity: "Sao Paulo", // $enderecoCobranca->getCidade()->getNome(); //"Sao Paulo";
+                    billingAddressState: "SP", // $enderecoCobranca->getEstado()->getSigla(); //"SP";
+                    billingAddressCountry: "BRA", // "BRA";
+                }
+
+            
+                // A soma dos itens deve estar de acordo com o valor total (installmentValue)
+                // $numeroItem = 1;
+                // foreach ($itens as $codigoLote => $item) {
+                //     Util::debug($item);
+                //     $data["itemId" . $numeroItem]=$codigoLote; // $data["itemId1"]="0001";
+                //     $data["itemDescription" . $numeroItem]=$item["descricao"]; //$data["itemDescription1"]="Ingressos";
+                //     $data["itemAmount" . $numeroItem]=$item["valor"] . ".00"; //$data["itemAmount1"]= $valor . ".00";
+                //     $data["itemQuantity" . $numeroItem]=$item["quantidade"]; //$data["itemQuantity1"]="1";
+                //     $numeroItem++;
+                // }
+
+
+                $.ajax({
+                    method: "POST",
+                    url: TEST_URL_SESSION + "?email=" + EMAIL + "&token=" + TOKEN,
+                    data: data
+                })
+                .done(function( msg ) {
+                    alert( "Data Saved: " + msg );
+                }); 
+            }
+                
+        }
+
+        function idSessaoPagamento() {
+            debugger
+            //var res = encodeURI(uri);
+            $.ajax({
+                headers: {
+                    'Access-Control-Request-Methods':'POST'
+                },
+                method: "POST",
+                //url: encodeURI(TEST_URL_SESSION + "?email=" + EMAIL + "&token=" + TOKEN)
+                url: "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=vazsk8@gmail.com&token=9BDE4A7BB4A1484A8A95CCD288F4A116"
+                //data: { email: EMAIL, token: TOKEN }
+            })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            })
+            .fail(function( jqXHR, textStatus) {
+                alert( "error" );
+            })
+            .always(function() {
+                alert( "complete" );
+            }); 
+        }
+
+        function obtemMetodosPagamento(valor) {
+
+            PagSeguroDirectPayment.getPaymentMethods({
+                amount:valor,
+                success:function(response){
+                    //meiosdepagamentodisponÃ­veis
+                    metodosPagamento = response.paymentMethods
+                },
+                error:function(response){
+                    alert("erro: " + response);
+                    //tratamentodoerro
+                },
+                complete:function(response){
+                    //alert("completo: " + response);
+                    //tratamentocomumparatodaschamadas
+                }
+            });
+        }
+
+        function obterBandeiraCartao(obj, valor) {
+            var brand;
+            if (obj.value.length >= 6) {
+                var part = obj.value.replace(/ /g, "").substring(0, 6);
+                PagSeguroDirectPayment.getBrand({
+                    cardBin:part,
+                    success:function(response){
+                        var options = metodosPagamento.CREDIT_CARD.options;
+                        brand = response.brand.name.toUpperCase();
+                        var html = "";
+
+                        for (x in options) {
+                            if (options[x].name == brand) {
+                                imgBandeiraCartao.src="https://stc.pagseguro.uol.com.br" + options[x].images.MEDIUM.path;
+                                bandeiraCartao.value = brand.toLowerCase();
+                            }
+                        }
+                    },
+                    error:function(response){
+                        //tratamentodoerro
+                    },
+                    complete:function(response){
+                        //tratamentocomumparatodaschamadas
+                    }
+                });
+                //obterParcelamentoCartao(valor, brand, 6);
+            }
+            return brand;
+        }
+
+        function obterParcelamentoCartao(valor, bandeira, qtdeParcSemJuros) {
+            PagSeguroDirectPayment.getInstallments({
+                amount:valor,
+                brand:bandeira,
+                maxInstallmentNoInterest:qtdeParcSemJuros,
+                success:function(response){
+                    text="";
+                    var cartao = response.installments.visa;
+                    for (x in cartao) {
+                        var option = document.createElement("OPTION");
+                        option.value = cartao[x].quantity;
+                        option.innerHTML = cartao[x].quantity + "x " + cartao[x].installmentAmount + " - Total: " + cartao[x].totalAmount;
+                        parcelas.appendChild(option);
+                    }
+                },
+                error:function(response){
+                    //tratamentodoerro
+                },
+                complete:function(response){
+                    //tratamentocomumparatodaschamadas
+                }
+            });
+        }
+
+        function obterTokenCartao() {
+            var mesVenc = dataVencimento.value.substring(0, 2);
+            var anoVenc = dataVencimento.value.substring(3);
+            document.getElementById("loader-prosseguir").style.display = "inline-block";
+            PagSeguroDirectPayment.createCardToken({
+                cardNumber:numeroCartao.value.replace(/ /g, ""),
+                brand:bandeiraCartao.value,
+                cvv:cvv.value,
+                expirationMonth:mesVenc,
+                expirationYear:anoVenc,
+                success:function(response){
+                    tokenCartao.value = response.card['token'];
+                    exibeTokenCartao.innerHTML = response.card['token'];
+                    document.getElementById("loader-prosseguir").style.display = "none";
+                    confirmarPagamento.disabled = false;
+                },
+                error:function(response){
+                    console.log(response);
+                    document.getElementById("loader-prosseguir").style.display = "none";
+                    //tratamentodoerro
+                },
+                complete:function(response){
+                    //tratamentocomumparatodaschamadas.
+                }
+            })
+        }
+
+        function obterIdentificacaoComprador() {
+            identificacaoComprador.value = PagSeguroDirectPayment.getSenderHash();
+        }
+
+        function pagar() {
+            debugger
+            //var res = encodeURI(uri);
+            $.ajax({
+                method: "POST",
+                url: "http://localhost/pablo/html/sessao_pagamento.php"
+            })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            })
+            .fail(function( jqXHR, textStatus) {
+                alert( "error" );
+            })
+            .always(function() {
+                alert( "complete" );
+            }); 
+            // PagSeguroDirectPayment.setSessionId(idSessaoPagamento());
+            // obterIdentificacaoComprador();
+            // obtemMetodosPagamento(valor);
+            // obterTokenCartao();
+            // obterParcelamentoCartao(valor, bandeira, qtdeParcSemJuros);
+            // obterBandeiraCartao(obj, valor)
+        }
+
+    </script>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+</head>
+<body>
+    <button onclick="pagar()">Pagar</button>
+</body>
+</html>

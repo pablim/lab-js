@@ -1,0 +1,131 @@
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+  <script>
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCdm9BC9v3QZsfruMXI2Cm0QAQ_o3MynaE",
+      authDomain: "motonline-14f86.firebaseapp.com",
+      databaseURL: "https://motonline-14f86.firebaseio.com",
+      projectId: "motonline-14f86",
+      storageBucket: "motonline-14f86.appspot.com",
+      messagingSenderId: "660114062098"
+    };
+
+    firebase.initializeApp(config);
+
+    // Get a reference to the database service
+    database = firebase.database();
+
+    email = 'vazsk8@gmail.com';
+    password = '123456';
+    console.log(email);
+    console.log(password);
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorMessage);
+    });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        user = user;
+        alert("sing in");
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        uid = user.uid;
+        var providerData = user.providerData;
+
+
+      } else {
+        // User is signed out.
+        alert("sing out");
+      }
+    });
+
+
+    // database.ref('/Cidades/').once('value').then(function(snapshot) {
+    //   objs = snapshot.val();
+    //   console.log(snapshot.val());
+    //   for (key in objs) {
+    //     console.log(key);
+    //     console.log(objs[key]);
+    //     div = document.createElement("div");
+    //     div.innerHTML = key;
+    //     document.body.appendChild(div);
+    //   }
+    // });
+
+    //document.body.appendChild(document.createElement("br"));
+
+    // database.ref('/Cliente/').once('value').then(function(snapshot) {
+    //   objs = snapshot.val();
+    //   console.log(snapshot.val());
+    //   for (key in objs) {
+    //     console.log(key);
+    //     console.log(objs[key]);
+    //     div = document.createElement("div");
+    //     div.innerHTML = objs[key].name;
+    //     document.body.appendChild(div);
+    //   }
+    // });
+
+    function reautentica() {
+      var user = firebase.auth().currentUser;
+      var credential;
+      // Prompt the user to re-provide their sign-in credentials
+      user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+        // User re-authenticated.
+      }).catch(function(error) {
+        // An error happened.
+      });
+    }
+
+
+
+
+    obj = {
+        nome: 'Pablo Vaz Gondim Faria',
+        email: 'vazsk8@gmail.com',
+        cidade: 'Formiga',
+        uf: 'MG',
+        dtRegistro: "22/12/2017 13:54"
+    };
+
+    function retrieveData(reference) {
+      return database.ref(reference+'/').once('value').then(function(snapshot) {
+        objs = snapshot.val();
+        for (key in objs) {
+          for (o in objs[key]) {
+            console.log(objs[key][o]);  
+          }
+
+        }
+      });
+    }
+
+    function pushData(reference, data_object) {
+      return firebase.database().ref(reference+'/').push(data_object);
+    }
+
+
+  </script>
+</head>
+
+<body>
+
+
+
+</body>
+</html>

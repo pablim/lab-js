@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="lib/epoch-0.8.4/dist/js/epoch.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="lib/epoch-0.8.4/dist/css/epoch.min.css">
+
+  </head>
+  <body>
+
+    <div id="area" class="epoch category10" style="height: 200px;"></div>
+
+    <script type="text/javascript">
+      var data = [
+        { label: 'Layer 1', values: [ {x: 0, y: 0}, {x: 1, y: 5}, {x: 2, y: 2} ] },
+        { label: 'Layer 2', values: [ {x: 0, y: 0}, {x: 1, y: 1}, {x: 2, y: 4} ] }
+      ];
+
+      var areaChartInstance = $('#area').epoch({
+          type: 'area',
+          data: data,
+          axes: ['left', 'bottom']
+      });
+    </script>
+
+
+    <div id="areaChart" class="epoch category10"
+        style="width: 800px; height: 200px"></div>
+
+    <script type="text/javascript">
+
+      function nextTime() {
+        var currentTime = parseInt(new Date().getTime() / 1000);
+        return currentTime++;
+      };
+
+
+      var areaChartData = "";
+      theTime = parseInt(new Date().getTime() / 1000);
+      areaChartData = [
+        {
+          label: "Layer 1",
+          values: [
+            {time: theTime, y: 0},
+            // {time: 1370044801, y: 140},
+            // {time: 1370044850, y: 170},
+            // {time: 1370044890, y: 90}
+          ]
+        },
+        {
+          label: "Layer 2",
+          values: [
+            {time: theTime, y: 0},
+            // {time: 1370044801, y: 60},
+            // {time: 1370044850, y: 60},
+            // {time: 1370044890, y: 60}
+          ]
+         }
+      ];
+
+      var myChart = $('#areaChart').epoch({
+        type: 'time.area',
+        data: areaChartData,
+        axes: ['left', 'bottom']
+      });
+
+      ye = 0;
+      yt = 0;
+
+      function myTimer() {
+        // ye += 25;
+        // yt += 15;
+
+        if ((ye%2) == 0) {
+          ye += 7;
+        } else {
+          ye -= 7;
+        }
+        if ((yt%2) == 0) {
+          yt += 3;
+        }else {
+          yt -= 3;
+        }
+        time = nextTime();
+        console.log(time);
+        point = [
+          {label: "Layer 1", values:[{time: time, y: ye}]}
+          // ,
+          // {label: "Layer 2", values:[{time: time, y: yt}]}
+        ];
+
+        // myChart.push(point);
+        myChart.push([{time: time, y: ye},{time: time, y: yt}]);
+
+      }
+
+      var myVar = setInterval(myTimer, 10);
+
+    </script>
+  </body>
+</html>

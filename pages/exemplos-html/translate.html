@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+How the Translate Attribute Works
+
+The translate attribute takes two values:
+
+    yes - Content should be translated (this is the default)
+    no - Content should NOT be translated
+
+<p>Welcome to <span translate="no">GitHub</span>, the world's leading developer platform.</p>
+
+<p>Our product, <span translate="no">CloudSync Pro</span>, helps you manage files.</p>
+<p>Use the <code translate="no">console.log()</code> function to debug.</p>
+
+When someone translates this page, “Welcome to,” “the world’s leading developer platform,” and everything else gets translated but “GitHub,” “CloudSync Pro,” and “console.log()” stay exactly as written.
+Protecting Code Examples
+
+This is especially important for technical documentation or tutorial sites:
+
+<article>
+  <h2>How to Use the Fetch API</h2>
+  
+  <p>To make an HTTP request in JavaScript, use the Fetch API:</p>
+  
+  <pre translate="no"><code>fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));</code></pre>
+  
+  <p>This code sends a request to the server and logs the response.</p>
+</article>
+
+</body>
+</html>

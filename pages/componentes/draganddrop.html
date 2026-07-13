@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			#div1 {
+				width:350px;
+				height:70px;
+				padding:10px;
+				border:1px solid #aaaaaa;
+			}
+		</style>
+
+		<script>
+
+			/*
+				O evento ondragover especifica onde o dado arrastado pode ser 
+				solto. Por padrão, dados/elementos não podem ser soltos em 
+				outros elementos. Para permitir a liberação, nós devemos 
+				prevenir a configuração padrão do elemento. Isso é feito pela 
+				chamada do método event.preventDefalt() para o evento 
+				ondragover.
+			*/
+			function allowDrop(ev) {
+				ev.preventDefault();
+			}
+
+			/*
+				Especifica oque deve acontecer quando o elemento for arrastado. 
+				O atributo ondragstart chama a função drag(event), que 
+				especfica qual dado será arrastado. O método dataTansfer.
+				setData configura o tipo de dado e o valor do dado arrastado. 
+				Neste caso, o dado é do tipo "Text" e o valor é o id do 
+				elemento arrastável ("drag1");
+			*/
+			function drag(ev) {
+				ev.dataTransfer.setData("Text", ev.target.id);
+			}
+
+			/*
+				Quando o dado arrastado é solto, um evento de liberação ocorre 
+				(ondrop). É chamado preventDefault() para previnir o browser da 
+				configuração padrão do dado (o padrão é abrir o dado como um 
+				link quando for solto). Pega o dado arrastado com o metódo 
+				dataTransfer.getData("Text"). Este metódo irá retornar qualquer 
+				dado que foi configurado com o mesmo tipo no metódo setData(). 
+				O dado arrastado é o id do elemento arrastado ("drag1"). 
+				Adiciona o elemento arrastado dentro do elemento de liberação.
+			*/
+			function drop(ev) {
+				ev.preventDefault();
+				var data = ev.dataTransfer.getData("Text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+	</head>
+	<body>
+
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+		<!-- Para que um elemento possa ser arrastado primeiro você deve 
+		torna-lo arrastável através do atributo draggable -->
+		<img id="drag1" src="media/imagens/img_logo.gif" draggable="true"
+		ondragstart="drag(event)" width="336" height="69">
+
+
+
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	</body>
+
+	<!-- 
+		Referencias:
+
+		http://www.w3schools.com/html/html5_draganddrop.asp
+		Puc Minas Virtual - Pós Graduação - Desenvolvimento de Sistemas Web. 
+		Prof. Marco Rodrigo Costa.
+		
+	-->
+
+</html>
+

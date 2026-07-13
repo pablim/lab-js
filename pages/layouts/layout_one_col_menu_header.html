@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+	
+	<head>
+		<meta charset="utf-8"/>
+
+		<link rel="stylesheet" type="text/css" href="../css/reset.css">
+		<style type="text/css">
+
+			/*
+			Layout de duas colunas.
+			Enquanto o conteúdo não ultrapassa o tamanho da viewport o rodapé 
+			fica fixo no final da viewport.
+			Quando o conteúdo ou a coluna lateral ultrapassa o tamanho da 
+			viewport o rodapé cresce com o conteúdo.
+			Menu lateral.
+			Autor: Pablo Vaz
+			*/
+
+			body {
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				font-size: 14px;
+				background-color: #888a85;
+				margin:0;
+			}
+
+			.header {
+				font-size: 18px;
+				min-height: 5vh;
+				text-align: center;  
+				background-color: #E4EB91;
+			}
+
+			.main {
+				min-height: 90vh;
+				background-color: #14E6EB;
+				overflow: auto;
+				text-align: center;
+			}
+
+			.footer {
+				font-size: 16px;
+				text-align: center;
+				height: 5vh;
+				vertical-align: middle;
+				background-color: #8E969D;
+				clear: left;
+			}
+
+			nav ul {
+				/*border:1px solid;*/
+				overflow: hidden;
+				background-color: #333;
+			}
+
+			/*nav ul li {
+				float: left;
+				border:1px solid;
+			}*/
+
+			nav ul li {
+				float: left;
+			}
+
+			nav ul li a {
+				color: #fff;
+				display: block;
+				padding: 14px 20px;
+				/*text-align: center;*/
+				text-decoration: none;
+			}
+
+			nav ul li a:hover:not(.active) {
+				background-color: #111;
+			}
+
+			.active {
+			    background-color: #4CAF50;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<nav>
+				<ul>
+					<li><a class="active" href="#">Home</a></li>
+					<li><a href="#">News</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+		</div>
+		
+		<div class="main">
+			Conteúdo <br />
+		</div>
+		<div class="footer">
+			Rodapé
+		</div>
+	</body>
+</html>

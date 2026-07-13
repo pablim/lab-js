@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+	<section>
+		<h1>Template Element</h1>
+
+		It’s a native HTML element where you can write a snippet of HTML that you 
+        later want to insert dynamically. The browser doesn’t render that first.
+		<template id="product-template">
+            <li class="product-item">
+                <h3 class="product-name"></h3>
+                <p class="product-price"></p>
+                <button class="add-to-cart">Add to Cart</button>
+            </li>
+		</template>
+		<ul id="product-list"></ul>
+		<script>
+            function addProduct(name, price) {
+                // Grab the template
+                const template = document.getElementById('product-template');
+                
+                // Clone its content
+                const clone = template.content.cloneNode(true);
+                
+                // Fill the clone with data
+                clone.querySelector('.product-name').textContent = name;
+                clone.querySelector('.product-price').textContent = `$${price}`;
+                
+                // Append to the DOM
+                document.getElementById('product-list').appendChild(clone);
+            }
+
+            // Usage
+            addProduct('Wireless Mouse', 29.99);
+            addProduct('Mechanical Keyboard', 89.99);
+		</script>
+		In JavaScript, you grab the template using getElementById, clone its 
+        content, fill that clone HTML node with whatever text you need, and 
+        finally append the element to the DOM with appendChild. It's a bit like 
+        JSX if you know that, but natively.
+		Why is this better?
+			It’s safer than innerHTML, no XSS vulnerabilities
+			It’s more performant when adding multiple elements because innerHTML 
+            forces the browser to relay out everything you modify, while 
+            appendChild only affects the newly added DOM element
+			You get proper HTML structure and syntax highlighting
+			It’s genuinely elegant
+
+	</section>
+
+</body>
+</html>

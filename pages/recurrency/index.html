@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #calendar  {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-top: 16px;
+
+            & > div {
+                width: 256px;
+                height: 150px;
+                border: 1px solid black;
+            }
+
+            .weekdayName {
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 32px;
+            }
+
+            .commitment {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                padding: 4px;
+                border: 1px solid black;
+                border-bottom: none;
+
+                &:last-child {
+                    border-bottom: 1px solid black;
+                }
+            }
+        }
+
+        #weekdaysContainer {
+            margin-top: 8px;
+            gap: 8px; 
+        }
+
+        .selectable {
+
+
+            & > div {
+
+                display: flex;
+                justify-content: center;
+                border: 1px solid;
+                width: 36px;
+                padding: 4px;
+                cursor: pointer;
+
+                &[data-selected=true] {
+                    border: 2px solid green;
+                }
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <form id="recurrency_form" onsubmit="generate(event)">
+
+        <div>
+            <label for="name">Nome:</label>
+            <input id="name" name="recurrency[data][name]" type="text" value="Teste" />
+        </div>
+        <div>
+            <label for="initialDate">Data:</label>
+            <input id="initialDate" name="recurrency[initialDate]" 
+                type="date" />
+        </div>
+    
+        <select id="recurrency_options" name="recurrency[option]" 
+            onchange="handleSelectChange()"></select>
+    
+        <fieldset disabled id="personalizar_recorrencia" 
+            class="custom-recurrency-options"
+            style="border: none; color: silver"
+        >
+            <div>
+                <div>Repetir a cada: </div>
+                <div>
+                    <input id="repetir"
+                        type="number"
+                        min="1"
+                        name="recurrency[frequency]" >
+    
+                    <select id="periodicity" name="recurrency[periodicity]" 
+                        onchange="selectPeriodicity(event)"
+                    >
+                        <option value="d">dia</option>
+                        <option value="w">semana</option>
+                        <option value="m">mês</option>
+                        <option value="y">ano</option>
+                    </select>
+                    <div id="weekdaysContainer" style="display: none;">
+                        <div>nos dias de:</div>    
+                        <div class="selectable" style="display: flex; gap: 8px">
+                            <input id="weekdays" hidden name="recurrency[w]"/>
+                            
+                            <div data-weekday="0" onclick="selectWeekday(event)">Dom</div>
+                            <div data-weekday="1" onclick="selectWeekday(event)">Seg</div>
+                            <div data-weekday="2" onclick="selectWeekday(event)">Ter</div>
+                            <div data-weekday="3" onclick="selectWeekday(event)">Qua</div>
+                            <div data-weekday="4" onclick="selectWeekday(event)">Qui</div>
+                            <div data-weekday="5" onclick="selectWeekday(event)">Sex</div>
+                            <div data-weekday="6" onclick="selectWeekday(event)">Sab</div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    
+            <div>
+                <div>Termina em: </div>
+                <div>
+                    <div>
+                        <input id="until" type="radio" name="recurrency[endOption]" 
+                            value="endDate">
+                        <label for="until" style="align-self: end;">Até: </label>
+                        <input id="repetir"
+                            type="date"
+                            name="recurrency[endDate]" />
+                    </div>
+                    <div>
+                        <input id="before" type="radio" name="recurrency[endOption]" 
+                            value="occurrences">
+                        <label for="before" style="align-self: end;">Após: </label>
+                        <input id="repetir"
+                            type="number"
+                            min="1"
+                            name="recurrency[occurrences]"
+                        /> 
+                        <label for="before" style="align-self: end;">ocorrências</label>
+                    </div>
+                    <div>
+                        <input id="never" type="radio" name="recurrency[endOption]" 
+                            value="never" checked>
+                        <label for="never">Nunca</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <input type="submit" value="Gerar" />
+
+        <div style="display: flex; justify-content: space-between; margin-top: 16px">
+            <button id="previous" type="button" onclick="previousMonth(event)"> < previous</button>
+            <div>
+                <div id="monthYear"></div>
+                <button type="button" onclick="today(event)"> hoje </button>
+            </div>
+            <button id="next" type="button" onclick="nextMonth(event)"> next > </button>
+        </div>
+
+        <input id="monthInput" name="month" type="text" hidden>
+        <input id="yearInput" name="year" type="text" hidden>
+        
+    </form>
+
+    <div id="calendar"></div>
+    <br>
+    <button onclick="deleteAll()">Deletar tudo</button>
+
+    <div id="delete-confirmation" 
+        popover 
+        onbeforetoggle="console.log('before toggle')" 
+        ontoggle="console.log('after toggled')"
+    >
+        Deseja excluir este compromisso? <br><br>
+
+        <button popovertargetaction="hide" onclick="deletePrevOcurrences(event)">
+            Este e os anteriores</button>
+        <button popovertargetaction="hide" onclick="deleteOcurrence(event)">
+            Somente este</button>
+        <button popovertargetaction="hide" onclick="deleteNextOcurrences(event)">
+            Este e os próximos</button>
+        <button popovertargetaction="hide" onclick="deleteRecurrence(event)">
+            Todos</button>
+        <button popovertarget="delete-confirmation" popovertargetaction="hide">x</button>
+
+    </div>
+
+    <template id="commitment_template">
+        <div class="commitment" on>
+            <div class="name"></div>
+            <div class="actions">
+                <button class="edit_button">Editar</button>
+                <button class="delete" onclick="deleteConfirm(event)" 
+                    popovertarget="delete-confirmation" 
+                    popovertargetaction="show">Excluir</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="weekday_name_template">
+        <div class="weekdayName"></div>
+    </template>
+
+    <script>
+        
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const weekDay = date.getDay();
+        
+        initialDate.value = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+
+        monthYear.textContent = date.toLocaleDateString("pt-BR", {month: "long", year: "numeric"})
+        
+        const fullWeekDay = date.toLocaleDateString("pt-BR", {weekday: "long"})
+        const fullMonth = date.toLocaleDateString("pt-BR", {month: "long"})
+        const ordinalWeekDay = Math.ceil(date.getDate() / 7)
+
+        recurrency_options.add(new Option(
+            "Todos os dias", 
+            "{\"p\":\"d\", \"f\":1}"));
+        recurrency_options.add(new Option(
+            "Todos os dias da semana (seg a sex)", 
+            "{\"p\":\"w\", \"f\":1, \"w\":\"1;2;3;4;5\"}"))
+        recurrency_options.add(new Option(
+            "Semanal: a cada " + fullWeekDay, 
+            "{\"p\":\"w\", \"f\":1, \"w\":" + date.getDay() + "}" ))
+        recurrency_options.add(new Option(
+            "Mensal: todo dia " + date.getDate() + " de cada mês", 
+            "{\"p\":\"m\", \"f\":1}"))
+        recurrency_options.add(new Option(
+            `Mensal: no(a) ${ordinalWeekDay} º ` +  fullWeekDay + " do mês", 
+            `{"p": "m", "f": 1, "d": "${ordinalWeekDay}o", "w": ` + date.getDay() + `}` 
+        ))
+        recurrency_options.add(new Option(
+            "Anual em " + date.getDate() + " de " + fullMonth, 
+            "{\"p\":\"y\", \"f\":1}"))
+        recurrency_options.add(new Option("Personalizar", "custom"))
+
+        monthInput.value = month;
+        yearInput.value = year;
+
+        const weekDaySelectorElement = weekdaysContainer
+            .querySelector(`[data-weekday='${weekDay}']`)
+        weekDaySelectorElement.dataset.selected = true;
+        weekdays.value = weekDay;
+
+        const selectPeriodicity = (event) => {
+            const el = event.target
+            if (el.selectedOptions[0].value == "w") {
+                weekdaysContainer.style.display = "flex"
+            }
+        }
+
+        const selectWeekday = (event) => {
+            const el = event.target
+            const weekday = el.dataset.weekday;
+
+            if (el.dataset.selected) {
+
+                //el.dataset["selected"] = false;
+                el.removeAttribute("data-selected")
+
+                weekdays.value = weekdays.value
+                    .replace(`${weekday};`, '')
+                    .replace(`;${weekday}`, '')
+                    .replace(`${weekday}`, '')
+            } else {
+
+                el.dataset["selected"] = true;
+
+                weekdays.value = weekdays.value 
+                    ? weekdays.value + ';' + weekday 
+                    : weekday
+            }
+        }
+
+        const handleSelectChange = () => {
+            if (recurrency_options.selectedOptions[0].value === "custom") {
+                personalizar_recorrencia.disabled = false;
+                personalizar_recorrencia.style.color = "initial";
+            } else {
+                personalizar_recorrencia.disabled = true;
+                personalizar_recorrencia.style.color = "silver";
+            }
+        }
+
+        const generate = (e) => {
+            debugger
+            e.preventDefault();
+
+            const formData = new FormData(recurrency_form);
+            const monthSelected = formData.get("month");
+            const yearSelected = formData.get("year");
+            formData.delete("month");
+            formData.delete("year");
+
+            const a = Object.fromEntries(formData.entries())
+
+            localStorage.setItem(new Date().getTime(), 
+                JSON.stringify(Object.fromEntries(formData.entries()))
+            )
+
+            send(yearSelected, monthSelected);
+        }
+
+        const send = (year, month) => {
+            const keys = Object.keys(localStorage)
+            const d = new FormData();
+            keys.map((k) => {
+                const item = JSON.parse(localStorage.getItem(k))
+                Object.keys(item).map(key => {
+                    const newKey = key.replace("recurrency", `recurrences[${k}]`)
+                    d.append(newKey, item[key])
+                })
+            })
+            d.append("month", month);
+            d.append("year", year);
+
+            fetch("https://php-api.local/recurrency/save", {
+                method: "POST",
+                // headers: {
+                //     'Content-Type': 'application/json'
+                // },
+                
+                body: d //JSON.stringify(body)
+
+                //body: formData
+                
+                // body: JSON.stringify({
+                //     date: initialDate.value, 
+                //     rule: recurrency_options.selectedOptions[0].value
+                // }),
+            }).then(res => res.json())
+            .then(data => fillCalendar(data, year, month))
+        }
+        
+        const fillCalendar = (data, year, month) => {
+            generateCalendar(new Date(year, month - 1));
+            data.forEach(ocurrency => {
+                const date = new Date(ocurrency.date.date);
+                const dayElement = document.getElementById(
+                    date.getFullYear() + "_" + 
+                    (date.getMonth() + 1) + "_" + 
+                    date.getDate()
+                );
+                if (dayElement) {
+                    //const commitmentElement = document.createElement("div");
+                    
+                    const commitmentTemplate = document
+                        .getElementById("commitment_template").content
+                            .cloneNode(true);
+
+                    commitmentTemplate.querySelector(".name").textContent = ocurrency.data.name;
+
+                    commitmentElement = commitmentTemplate.querySelector(".commitment");
+                    commitmentElement.style.backgroundColor = "lightblue";
+                    commitmentElement.dataset.recurrencyId = ocurrency.id;
+                    commitmentElement.dataset.timestamp = new Date(ocurrency.date.date).getTime();
+                    
+                    dayElement.appendChild(commitmentTemplate);
+                }
+            })
+        }
+
+        const previousMonth = (e) => {
+            e.preventDefault();
+            date.setMonth(date.getMonth() - 1);
+            monthYear.textContent = date.toLocaleDateString(
+                "pt-BR", {month: "long", year: "numeric"}
+            )
+            
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+
+            monthInput.value = month;
+            yearInput.value = year;
+
+            send(year, month);
+        }
+
+        const nextMonth = (e) => {
+            e.preventDefault();
+            date.setMonth(date.getMonth() + 1);
+            monthYear.textContent = date.toLocaleDateString(
+                "pt-BR", {month: "long", year: "numeric"}
+            )
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            
+            monthInput.value = month;
+            yearInput.value = year;
+
+            send(year, month);
+        }
+
+        const today = (e) => {
+            e.preventDefault();
+            const todayDate = new Date();
+            date.setFullYear(todayDate.getFullYear());
+            date.setMonth(todayDate.getMonth());
+
+            monthYear.textContent = date.toLocaleDateString(
+                "pt-BR", {month: "long", year: "numeric"}
+            )
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            
+            monthInput.value = month;
+            yearInput.value = year;
+
+            send(year, month);
+        }
+
+        const generateCalendar = (date) => {
+            
+            const monthLength = new Date(
+                date.getFullYear(),
+                date.getMonth() + 1,
+                0
+            ).getDate();
+
+            const firstDayOfWeek = new Date(
+                date.getFullYear(),
+                date.getMonth()
+            ).getDay();
+
+            calendar.replaceChildren();
+
+            const weekDays = [
+                "Domingo", 
+                "Segunda", 
+                "Terça", 
+                "Quarta", 
+                "Quinta", 
+                "Sexta", 
+                "Sábado"
+            ];
+
+            weekDays.forEach(weekDay => {
+                const weekdayNameTemplate = document
+                    .getElementById("weekday_name_template").content
+                        .cloneNode(true);
+
+                weekdayNameTemplate.querySelector(".weekdayName").textContent = weekDay;
+                calendar.appendChild(weekdayNameTemplate);
+            })
+
+            Array.from({length: firstDayOfWeek + monthLength}, (_, i) => i).forEach(day => {
+
+                const dayElement = document.createElement("div");
+                if ((day >= firstDayOfWeek)) {
+                    dayElement.id = 
+                        date.getFullYear() + "_" + 
+                        (date.getMonth() + 1) + "_" + 
+                        (day + 1 - firstDayOfWeek);
+                        
+                    calendar.appendChild(dayElement).textContent = day + 1 - firstDayOfWeek;
+                } else {
+                    calendar.appendChild(dayElement).textContent = ""
+                }
+
+            })
+        }
+
+        const deleteAll = () => {
+            localStorage.clear();
+            generateCalendar(date);
+        }
+
+        const deleteConfirm = (e) => {
+            const commitmentElement = e.target.closest(".commitment");
+
+            document.getElementById("delete-confirmation")
+                .dataset.recurrencyId = commitmentElement.dataset.recurrencyId;
+            document.getElementById("delete-confirmation")
+                .dataset.timestamp = commitmentElement.dataset.timestamp;
+        }
+
+        const deleteRecurrence = (e) => {
+            const recurrencyId = document.getElementById("delete-confirmation").dataset.recurrencyId;
+            localStorage.removeItem(recurrencyId);
+
+            const ocurrences = document.querySelectorAll(`[data-recurrency-id="${recurrencyId}"]`);
+            ocurrences.forEach(o => o.remove());
+        }
+
+        const deleteOcurrence = (e) => {
+            const recurrencyId = document.getElementById("delete-confirmation").dataset.recurrencyId;
+            const timestamp = document.getElementById("delete-confirmation").dataset.timestamp;
+
+            const recurrenceObj = JSON.parse(localStorage.getItem(recurrencyId))
+            const ocurrenceDate = new Date()
+
+            ocurrenceDate.setTime(timestamp)
+
+            const stringDate = ocurrenceDate.toISOString().split("T")[0]
+
+            if (recurrenceObj["recurrency[excludeDates]"] ) {
+                recurrenceObj["recurrency[excludeDates]"] = [
+                    ...recurrenceObj["recurrency[excludeDates]"], 
+                    stringDate
+                ]
+            } else recurrenceObj["recurrency[excludeDates]"] = [stringDate]
+
+            localStorage.setItem(recurrencyId, JSON.stringify(recurrenceObj))
+
+            const ocurrences = document.querySelector(`[data-timestamp="${timestamp}"]`);
+            ocurrences.remove()
+
+            document.getElementById('delete-confirmation').hidePopover()
+        }
+
+        const deletePrevOcurrences = (e) => {
+            const recurrencyId = document.getElementById("delete-confirmation").dataset.recurrencyId;
+            const timestamp = document.getElementById("delete-confirmation").dataset.timestamp;
+
+
+            // pega todos do mês
+            const all = document.querySelectorAll(`[data-recurrency-id="${recurrencyId}"]`)
+            // este
+            //all[0].dataset.timestamp === timestamp
+            // e os anteriores
+            // < timestamp
+
+            const recurrenceObj = JSON.parse(localStorage.getItem(recurrencyId))
+            const ocurrenceDate = new Date()
+
+            ocurrenceDate.setTime(timestamp)
+
+            const stringDate = ocurrenceDate.toISOString().split("T")[0]
+
+            if (recurrenceObj["recurrency[excludeDates]"] ) {
+                recurrenceObj["recurrency[excludeDates]"] = [
+                    ...recurrenceObj["recurrency[excludeDates]"], 
+                    stringDate
+                ]
+            } else recurrenceObj["recurrency[excludeDates]"] = [stringDate]
+
+            localStorage.setItem(recurrencyId, JSON.stringify(recurrenceObj))
+
+            const ocurrences = document.querySelector(`[data-timestamp="${timestamp}"]`);
+            ocurrences.remove()
+
+            document.getElementById('delete-confirmation').hidePopover()
+        }
+
+        generateCalendar(date);
+        send(year, month);
+    </script>
+</body>
+</html>

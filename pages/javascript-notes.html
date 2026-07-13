@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<title>Página HTML</title>
+	<link rel="stylesheet" href="../css/masonry.css">
+	
+</head>
+<body>
+
+	<main>
+
+		<div>
+			<h3>Javascript input</h3>
+			<code>
+				<head>
+					<meta charset="utf-8" />
+					<title>Página HTML</title>
+
+					<!-- External scripts are practical when the same code is used in many 
+					different web pages. JavaScript files have the file extension .js. To 
+					use an external script, put the name of the script file in the src 
+					(source) attribute of a <script> tag: -->
+					<!-- <script type="text/javascript" src="js/myJavascript.js"></script> -->
+					<!-- Advantages: It separates HTML and code; It makes HTML and 
+					JavaScript easier to read and maintain; Cached JavaScript files can 
+					speed up page loads;
+					You can place an external script reference in <head> or <body> as 
+					you like. The script will behave as if it was located exactly where the 
+					<script> tag is located. -->
+
+					<!-- Podemos escrever na seção head do documento -->
+					<script type="text/javascript">
+						function mensage() {
+							alert("Hello!");
+						}
+					</script>
+
+				</head>
+				<body>
+
+					<h1>Where write my Javascript</h1>
+
+					<button onclick="mensage()">Message</button>
+					
+
+					<!-- Podemos escrever em qualquer lugar dentro da seção body do 
+					documento. É uma boa prática colocar os scripts no final da seção, isso 
+					pode melhorar o carregamendo da página, porque a compilação do script 
+					pode deixar a exibição mais lenta. -->
+					<script type="text/javascript">
+						
+					</script>
+				</body>
+			</code>
+		</div>
+
+		<!-- Arrays -->
+		<div>
+			<h3>Javascript Arrays</h3>
+			<div>
+				JavaScript arrays are used to store multiple values in a single 
+				variable. 
+			</div>
+			
+			<code>var cars = ["Saab", "Volvo", "BMW"]; </code>
+
+			You can access the values by referring to an index number. 
+			[0] is the first element in an array. [1] is the second.
+
+			<code>var name = cars[0];</code>
+
+			The full array can be accessed by referring to the array name:
+			
+			<code>
+				document.getElementById("demo").innerHTML = cars; // Saab,Volvo,BMW
+			</code>
+
+			There is no need to use the JavaScript's built-in array 
+			constructor new Array(). Use [] instead.
+
+			<code>
+				var points = new Array();         // Bad
+				var points = [];                  // Good 
+				var points = new Array(40, 100, 1, 5, 25, 10); // Bad
+				var points = [40, 100, 1, 5, 25, 10];          // Good 
+			</code>
+ 
+			The new keyword only complicates the code. It can also produce 
+			some unexpected results:
+
+			<code>
+				var points = new Array(40, 100); // two elements (40 and 100)
+				var points = new Array(40); // 40 undefined elements !!!!!
+			</code>
+
+			modifies the first element in cars:
+
+			<code>cars[0] = "Opel"; </code>
+
+			You can have variables of different types in the same Array. 
+
+			<code>
+				myArray[0] = Date.now;
+				myArray[1] = myFunction;
+				myArray[2] = myArray;
+				myArray[3] = myObject;
+			</code>
+		</div>
+
+		<div>
+			<h3>Arrays and objects diferences</h3>
+			
+			<ul>
+				<li>Arrays are a special type of objects.</li>
+				<li>
+					The <code>typeof</code> operator in JavaScript returns 
+					"object" for arrays. But, JavaScript arrays are best 
+					described as arrays.
+				</li>
+				<li>JavaScript does not support arrays with named indexes.</li>
+			</ul>
+			
+			WARNING! If you use a named index, JavaScript will redefine the 
+			array to a standard object. After that, all array methods and 
+			properties will produce incorrect results.
+
+			<code>
+				var person = [];
+				person["name"] = "John";
+				person["age"] = 46;
+				var x = person.length; // person.length will return 0
+				var y = person[0]; // person[0] will return undefined
+			</code>
+
+			You should use objects when you want the element names to be 
+			strings (text). You should use arrays when you want the element 
+			names to be numbers.
+		</div>
+
+		<div>
+			<h3>Array methods</h3>
+		
+			The length property returns the number of array elements
+
+			<code>cars.length; // 3 </code>
+			
+			Add a new element (at the end, and returns the new array length) 
+
+			<code>fruits.push("Lemon"); </code>
+
+			New element can also be added to an array using the length 
+			property
+
+			<code>fruits[fruits.length] = "Lemon";</code>
+			
+			WARNING!. Adding elements with high indexes can create undefined 
+			"holes" in an array:
+			<code>fruits[35] = "Lemon"; </code>
+			
+			toString() converts an array to a string (comma separated values)
+			<code>
+				var fruits = ["Banana", "Orange", "Apple", "Mango"];
+				document.getElementById("demo").innerHTML = fruits.toString(); // Banana,Orange,Apple,Mango
+			</code>
+
+			join() joins all array elements into a string, like toString(), but 
+			in addition you can specify the separator
+			<code>
+				var fruits = ["Banana", "Orange","Apple", "Mango"];
+				document.getElementById("demo").innerHTML = fruits.join(" * "); // Banana * Orange * Apple * Mango
+			</code>
+
+			pop() removes the last element from an array: 
+			<code>
+				var fruits = ["Banana", "Orange", "Apple", "Mango"];
+				var x = fruits.pop(); // Removes the last element ("Mango") from fruits and return it
+			</code>
+
+			shift() method removes the first array element and "shifts" 
+			all other elements to a lower index. The shift() method returns the 
+			string that was "shifted out".
+			<code>fruits.shift();</code>
+
+			The unshift() method adds a new element to an array (at the 
+			beginning), and "unshifts" older elements. The unshift() method 
+			returns the new array length:
+			<code>fruits.unshift("Lemon");</code>
+
+			Since JavaScript arrays are objects, elements can be deleted by 
+			using the JavaScript operator delete. Using delete may leave 
+			undefined holes in the array. Use pop() or shift() instead.
+			<code>
+				delete fruits[0]; // Changes the first element in fruits to undefined
+			</code>
+
+			splice() method can be used to add new items to an array: 
+			<code>
+				var fruits = ["Banana", "Orange", "Apple", "Mango"];
+				fruits.splice(2, 0, "Lemon", "Kiwi"); 
+			</code>
+			The first parameter (2) defines the position where new elements 
+			should be added (spliced in). The second parameter (0) defines how 
+			many elements should be removed. The rest of the parameters 
+			("Lemon" , "Kiwi") define the new elements to be added.
+
+			With clever parameter setting, you can use splice() to remove 
+			elements without leaving "holes" in the array:
+			<code>
+				var fruits = ["Banana", "Orange", "Apple", "Mango"];
+				fruits.splice(0, 1); // Removes the first element of fruits 
+			</code>
+			The first parameter (0) defines the position where new elements 
+			should be added (spliced in). The second parameter (1) defines how 
+			many elements should be removed. The rest of the parameters are 
+			omitted. No new elements will be added.
+
+			concat() creates a new array by concatenating two arrays:
+			<code>
+				var myGirls = ["Cecilie", "Lone"];
+				var myBoys = ["Emil", "Tobias","Linus"];
+				var myChildren = myGirls.concat(myBoys); // Concatenates myGirls and myBoys 
+				
+				// can take any number of array arguments:
+				var arr3 = ["Robin", "Morgan"];
+				var myChildren = arr1.concat(arr2, arr3); // Concatenates arr1 with arr2 and arr3 
+			</code>
+
+			slice() slices out a piece of an array into a new array. It does not 
+			remove any elements from the source array.
+			<code>
+				var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+				var citrus = fruits.slice(1);
+			</code>
+
+			selects elements from the start argument, and up to (but not 
+			including) the end argument.
+			<code>var citrus = fruits.slice(1, 3);</code>
+
+			valueOf() is the default behavior for an array. It 
+			converts an array to a primitive value. JavaScript will 
+			automatically convert an array to a string when a primitive value 
+			is expected.
+			<code>
+				document.getElementById("demo").innerHTML = fruits.valueOf(); 
+				// This produce the same result:
+				document.getElementById("demo").innerHTML = fruits.toString(); 
+				// And this to:
+				document.getElementById("demo").innerHTML = fruits; 
+			</code>
+			All JavaScript objects have a valueOf() and a toString() method.
+		</div>
+
+		<div>
+			<h3>Array sorting</h3>
+
+			sort() method sorts an array alphabetically 
+			<code>fruits.sort();</code>
+
+			reverse() reverses the elements in an array. You can 
+			use it to sort an array in descending order
+			<code>
+				fruits.sort(); // Sorts the elements of fruits
+				fruits.reverse(); // Reverses the order of the elements
+			</code>
+
+			By default, the sort() function sorts values as strings. This 
+			works well for strings ("Apple" comes before "Banana"). However, if 
+			numbers are sorted as strings, "25" is bigger than "100", because 
+			"2" is bigger than "1". Because of this, the sort() method will 
+			produce incorrect result when sorting numbers. You can fix this by 
+			providing a compare function
+			<code>
+				var points = [40, 100, 1, 5, 25, 10];
+				points.sort(function(a, b){return a - b}); 
+				points.sort(function(a, b){return b - a}); // sort descending:
+			</code>
+			
+			The purpose of the compare function is to define an alternative 
+			sort order. The compare function should return a negative, zero, or 
+			positive value, depending on the arguments. When the sort() 
+			function compares two values, it sends the values to the compare 
+			function, and sorts the values according to the returned value. 
+			When comparing 40 and 100, the sort() method calls the compare 
+			function(40,100). The function calculates 40-100, and returns -60 
+			(a negative value). The sort function will sort 40 as a value lower 
+			than 100.
+
+			Sorting an Array in Random Order:
+			<code>
+				points.sort(function(a, b){return 0.5 - Math.random()}); 
+			</code>
+
+			Sorting Object Arrays. Even if objects have properties of 
+			different data types, the sort() method can be used to sort the 
+			array. The solution is to write a compare function to compare the 
+			property values
+			<code>
+				var cars = [
+					{type:"Volvo", year:2016},
+					{type:"Saab", year:2001},
+					{type:"BMW", year:2010}
+				];
+				cars.sort(function(a, b){return a.year - b.year});
+			</code>
+
+			Comparing string properties is a little more complex:
+			<code>
+				cars.sort(function(a, b){
+					var x = a.type.toLowerCase();
+					var y = b.type.toLowerCase();
+					if (x < y) {return -1;}
+					if (x > y) {return 1;}
+					return 0;
+				});
+			</code>
+
+		</div>
+
+		<div>
+
+			<h3>Array iterate</h3>
+
+			The best way to loop through an array, is using a "for" loop:
+			<code>
+				for (var i = 0; i < fruits.length; i++) {
+					console.log(fruits[i]);
+				} 
+			</code>
+		</div>
+
+		<div>
+			<h3>Array comparing</h3>	
+
+			How do I know if a variable is an array? 
+			<code>
+				typeof fruits; // returns "object"
+			</code>
+			The problem is that the JavaScript operator typeof returns "object"
+			
+			The typeof operator returns object because a JavaScript array is 
+			an object. 
+
+			<code>
+				Array.isArray(fruits);     // returns true
+			</code>
+			The problem with this solution is that ECMAScript 5 is not 
+			supported in older browsers.
+
+			To solve this problem you can create your own isArray() function
+			<code>
+				function isArray(x) {
+					return x.constructor.toString().indexOf("Array") > -1;
+				}
+			</code>
+			it returns true if the object prototype contains the word "Array".
+
+			instanceof operator returns true if an object is created by a given constructor:
+			<code>
+				fruits instanceof Array // returns true
+			</code>
+		</div>
+
+		<div>
+			<h3>Comparison and logical operators</h3>
+
+			You can use the Boolean() function to find out if an expression 
+			(or a variable) is true:
+			<code>
+				document.getElementById("demo").innerHTML = Boolean(10 > 9);
+
+				// Or even easier:
+				document.getElementById("demo").innerHTML = (10 > 9);
+				document.getElementById("demo").innerHTML = 10 > 9;
+			</code>
+
+			Everything With a "Real" Value is True:
+			<code>
+				Boolean(100); // 100 is true
+				Boolean(3.14); // 3.14 is true
+				Boolean(-15); // -15 is true
+				Boolean("Hello"); // Any (not empty) string is true
+				Boolean('false'); // Even the string 'false' is true
+				Boolean(1 + 7 + 3.14); // Any expression (except zero) is true
+			</code>
+
+			Everything Without a "Real" is False:
+			<code>
+				var x = 0;
+				Boolean(x); // returns false 
+				var x = -0;
+				Boolean(x); // returns false 
+				var x = "";
+				Boolean(x); // returns false 
+				var x;
+				Boolean(x); // returns false 
+				var x = null;
+				Boolean(x); // returns false 
+				var x = 10 / "H";
+				Boolean(x); // returns false 
+			</code>
+
+			JavaScript also contains a conditional operator that assigns a 
+			value to a variable based on some condition.
+			<code>
+				var voteable = (age < 18) ? "Too young":"Old enough";
+			</code>
+
+			When comparing a string with a number, JavaScript will convert 
+			the string to a number when doing the comparison. An empty string 
+			converts to 0. A non-numeric string converts to NaN which is always 
+			false.
+			<code>
+				var x = 2 < 12; // true
+				var x = 2 < "12"; // true
+				var x = 2 < "John"; // false. (> or ==)
+			</code>
+
+			When comparing two strings, "2" will be greater than "12", 
+			because (alphabetically) 1 is less than 2.
+			<code>
+				var x = "2" > "12"; // true
+			</code>
+
+			To secure a proper result, variables should be converted to the 
+			proper type before comparison.
+		</div>
+
+		<div>
+			<h3>Data types</h3>
+
+			/*JavaScript variables can hold many data types: numbers, strings, 
+			arrays, objects and more:*/
+			var length = 16;                               // Number
+			var lastName = "Johnson";                      // String
+			var cars = ["Saab", "Volvo", "BMW"];           // Array
+			var x = {firstName:"John", lastName:"Doe"};    // Object
+
+			/*JavaScript has dynamic types. This means that the same variable 
+			can be used as different types:*/
+			var x;               // Now x is undefined
+			var x = 5;           // Now x is a Number
+			var x = "John";      // Now x is a String
+
+			/*JavaScript has only one type of numbers. Numbers can be written 
+			with, or without decimals:*/
+			var x1 = 34.00;     // Written with decimals
+			var x2 = 34;        // Written without decimals 
+
+			/*Extra large or extra small numbers can be written with scientific 
+			(exponential) notation:*/
+			var y = 123e5;      // 12300000
+			var z = 123e-5;     // 0.00123
+
+			/*Booleans can only have two values: true or false.*/
+			var x = true;
+			var y = false;
+
+			/*JavaScript arrays are written with square brackets. Array items 
+			are separated by commas. The following code declares (creates) an 
+			array called cars, containing three items (car names):*/
+			var cars = ["Saab", "Volvo", "BMW"];
+
+			/*JavaScript objects are written with curly braces. Object 
+			properties are written as name:value pairs, separated by commas.*/
+			var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+			/*You can use the JavaScript typeof operator to find the type of a 
+			JavaScript variable:*/
+			typeof "John"                // Returns "string"
+			typeof 3.14                  // Returns "number"
+			typeof false                 // Returns "boolean"
+			typeof [1,2,3,4]             // Returns "object" (not "array", see note below)
+			typeof {name:'John', age:34} // Returns "object" 
+			typeof function () {}        // Returns "function"
+			typeof null                  // Returns "object" 
+			typeof NaN                   // Returns "number"
+			typeof new Date()            // Returns "object"
+			/* The typeof operator returns "object" for arrays because in 
+			JavaScript arrays are objects. You cannot use typeof to determine 
+			if a JavaScript object is an array (or a date).*/
+
+			/*In JavaScript, a variable without a value, has the value 
+			undefined. The typeof is also undefined.*/
+			var person; 
+			typeof person; // Value is undefined, type is undefined
+
+			/*Any variable can be emptied, by setting the value to undefined. 
+			The type will also be undefined.*/
+			person = undefined; // Value is undefined, type is undefined
+
+			/*An empty value has nothing to do with undefined. An empty string 
+			variable has both a value and a type.*/
+			var car = ""; // The value is "", the typeof is "string"
+
+			/* In JavaScript null is "nothing". It is supposed to be something 
+			that doesn't exist. Unfortunately, in JavaScript, the data type of 
+			null is an object. You can consider it a bug in JavaScript that 
+			typeof null is an object. It should be null. You can empty an 
+			object by setting it to null:*/
+			var person = null; // Value is null, but type is still an object
+
+			// Difference Between Undefined and Null
+			typeof undefined             // undefined
+			typeof null                  // object
+			null === undefined           // false
+			null == undefined            // true
+
+			/*All JavaScript data types have a valueOf() and a toString() 
+			method. JavaScript global methods can be used on all JavaScript 
+			data types.*/
+		</div>
+
+		<div>
+			<h3>Dates</h3>
+			/*The Date object lets you work with dates (years, months, days, 
+			hours, minutes, seconds, and milliseconds)*/
+
+			/*A JavaScript date can be written as a string: 
+			Tue Nov 08 2016 18:34:41 GMT-0200 (BRST). Or as a number: 
+			1478637281879. Dates written as numbers, specifies the number of 
+			milliseconds since January 1, 1970, 00:00:00.*/
+
+			/*The Date object lets us work with dates. A date consists of a 
+			year, a month, a day, an hour, a minute, a second, and milliseconds. 
+			Date objects are created with the new Date() constructor. There are 
+			4 ways of initiating a date:*/
+
+			new Date() // new date object with the current date and time.
+
+			/*new date object as zero time plus the number. Zero time is 01 
+			January 1970 00:00:00 UTC. The number is specified in milliseconds:*/
+			new Date(86400000)
+
+			// new date object from the specified date and time:
+			new Date("October 13, 2014 11:13:00") 
+
+			/*JavaScript dates are calculated in milliseconds from 01 January, 
+			1970 00:00:00 Universal Time (UTC). One day contains 86,400,000 
+			millisecond.*/
+
+			/*Using new Date(7 numbers), creates a new date object with the 
+			specified date and time: The 7 numbers specify the year, month, 
+			day, hour, minute, second, and millisecond, in that order:*/
+			new Date(99,5,24,11,33,30,0);
+
+			/*Variants of the example above let us omit any of the last 4 
+			parameters:*/
+			new Date(99,5,24);
+
+			/*JavaScript counts months from 0 to 11. January is 0. December is 
+			11.*/
+
+			/*When you display a date object in HTML, it is automatically 
+			converted to a string, with the toString() method.*/
+			d = new Date();
+			document.getElementById("demo").innerHTML = d;
+			// Is the same as:
+			// document.getElementById("demo").innerHTML = d.toString();
+
+			/*The toUTCString() method converts a date to a UTC string (a date 
+			display standard).*/
+			document.getElementById("demo").innerHTML = d.toUTCString();
+
+			/*The toDateString() method converts a date to a more readable 
+			format:*/
+			document.getElementById("demo").innerHTML = d.toDateString();
+
+			/*Independent of input format, JavaScript will (by default) output 
+			dates in full text string format: 
+			Tue Mar 24 2015 21:00:00 GMT-0300 (BRT) */
+
+			/* ISO 8601 is the international standard for the representation of 
+			dates and times. The ISO 8601 syntax (YYYY-MM-DD) is also the 
+			preferred JavaScript date format:*/
+			var d = new Date("2015-03-25"); 
+			/*The computed date will be relative to your time zone. Depending 
+			on your time zone, the result above will vary between March 24 and 
+			March 25.*/
+
+			// It can be written without specifying the day (YYYY-MM):
+			var d = new Date("2015-03"); 
+			/*Time zones will vary the result above between February 28 and 
+			March 01.*/
+
+			// It can be written without month and day (YYYY):
+			var d = new Date("2015"); 
+			/*Time zones will vary the result above between December 31 2014 
+			and January 01 2015.*/
+
+			/*It can be written with added hours, minutes, and seconds 
+			(YYYY-MM-DDTHH:MM:SS):*/
+			var d = new Date("2015-03-25T12:00:00"); 
+			/*The T in the date string, between the date and time, indicates 
+			UTC time. UTC (Universal Time Coordinated) is the same as GMT 
+			(Greenwich Mean Time).*/
+
+			/*Short dates are most often written with an "MM/DD/YYYY" syntax 
+			like this:*/
+			var d = new Date("03/25/2015");
+			// JavaScript will also accept "YYYY/MM/DD":
+			var d = new Date("2015/03/25"); 
+			/*Month is written before day in all short date and ISO date 
+			formats.*/
+
+			/*In most browsers, ISO dates with months or days with no leading 
+			zeroes will be interpreted as short dates:*/
+			var d = new Date("2015-03-25"); // Invalid Date
+			var d = new Date("2015-3-25"); // Tue Mar 24 2015 21:00:00 GMT-0300 (BRT)
+
+			/*Long dates are most often written with a "MMM DD YYYY" syntax. 
+			Month and day can be in any order. And, month can be written in 
+			full (January), or abbreviated (Jan). Commas are ignored. Names are 
+			case insensitive:*/
+			var d = new Date("Mar 25 2015"); 
+			var d = new Date("25 Mar 2015"); 
+			var d = new Date("January 25 2015"); 
+			var d = new Date("JANUARY, 25, 2015"); 
+
+			// JavaScript will accept date strings in "full JavaScript format":
+			var d = new Date("Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)"); 
+			/*JavaScript will ignore errors both in the day name and in the 
+			time parentheses:*/
+			var d = new Date("Fri Mar 25 2015 09:56:24 GMT+0100 (Tokyo Time)"); 
+
+			/*Time zones: UTC Coordinated Universal Time; GMT Greenwich Mean 
+			Time; EDT (US) Eastern Daylight Time; CDT (US) Central Daylight 
+			Time; MDT (US) Mountain Daylight Time; PDT 	(US) Pacific Daylight 
+			Time; EST (US) Eastern Standard Time; CST (US) Central Standard 
+			Time; MST (US) Mountain Standard Time; PST (US) Pacific Standard 
+			Time*/
+
+			/*When setting a date, without specifying the time zone, JavaScript 
+			will use the browser's time zone. When getting a date, without 
+			specifying the time zone, the result is converted to the browser's 
+			time zone. In other words: If a date/time is created in GMT 
+			(Greenwich Mean Time), the date/time will be converted to CDT 
+			(Central US Daylight Time) if a user browses from central US.*/
+
+			/*getTime() returns the number of milliseconds since January 1, 
+			1970:*/
+			var d = new Date();
+			document.getElementById("demo").innerHTML = d.getTime();
+
+			// getFullYear() returns the year of a date as a four digit number:
+			var d = new Date();
+			document.getElementById("demo").innerHTML = d.getFullYear();
+
+			// getDay() returns the weekday as a number (0-6):
+			var d = new Date();
+			document.getElementById("demo").innerHTML = d.getDay();
+			/*In JavaScript, the first day of the week (0) means "Sunday", even 
+			if some countries in the world consider the first day of the week 
+			to be "Monday". You can use an array of names, and getDay() to 
+			return the weekday as a name:*/
+			var d = new Date();
+			var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+			document.getElementById("demo").innerHTML = days[d.getDay()];
+
+			/*setFullYear() sets a date object to a specific date. In this 
+			example, to January 14, 2020:*/
+			var d = new Date();
+			d.setFullYear(2020, 0, 14);
+			document.getElementById("demo").innerHTML = d;
+
+			// setDate() sets the day of the month (1-31):
+			var d = new Date();
+			d.setDate(20);
+			document.getElementById("demo").innerHTML = d;
+
+			// The setDate() method can also be used to add days to a date:
+			var d = new Date();
+			d.setDate(d.getDate() + 50);
+			document.getElementById("demo").innerHTML = d;
+			/*If adding days, shifts the month or year, the changes are handled 
+			automatically by the Date object.*/
+
+			/*If you have a valid date string, you can use the Date.parse() 
+			method to convert it to milliseconds. Date.parse() returns the 
+			number of milliseconds between the date and January 1, 1970:*/
+			var msec = Date.parse("March 21, 2012");
+			document.getElementById("demo").innerHTML = msec;
+
+			/*You can then use the number of milliseconds to convert it to a 
+			date object:*/
+			var msec = Date.parse("March 21, 2012");
+			var d = new Date(msec);
+			document.getElementById("demo").innerHTML = d;
+
+			/*Dates can easily be compared. The following example compares 
+			today's date with January 14, 2100:*/
+			var today, someday, text;
+			today = new Date();
+			someday = new Date();
+			someday.setFullYear(2100, 0, 14);
+			if (someday > today) {
+			    text = "Today is before January 14, 2100.";
+			} else {
+			    text = "Today is after January 14, 2100.";
+			}
+			document.getElementById("demo").innerHTML = text; 
+			/*JavaScript counts months from 0 to 11. January is 0. December is 
+			11.*/
+
+			/*UTC date methods are used for working UTC dates (Univeral Time 
+			Zone dates): getUTCDate() Same as getDate(), but returns the UTC 
+			date; getUTCDay() Same as getDay(), but returns the UTC day; 
+			getUTCFullYear() Same as getFullYear(), but returns the UTC year; 
+			getUTCHours() Same as getHours(), but returns the UTC hour; 
+			getUTCMilliseconds() Same as getMilliseconds(), but returns the UTC 
+			milliseconds; getUTCMinutes() Same as getMinutes(), but returns the 
+			UTC minutes; getUTCMonth() Same as getMonth(), but returns the UTC 
+			month; getUTCSeconds() Same as getSeconds(), but returns the UTC 
+			seconds*/
+		</div>
+
+		<div>
+			<h3>Functions</h3>
+
+			<p id="demo"></p>
+
+			
+
+			/*The () Operator Invokes the Function. Using the example above, 
+			toCelsius refers to the function object, and toCelsius() refers to the 
+			function result. Accessing a function without () will return the 
+			function definition:*/
+			function toCelsius(fahrenheit) {
+				return (5/9) * (fahrenheit-32);
+			}
+			document.getElementById("demo").innerHTML = toCelsius;
+			
+		</div>
+
+		<div>
+
+			<h3>Loops</h3>
+
+			for (i = 0; i < 5; i++) {
+			    text += "The number is " + i + "<br>";
+			}
+
+			/*Statement 1: sets a variable before the loop starts (var i = 0), 
+			is executed before the loop (the code block) starts. Statement 2: 
+			defines the condition for the loop to run (i must be less than 5), 
+			defines the condition for running the loop (the code block). 
+			Statement 3: increases a value (i++) each time the code block in 
+			the loop has been executed, is executed each time after the loop 
+			(the code block) has been executed*/
+
+			/*Normally you will use statement 1 to initialize the variable used 
+			in the loop (i = 0). This is not always the case, JavaScript 
+			doesn't care. Statement 1 is optional. You can initiate many values 
+			in statement 1 (separated by comma):*/
+
+			for (i = 0, len = cars.length, text = ""; i < len; i++) {
+			    text += cars[i] + "<br>";
+			}
+
+			/*And you can omit statement 1 (like when your values are set 
+			before the loop starts):*/
+
+			var i = 2;
+			var len = cars.length;
+			var text = "";
+			for (; i < len; i++) {
+			    text += cars[i] + "<br>";
+			}
+
+			/*Often statement 2 is used to evaluate the condition of the 
+			initial variable. This is not always the case, JavaScript doesn't 
+			care. Statement 2 is also optional. If statement 2 returns true, 
+			the loop will start over again, if it returns false, the loop will 
+			end. If you omit statement 2, you must provide a break inside the 
+			loop. Otherwise the loop will never end. This will crash your 
+			browser. Read about breaks in a later chapter of this tutorial.*/
+
+			/*Often statement 3 increments the value of the initial variable. 
+			This is not always the case, JavaScript doesn't care, and 
+			statement 3 is optional. Statement 3 can do anything like negative 
+			increment (i--), positive increment (i = i + 15), or anything else. 
+			Statement 3 can also be omitted (like when you increment your 
+			values inside the loop): */
+
+			var i = 0;
+			var len = cars.length;
+			for (; i < len; ) {
+			    text += cars[i] + "<br>";
+			    i++;
+			}
+
+			/*The JavaScript for/in statement loops through the properties of 
+			an object:*/
+			var person = {fname:"John", lname:"Doe", age:25};
+			var text = "";
+			var x;
+			for (x in person) {
+			    text += person[x];
+			}
+			// result: John Doe 25
+
+			/*you will discover that a while loop is much the same as a for 
+			loop, with statement 1 and statement 3 omitted. The loop in this 
+			example uses a for loop to collect the car names from the cars 
+			array:*/
+			var cars = ["BMW", "Volvo", "Saab", "Ford"];
+			var i = 0;
+			var text = "";
+
+			for (;cars[i];) {
+			    text += cars[i] + "<br>";
+			    i++;
+			} 
+			/*The loop in this example uses a while loop to collect the car 
+			names from the cars array:*/
+			while (cars[i]) {
+			    text += cars[i] + "<br>";
+			    i++;
+			} 
+
+			/*The do/while loop is a variant of the while loop. This loop will 
+			execute the code block once, before checking if the condition is 
+			true, then it will repeat the loop as long as the condition is 
+			true.*/
+			do {
+			    text += "The number is " + i;
+			    i++;
+			}
+			while (i < 10);
+			/*Do not forget to increase the variable used in the condition, 
+			otherwise the loop will never end!*/
+
+
+			/*To label JavaScript statements you precede the statements with a 
+			label name and a colon:*/
+
+			/*The break and the continue statements are the only JavaScript 
+			statements that can "jump out of" a code block.*/
+		</div>
+
+		<div>
+			<h3>Math</h3>
+
+			/*Math.round(x) returns the value of x rounded to its nearest 
+			integer:*/
+			Math.round(4.7);    // returns 5
+			Math.round(4.4);    // returns 4 
+
+			// Math.pow(x,y) returns the value of x to the power of y:
+			Math.pow(8,2);      // returns 64 
+
+			// Math.sqrt(x) returns the square root of x:
+			Math.sqrt(64);      // returns 8 
+
+			// Math.abs(x) returns the absolute (positive) value of x:
+			Math.abs(-4.7);     // returns 4.7 
+
+			/*Math.ceil(x) returns the value of x rounded up to its nearest 
+			integer:*/
+			Math.ceil(4.4);     // returns 5 
+
+			/*Math.floor(x) returns the value of x rounded down to its nearest 
+			integer:*/
+			Math.floor(4.7);    // returns 4 
+
+			/*Math.sin(x) returns the sine (a value between -1 and 1) of the 
+			angle x (given in radians). If you want to use degrees instead of 
+			radians, you have to convert degrees to radians: 
+			Angle in radians = Angle in degrees x PI / 180.*/
+			Math.sin(90 * Math.PI / 180); // returns 1 (the sine of 90 degrees) 
+
+			/*Math.cos(x) returns the cosine (a value between -1 and 1) of the 
+			angle x (given in radians). If you want to use degrees instead of 
+			radians, you have to convert degrees to radians: 
+			Angle in radians = Angle in degrees x PI / 180.*/
+			Math.cos(0 * Math.PI / 180);     // returns 1 (the cos of 0 degrees) 
+
+			/*Math.min() and Math.max() can be used to find the lowest or 
+			highest value in a list of arguments:*/
+			Math.min(0, 150, 30, 20, -8, -200);  // returns -200 
+			Math.max(0, 150, 30, 20, -8, -200);  // returns 150 
+
+			/*Math.random() returns a random number between 0 (inclusive), and 
+			1 (exclusive):*/
+			Math.random();     // returns a random number 
+			// Math.random() always returns a number lower than 1.
+
+			/*Math.random() used with Math.floor() can be used to return 
+			random integers.*/
+			Math.floor(Math.random() * 10);     // returns a number between 0 and 9 
+			Math.floor(Math.random() * 11);      // returns a number between 0 and 10 
+			Math.floor(Math.random() * 100);     // returns a number between 0 and 99 
+			Math.floor(Math.random() * 101);     // returns a number between 0 and 100 
+			Math.floor(Math.random() * 10) + 1;  // returns a number between 1 and 10 
+			Math.floor(Math.random() * 100) + 1; // returns a number between 1 and 100 
+
+			/*As you can see from the examples above, it might be a good idea 
+			to create a proper random function to use for all random integer 
+			purposes. This JavaScript function always returns a random number 
+			between min (included) and max (excluded):*/
+			function getRndInteger(min, max) {
+			    return Math.floor(Math.random() * (max - min) ) + min;
+			} 
+
+			/*This JavaScript function always returns a random number between 
+			min and max (both included):*/
+			function getRndInteger(min, max) {
+			    return Math.floor(Math.random() * (max - min + 1) ) + min;
+			} 
+
+			/*JavaScript provides 8 mathematical constants that can be accessed 
+			with the Math object:*/
+			Math.E        // returns Euler's number
+			Math.PI       // returns PI
+			Math.SQRT2    // returns the square root of 2
+			Math.SQRT1_2  // returns the square root of 1/2
+			Math.LN2      // returns the natural logarithm of 2
+			Math.LN10     // returns the natural logarithm of 10
+			Math.LOG2E    // returns base 2 logarithm of E
+			Math.LOG10E   // returns base 10 logarithm of E 
+		</div>
+
+		<div>
+			<h3>Numbers</h3>
+
+			/*JavaScript has only one type of number. Numbers can be written 
+			with, or without, decimals.*/
+			var x = 34.00;    // A number with decimals
+			var y = 34;       // A number without decimals
+
+			/*Extra large or extra small numbers can be written with scientific 
+			(exponent) notation:*/
+			var x = 123e5;    // 12300000
+			var y = 123e-5;   // 0.00123
+
+			/*Unlike many other programming languages, JavaScript does not 
+			define different types of numbers, like integers, short, long, 
+			floating-point etc. JavaScript numbers are always stored as double 
+			precision floating point numbers, following the international IEEE 
+			754 standard. This format stores numbers in 64 bits, where the 
+			number (the fraction) is stored in bits 0 to 51, the exponent in 
+			bits 52 to 62, and the sign in bit 63.*/
+
+			/*Integers (numbers without a period or exponent notation) are 
+			considered accurate up to 15 digits.*/
+			var x = 999999999999999;   // x will be 999999999999999
+			var y = 9999999999999999;  // y will be 10000000000000000 
+
+			/*The maximum number of decimals is 17, but floating point 
+			arithmetic is not always 100% accurate:*/
+			var x = 0.2 + 0.1; // x will be 0.30000000000000004
+			// To solve the problem above, it helps to multiply and divide:
+			var x = (0.2 * 10 + 0.1 * 10) / 10; // x will be 0.3
+
+			/*JavaScript interprets numeric constants as hexadecimal if they 
+			are preceded by 0x.*/
+			var x = 0xFF;             // x will be 255 
+
+			/*Never write a number with a leading zero (like 07). Some 
+			JavaScript versions interpret numbers as octal if they are written 
+			with a leading zero.*/
+
+			/* By default, Javascript displays numbers as base 10 decimals. But 
+			you can use the toString() method to output numbers as base 16 
+			(hex), base 8 (octal), or base 2 (binary).*/
+			var myNumber = 128;
+			myNumber.toString(16);     // returns 80
+			myNumber.toString(8);      // returns 200
+			myNumber.toString(2);      // returns 10000000
+
+			/*Infinity (or -Infinity) is the value JavaScript will return if 
+			you calculate a number outside the largest possible number.*/
+			var myNumber = 2;
+			while (myNumber != Infinity) {          // Execute until Infinity
+			    myNumber = myNumber * myNumber;
+			} 
+
+			// Division by 0 (zero) also generates Infinity:
+			var x =  2 / 0;          // x will be Infinity
+			var y = -2 / 0;          // y will be -Infinity 
+
+			// Infinity is a number: typeOf Infinity returns number.
+			typeof Infinity;        // returns "number"
+
+			/*NaN is a JavaScript reserved word indicating that a number is not 
+			a legal number. Trying to do arithmetic with a non-numeric string 
+			will result in NaN (Not a Number):*/
+			var x = 100 / "Apple";  // x will be NaN (Not a Number)
+			/*However, if the string contains a numeric value , the result will 
+			be a number:*/
+ 			var x = 100 / "10";     // x will be 10
+
+ 			/*You can use the global JavaScript function isNaN() to find out if 
+ 			a value is a number.*/
+ 			var x = 100 / "Apple";
+			isNaN(x);               // returns true because x is Not a Number 
+
+			/*Watch out for NaN. If you use NaN in a mathematical operation, 
+			the result will also be NaN: */
+			var x = NaN;
+			var y = 5;
+			var z = x + y;         // z will be NaN 
+			// Or the result might be a concatenation: 
+			var x = NaN;
+			var y = "5";
+			var z = x + y;         // z will be NaN5 
+
+			// NaN is a number, and typeof NaN returns number:
+			typeof NaN;             // returns "number"
+
+			/*toString() returns a number as a string. All number methods can 
+			be used on any type of numbers (literals, variables, or 
+			expressions):*/
+			var x = 123;
+			x.toString();            // returns 123 from variable x
+			(123).toString();        // returns 123 from literal 123
+			(100 + 23).toString();   // returns 123 from expression 100 + 23 
+
+			/*toExponential() returns a string, with a number rounded and 
+			written using exponential notation. A parameter defines the number 
+			of characters behind the decimal point:*/
+			var x = 9.656;
+			x.toExponential(2);     // returns 9.66e+0
+			x.toExponential(4);     // returns 9.6560e+0
+			x.toExponential(6);     // returns 9.656000e+0 
+			/*The parameter is optional. If you don't specify it, JavaScript 
+			will not round the number.*/
+
+			/*toFixed() returns a string, with the number written with a 
+			specified number of decimals:*/
+			var x = 9.656;
+			x.toFixed(0);           // returns 10
+			x.toFixed(2);           // returns 9.66
+			x.toFixed(4);           // returns 9.6560
+			x.toFixed(6);           // returns 9.656000 
+			// toFixed(2) is perfect for working with money.
+
+			/*toPrecision() returns a string, with a number written with a 
+			specified length:*/
+			var x = 9.656;
+			x.toPrecision();        // returns 9.656
+			x.toPrecision(2);       // returns 9.7
+			x.toPrecision(4);       // returns 9.656
+			x.toPrecision(6);       // returns 9.65600 
+
+			// valueOf() returns a number as a number.
+			var x = 123;
+			x.valueOf();            // returns 123 from variable x
+			(123).valueOf();        // returns 123 from literal 123
+			(100 + 23).valueOf();   // returns 123 from expression 100 + 23 
+
+			/*There are 3 JavaScript methods that can be used to convert 
+			variables to numbers: The Number() method; The parseInt() method;
+		    The parseFloat() method. These methods are not number methods, but 
+		    global JavaScript methods.*/
+
+			// Number() can be used to convert JavaScript variables to numbers:
+			x = true;
+			Number(x);        // returns 1
+			x = false;     
+			Number(x);        // returns 0
+			x = new Date();
+			Number(x);        // returns 1404568027739. 
+			/*Used on Date(), the Number() method returns the number of 
+			milliseconds since 1.1.1970. */
+			x = "10";
+			Number(x);        // returns 10
+			x = "10 20";
+			Number(x);        // returns NaN 
+
+			/*parseInt() parses a string and returns a whole number. Spaces are 
+			allowed. Only the first number is returned:*/
+			parseInt("10");         // returns 10
+			parseInt("10.33");      // returns 10
+			parseInt("10 20 30");   // returns 10
+			parseInt("10 years");   // returns 10
+			parseInt("years 10");   // returns NaN  
+			// If the number cannot be converted, NaN (Not a Number) is returned.
+
+			/*parseFloat() parses a string and returns a number. Spaces are 
+			allowed. Only the first number is returned:*/
+			parseFloat("10");        // returns 10
+			parseFloat("10.33");     // returns 10.33
+			parseFloat("10 20 30");  // returns 10
+			parseFloat("10 years");  // returns 10
+			parseFloat("years 10");  // returns NaN 
+			// If the number cannot be converted, NaN (Not a Number) is returned.
+
+			/*Number properties: belongs to the JavaScript's number object 
+			wrapper called Number:*/
+			var x = Number.MAX_VALUE; 
+			/*MAX_VALUE: Returns the largest number possible in JavaScript; 
+			MIN_VALUE: Returns the smallest number possible in JavaScript; 
+			NEGATIVE_INFINITY: Represents negative infinity (returned on 
+			overflow); NaN:	Represents a "Not-a-Number" value; 
+			POSITIVE_INFINITY: Represents infinity (returned on overflow). 
+			These properties can only be accessed as Number.MAX_VALUE. Using 
+			myNumber.MAX_VALUE, where myNumber is a variable, expression, or 
+			value, will return undefined:*/
+			var x = 6;
+			var y = x.MAX_VALUE;    // y becomes undefined 
+		</div>
+
+		<div>
+			<h3>Objects</h3>
+
+			Nome: <span id="name"></span><br/>
+			Sobrenome: <span id="lastName"></span><br/>
+			Nome completo: <span id="fullName"></span>
+
+			<h3>Function definition fullName(): </h3>
+			<p id="method"></p>
+		
+			//You define (and create) a JavaScript object with an object literal:
+			var person = {
+				firstName:"John",
+				lastName:"Doe",
+				age:50,
+				eyeColor:"blue",
+				fullName: function() {return person.firstName + " " + person.lastName}
+			}; 
+
+			// You can access object properties in two ways:
+			document.getElementById("name").innerHTML = person.firstName;
+			// or
+			document.getElementById("lastName").innerHTML = person["lastName"];
+
+			// You access an object method with the following syntax:
+			document.getElementById("fullName").innerHTML = person.fullName();
+
+			/* If you access the fullName method, without (), it will return 
+			the function definition:*/
+
+			document.getElementById("method").innerHTML = person.fullName;
+
+			/*A method is actually a function definition stored as a property 
+			value.*/
+	
+		</div>
+
+		<div>
+			<h3>Outputs methods</h3>
+
+			<!-- JavaScript can "display" data in different ways -->
+
+			<h3>Display with window.alert()</h3>
+			<button onclick="window.alert('Hello!')">Display hello!</button>
+
+			<h3>Display with document.write()</h3>
+			<script type="text/javascript">
+				document.write("Hello");
+			</script>
+			<!-- Using document.write() after an HTML document is fully loaded, 
+			will delete all existing HTML. The document.write() method should only 
+			be used for testing.-->		
+			<!-- <button onclick="document.write('Hello!')">Try it</button> -->
+
+			<h3>Display using innerHTM</h3>
+			<button 
+				onclick="document.getElementById('demo').innerHTML='Hello'">Click</button>
+			<p id="demo"></p>
+			<!-- To "display data" in HTML, (in most cases) you will set the value 
+			of an innerHTML property. -->
+
+			<h3>Display with console.log()</h3>
+			<!-- In your browser, you can use the console.log() method to display 
+			data. Activate the browser console with F12, and select "Console" in 
+			the menu. -->
+			<button 
+				onclick="console.log('Hello console')">Display in console</button>
+		</div>
+
+		<div>
+			<h3>Strings</h3>
+
+			/*The length of a string is found in the built in property length:*/
+			var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			var sln = txt.length;
+
+			/*The backslash escape character turns special characters into 
+			string characters:*/
+			var x = 'It\'s alright';
+			var y = "We are the so-called \"Vikings\" from the north."
+
+			/*
+				\b 	Backspace
+				\r 	Carriage Return
+				\f 	Foorm Feed
+				\t 	Horizontal Tabulator
+				\v 	Vertical Tabulator
+			*/
+
+			/*The escape characters above was originally designed control 
+			typewriters, teletypes, and fax machines. They do not make any 
+			sense in HTML. */
+
+			/*If a JavaScript statement does not fit on one line, the best 
+			place to break it is after an operator:*/
+			document.getElementById("demo").innerHTML =
+				"Hello Dolly.";
+
+			/*You can also break up a code line within a text string with a 
+			single backslash:*/
+			document.getElementById("demo").innerHTML = "Hello \
+				Dolly!"; 
+			/*The \ method is not a ECMAScript (JavaScript) standard. Some 
+			browsers do not allow spaces behind the \ character.*/
+			/* You cannot break up a code line with a backslash:
+
+				document.getElementById("demo").innerHTML = \
+					"Hello Dolly!"; 
+			*/
+
+			/*The safest (but a little slower) way to break a long string is to 
+			use string addition:*/
+			document.getElementById("demo").innerHTML = "Hello" +
+				"Dolly!"; 
+
+			/*But strings can also be defined as objects*/
+			var y = new String("John");
+
+			/*Don't create strings as objects. It slows down execution speed. 
+			The new keyword complicates the code. This can produce some 
+			unexpected results:*/
+
+			var x = new String("John");             
+			var y = new String("John");
+
+			// (x == y) is false because x and y are different objects
+			// (x == x) is true because both are the same object
+
+			// Objects cannot be compared.
+
+			/*The indexOf() method returns the index of (the position of) the 
+			first occurrence of a specified text in a string:*/
+			var str = "Please locate where 'locate' occurs!";
+			var pos = str.indexOf("locate"); 
+
+			/*The lastIndexOf() method returns the index of the last occurrence 
+			of a specified text in a string:*/
+			var str = "Please locate where 'locate' occurs!";
+			var pos = str.lastIndexOf("locate"); 
+
+			/*Both the indexOf(), and the lastIndexOf() methods return -1 if 
+			the text is not found. JavaScript counts positions from zero. 0 is 
+			the first position in a string, 1 is the second, 2 is the third ...*/
+
+			/*The search() method searches a string for a specified value and 
+			returns the position of the match:*/
+			var str = "Please locate where 'locate' occurs!";
+			var pos = str.search("locate"); 
+
+			/*The two methods, indexOf() and search(), are equal. They accept 
+			the same arguments (parameters), and they return the same value. 
+			The two methods are equal, but the search() method can take much 
+			more powerful search values.*/
+
+			/*slice() extracts a part of a string and returns the extracted 
+			part in a new string. The method takes 2 parameters: the starting 
+			index (position), and the ending index (position).*/
+			var str = "Apple, Banana, Kiwi";
+			var res = str.slice(7,13); // Banana;
+			/*If a parameter is negative, the position is counted from the end 
+			of the string. str.slice(7,13); is the same str.slice(-12,-6); If 
+			you omit the second parameter, the method will slice out the rest 
+			of the string: str.slice(7) or str.slice(-12). Negative positions 
+			do not work in Internet Explorer 8 and earlier.*/
+
+			/*substring() is similar to slice(). The difference is that 
+			substring() cannot accept negative indexes.*/
+			var str = "Apple, Banana, Kiwi";
+			var res = str.substring(7,13); // Banana
+			/*If you omit the second parameter, substring() will slice out the 
+			rest of the string.*/
+
+			/*substr() is similar to slice(). The difference is that the second 
+			parameter specifies the length of the extracted part.*/
+			var str = "Apple, Banana, Kiwi";
+			var res = str.substr(7,6); // Banana
+			/*If the first parameter is negative, the position counts from the 
+			end of the string. The second parameter can not be negative, 
+			because it defines the length. If you omit the second parameter, 
+			substr() will slice out the rest of the string.*/
+
+			/*The replace() method replaces a specified value with another 
+			value in a string:*/
+			str = "Please visit Microsoft!";
+			var n = str.replace("Microsoft","W3Schools");
+
+			/*The replace() method can also take a regular expression as the 
+			search value. By default, the replace() function replaces only the 
+			first match. To replace all matches, use a regular expression with 
+			a g flag (for global match):*/
+			str = "Please visit Microsoft!";
+			var n = str.replace(/Microsoft/g,"W3Schools");
+			/*The replace() method does not change the string it is called on. 
+			It returns a new string.*/
+
+			/*A string is converted to upper case with toUpperCase():*/
+			var text1 = "Hello World!";       // String
+			var text2 = text1.toUpperCase();  // text2 is text1 converted to upper
+
+			/*A string is converted to lower case with toLowerCase():*/
+			var text1 = "Hello World!";       // String
+			var text2 = text1.toLowerCase();  // text2 is text1 converted to lower 
+
+			/*concat() joins two or more strings:*/
+			var text1 = "Hello";
+			var text2 = "World";
+			text3 = text1.concat(" ",text2); 
+
+			/*The concat() method can be used instead of the plus operator. 
+			These two lines do the same:*/
+			var text = "Hello" + " " + "World!";
+			var text = "Hello".concat(" ","World!");
+
+			/*All string methods return a new string. They don't modify the 
+			original string. Formally said: Strings are immutable: Strings 
+			cannot be changed, only replaced. */
+
+			/*The charAt() method returns the character at a specified index 
+			(position) in a string:*/
+			var str = "HELLO WORLD";
+			str.charAt(0);            // returns H 
+
+			/*The charCodeAt() method returns the unicode of the character at a 
+			specified index in a string:*/
+			var str = "HELLO WORLD";
+			str.charCodeAt(0);         // returns 72 
+
+			/*You might have seen code like this, accessing a string as an 
+			array:*/
+			var str = "HELLO WORLD";
+			str[0];                   // returns H
+
+			/*This is unsafe and unpredictable: It does not work in all 
+			browsers (not in IE5, IE6, IE7); It makes strings look like arrays 
+			(but they are not); str[0] = "H" does not give an error (but does 
+			not work). If you want to read a string as an array, convert it to 
+			an array first.*/
+
+			/*A string can be converted to an array with the split() method:*/
+			var txt = "a,b,c,d,e";   // String
+			txt.split(",");          // Split on commas
+			txt.split(" ");          // Split on spaces
+			txt.split("|");          // Split on pipe 
+
+			/*If the separator is omitted, the returned array will contain the 
+			whole string in index [0]. If the separator is "", the returned 
+			array will be an array of single characters:*/
+			var txt = "Hello";       // String
+			txt.split("");           // Split in characters
+		</div>
+
+		<div>
+			<h3>Switch</h3>
+
+			/*This is how it works: The switch expression is evaluated once. 
+			The value of the expression is compared with the values of each 
+			case. If there is a match, the associated block of code is 
+			executed.*/
+
+			/*The getDay() method returns the weekday as a number between 0 and 
+			6. (Sunday=0, Monday=1, Tuesday=2 ..) Use the weekday number to 
+			calculate weekday name:*/
+
+			switch (new Date().getDay()) {
+			    case 0:
+			        day = "Sunday";
+			        break;
+			    case 1:
+			        day = "Monday";
+			        break;
+			    case 2:
+			        day = "Tuesday";
+			        break;
+			    case 3:
+			        day = "Wednesday";
+			        break;
+			    case 4:
+			        day = "Thursday";
+			        break;
+			    case 5:
+			        day = "Friday";
+			        break;
+			    case 6:
+			        day = "Saturday";
+			} 
+
+			/*When JavaScript reaches a break keyword, it breaks out of the 
+			switch block. This will stop the execution of more code and case 
+			testing inside the block. When a match is found, and the job is 
+			done, it's time for a break. There is no need for more testing. A 
+			break can save a lot of execution time because it "ignores" the 
+			execution of all the rest of the code in the switch block. It is 
+			not necessary to break the last case in a switch block. The block 
+			breaks (ends) there anyway.*/
+
+			/*The default keyword specifies the code to run if there is no case 
+			match:*/
+
+			switch (new Date().getDay()) {
+			    case 6:
+			        text = "Today is Saturday";
+			        break;
+			    case 0:
+			        text = "Today is Sunday";
+			        break;
+			    default:
+			        text = "Looking forward to the Weekend";
+			} 
+
+			/* Sometimes, in a switch block, you will want different cases to 
+			use the same code, or fall-through to a common default. Note from 
+			the next example, that cases can share the same code block, and 
+			that the default case does not have to be the last case in a switch 
+			block:*/
+
+			switch (new Date().getDay()) {
+			    case 1:
+			    case 2:
+			    case 3:
+			    default:
+			        text = "Looking forward to the Weekend";
+			        break;
+			    case 4:
+			    case 5:
+			        text = "Soon it is Weekend";
+			        break;
+			    case 0:
+			    case 6:
+			        text = "It is Weekend";
+			}
+
+			/*If default is not the last case in the switch block, remember to 
+			end it with a break.*/
+		</div>
+
+		<div>
+			<h3>Variables</h3>
+
+			<!-- In JavaScript, the first character must be a letter, an underscore (_), or a dollar sign ($). -->
+		
+
+			/*
+				Declaração de variáveis.
+
+				A declarção de variáveis é opcional. Podendo começar ou não com 
+				a palavra chave var. O tipo não é declarado (tipagem fraca). 
+
+				var num = 0;
+
+				é o mesmo que: 
+
+				num = 0;
+			*/
+			var num;
+
+			/*A variable declared outside a function, becomes GLOBAL. A global 
+			variable has global scope: All scripts and functions on a web page 
+			can access it. */
+
+			var carName = " Volvo";
+
+			// code here can use carName
+
+			function myFunction() {
+			    // code here can use carName
+			} 
+
+			/*If you assign a value to a variable that has not been declared, 
+			it will automatically become a GLOBAL variable. This code example 
+			will declare a global variable carName, even if the value is 
+			assigned inside a function.*/
+
+			function myFunction() {
+			    carName2 = "Volvo";
+			}
+
+			// code here can use carName2
+
+			/*Do NOT create global variables unless you intend to. In "Strict 
+			Mode" automatically global variables will fail.*/
+
+
+			/*With JavaScript, the global scope is the complete JavaScript 
+			environment. In HTML, the global scope is the window object. All 
+			global variables belong to the window object.*/
+
+			var carName3 = "Volvo";
+
+			// code here can use window.carName3
+
+			/*Your global variables (or functions) can overwrite window 
+			variables (or functions). Any function, including the window 
+			object, can overwrite your global variables and functions.*/
+
+			/*The lifetime of a JavaScript variable starts when it is declared. 
+			Local variables are deleted when the function is completed. Global 
+			variables are deleted when you close the page.*/
+
+			/*Function arguments (parameters) work as local variables inside 
+			functions.*/
+			
+			
+			/*In a programming language, variables are used to store data 
+			values. JavaScript uses the var keyword to declare variables. An 
+			equal sign is used to assign values to variables. In this example, 
+			x is defined as a variable. Then, x is assigned (given) the value 
+			6:*/
+
+			var x;
+			x = 6; 
+
+			/* Names for variables can contain letters, digits, underscores, 
+			and dollar signs; Names must begin with a letter; Names can also 
+			begin with $ and _ ; Names are case sensitive (y and Y are 
+			different variables); Reserved words (like JavaScript keywords) 
+			cannot be used as names.*/
+
+			/*Hyphens (first-name, last-name, master-card, inter-city.) are not 
+			allowed in JavaScript. It is reserved for subtractions.*/
+
+			var pi = 3.14;
+			var person = "John Doe";
+			/*JavaScript variables can hold numbers like 100 and text values 
+			like "John Doe". In programming, text values are called text 
+			strings. JavaScript can handle many types of data, but for now, 
+			just think of numbers and strings. Strings are written inside 
+			double or single quotes. Numbers are written without quotes. If you 
+			put a number in quotes, it will be treated as a text string.*/
+
+			/*It's a good programming practice to declare all variables at the 
+			beginning of a script.*/
+
+
+			/*In computer programs, variables are often declared without a 
+			value. The value can be something that has to be calculated, or 
+			something that will be provided later, like user input. A variable 
+			declared without a value will have the value undefined. The 
+			variable carName will have the value undefined after the execution 
+			of this statement:*/
+			var carName; 
+
+			/*If you re-declare a JavaScript variable, it will not lose its 
+			value. The variable carName will still have the value "Volvo" after 
+			the execution of these statements:*/
+			var carName = "Volvo";
+			var carName; 
+
+			/*If you put a number in quotes, the rest of the numbers will be 
+			treated as strings, and concatenated.*/
+			var x = "5" + 2 + 3;
+			// Result: 523
+
+			/*Neste caso a soma de 2 + 3 será realizada primeiro e o resultado 
+			será concatenado com '5'.*/
+			var x = 2 + 3 + "5";
+			// Result: 55;
+		</div>
+	</main>
+	
+	<script type="module">
+		import { masonryItems } from "../src/masonry.js";
+		masonryItems();
+	</script>
+</body>
+
+</html>

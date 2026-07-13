@@ -1,0 +1,118 @@
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        svg {
+            display: block;
+            background-color: white;
+        }
+
+        .p-0{
+            stroke-width: 2px;
+            stroke-dasharray: 1000;
+            fill: transparent;
+            stroke: #19f6e8;
+            border-bottom: 5px solid black;
+            animation: 2s draw infinite alternate;
+        }
+
+        @keyframes draw {
+            0% {
+                stroke-width: 10px;
+                stroke-dashoffset: 1000;
+            }
+            100% {
+                stroke-width: 2px;
+                stroke-dashoffset: 0;
+                
+            }
+        }
+
+        .p-0:hover {
+            animation: 2s draw linear forwards;
+        }
+
+        .slice-1 { 
+            transform-origin: 250px 250px;
+            animation: rotate-1 2s ease forwards;
+        }
+
+        .slice-2 {
+            transform-origin: 250px 250px;
+            animation: rotate-2 2s ease forwards;
+        }
+
+        .slice-3 {
+            transform-origin: 250px 250px;
+            animation: rotate-3 2s ease forwards;
+        }
+
+        .slice-4 {
+            transform-origin: 250px 250px;
+            animation: rotate-4 2s ease forwards;
+        }
+
+        .slice-5 {
+            transform-origin: 250px 250px;
+            animation: rotate-5 2s ease forwards;
+        }
+
+        @keyframes rotate-1 {
+            to {
+                transform: rotate(-30deg);
+            }
+        }
+
+        @keyframes rotate-2 {
+            to {
+                transform: rotate(-60deg);
+            }
+        }
+        @keyframes rotate-3 {
+            to {
+                transform: rotate(-90deg);
+            }
+        }
+        @keyframes rotate-4 {
+            to {
+                transform: rotate(-120deg);
+            }
+        }
+        @keyframes rotate-5 {
+            to {
+                transform: rotate(-150deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg width="501px" height="255px" viewBox="-4 -4 508 255" id="container">
+        <g class="g-0">
+            <path class="p-0" 
+                d="M250,250 l250,0 A250,250 0 0,0 466.5063509461097,125 z" 
+                shape-rendereing="geometricPrecision" 
+                fill="transparent" 
+                stroke-width="10" 
+            />
+        </g>
+    </svg>
+
+    <svg width="501px" height="255px" viewBox="-4 -4 508 255" id="container">
+        <g class="g-0">
+            <path class="p-0" 
+                d="M250,250 l250,0 A550,550 0 0,0 266,125 z" 
+                shape-rendereing="geometricPrecision" 
+                fill="transparent" 
+                stroke-width="10" 
+            />
+        </g>
+    </svg>
+</body>
+
+<!-- https://codepen.io/eMineiro/pen/QNOdPP -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths -->
+</html>

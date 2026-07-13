@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+	
+<img src="hero-image-large.jpg" alt="Mountain landscape">
+    <!-- But it also means that every device desktop with a big monitor or a tiny 
+    smartphone loads the exact same file. In this case, that might be 2 
+    megabytes. On a mobile device, you usually don’t need such a 
+    high-resolution image. It loads slower. Your website loads slower.
+
+    And you’ve certainly run into this: an image that looks great on desktop 
+    and landscape suddenly makes no sense on a mobile screen. You could crop 
+    the sides, sure, but you’re still downloading image data nobody sees on 
+    the site. -->
+    
+Using Picture for Responsive Images
+
+So, what can you do? Use the picture element. It allows you to serve different 
+versions of an image depending on things like device size, orientation, dark mode, and more.
+
+<picture>
+  <!-- Small screens (up to 500px) -->
+  <source 
+    media="(max-width: 500px)" 
+    srcset="hero-small-500w.jpg">
+  
+  <!-- Medium screens (up to 1000px) -->
+  <source 
+    media="(max-width: 1000px)" 
+    srcset="hero-medium-1000w.jpg">
+  
+  <!-- Large screens (fallback) -->
+  <img 
+    src="hero-large-2000w.jpg" 
+    alt="Stunning mountain landscape at sunset">
+</picture>
+
+How does it work? Start with your regular image element and a source path. Wrap the whole thing in a picture element. This already works, but doesn’t make much sense yet, it’s only one version of the image. But this image inside a picture is the fallback image, the one the browser uses when nothing else matches.
+
+Now you can add additional images for specific situations. For this, create a source element, put the URL of the, for example, smaller image in the srcset, and define a media query in the media attribute.
+
+Important detail: With multiple source elements, the browser picks the first one that matches. So if you define up to 500 pixels first, then up to 1,000 pixels, everything is fine. But if you swapped them, a tiny screen would still be smaller than 1,000 pixels, meaning the browser would load the medium image immediately and never reach the small one. So order matters here.
+Art Direction: Different Crops for Different Screens
+
+Another example I really like is using different images depending on orientation:
+
+<picture>
+  <!-- Portrait orientation - show vertical crop -->
+  <source 
+    media="(orientation: portrait)" 
+    srcset="product-portrait.jpg">
+  
+  <!-- Landscape orientation - show horizontal crop -->
+  <img 
+    src="product-landscape.jpg" 
+    alt="Product showcase in modern office">
+</picture>
+
+In the source element, we set the media condition to orientation: portrait. And now in portrait mode, the browser loads a vertical image where the crop fits perfectly. Super practical, and it even updates dynamically when you resize the browser.
+Handling Pixel Density (Retina Displays)
+
+What we can also do with a picture element or a source element is target different pixel densities. A modern smartphone or laptop can display images much sharper and comes with a higher pixel density.
+
+<picture>
+  <source 
+    srcset="logo-1x.png 1x,
+            logo-2x.png 2x,
+            logo-3x.png 3x">
+  
+  <img src="logo-1x.png" alt="Company logo">
+</picture>
+
+You can group different pixel densities inside a single source element. Here, besides the fallback image, we have a variant with density 1x. You can actually omit the 1x because that’s the default. Then there’s a 2x version, simply an image that’s twice as large but displayed at the same size, so effectively twice as sharp. And then a 3x version.
+Width Descriptors
+
+Instead of pixel density, you could also use a width descriptor:
+
+<img 
+  srcset="product-500w.jpg 500w,
+          product-1000w.jpg 1000w,
+          product-2000w.jpg 2000w"
+  sizes="(max-width: 600px) 100vw,
+         (max-width: 1200px) 50vw,
+         33vw"
+  src="product-1000w.jpg" 
+  alt="Featured product">
+
+The sizes attribute tells the browser how much space the image will take up at different viewport sizes, and the browser picks the most appropriate image from the srcset.
+Dark Mode Support
+
+What you could also do with the picture element is target the color scheme, light mode, and dark mode:
+
+<picture>
+  <!-- Dark mode version -->
+  <source 
+    media="(prefers-color-scheme: dark)" 
+    srcset="logo-dark.png">
+  
+  <!-- Light mode version (fallback) -->
+  <img src="logo-light.png" alt="Company logo">
+</picture>
+
+So, lots of possibilities with the picture element.
+
+</body>
+</html>
