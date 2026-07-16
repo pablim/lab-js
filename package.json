@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf public/libs/@pablovaz && mkdir -p public/libs/@pablovaz && cp -RL node_modules/@pablovaz/. public/libs/@pablovaz"
+    "build": "rm -rf libs/@pablovaz && mkdir -p libs/@pablovaz && cp -RL node_modules/@pablovaz/. libs/@pablovaz"
   },
   "dependencies": {
     "@pablovaz/tables": "^1.1.0"
