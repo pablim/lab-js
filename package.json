@@ -10,7 +10,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@pablo/tables": "file:../tables"
+    "@pablovaz/tables": "^1.0.0"
   }
-  
 }

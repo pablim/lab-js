@@ -3,8 +3,28 @@
 		<meta charset="utf-8" />
 		<title>Página HTML</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../node_modules/@pablo/tables/css/table.css"> 
-        <link rel="stylesheet" href="../../node_modules/@pablo/tables/css/scrolled-table.css"> 
+        <link rel="stylesheet" href="../../node_modules/@pablovaz/tables/css/table.css"> 
+        <link rel="stylesheet" href="../../node_modules/@pablovaz/tables/css/scrolled-table.css"> 
+        <script type="module">
+            import { fakerPT_BR as faker } from "https://esm.sh/@faker-js/faker";
+
+            const tables = document.getElementsByTagName("table")
+            const tbody = document.createElement("tbody");
+
+            Array.from({ length: 6 }, (_, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${index+1}</td>
+                        <td>${faker.person.fullName()}</td>
+                        <td>${faker.number.int({ min: 18, max: 60 })}</td>
+                        <td>${faker.internet.email()}</td>
+                    </tr>
+                `
+            })
+
+            tables[0].appendChild(tbody)
+            tables[1].appendChild(tbody.cloneNode(true))
+        </script>
 	</head>
 <body>  
     <table class="scrolled-table responsive">
@@ -12,39 +32,10 @@
             <tr>
                 <th>Id</th>
                 <th>Name and last name</th>
+                <th>Idade</th>
                 <th>E-mail</th>
             </tr>
         </thead>
-        <tr>
-            <td>1</td>
-            <td>Jon Doe</td>
-            <td>jon@company.com</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Gina Frost</td>
-            <td>gina@company.com</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Julius Back</td>
-            <td>julius@company.com</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Angelina Lovin</td>
-            <td>angel@company</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Mike Sparks</td>
-            <td>mike@company.com</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Dimitry Solitano</td>
-            <td>dimi@company.com</td>
-        </tr>
     </table>  
   
     <br>
@@ -56,39 +47,10 @@
                 <tr>
                     <th>Id</th>
                     <th>Name and last name</th>
+                    <th>Idade</th>
                     <th>E-mail</th>
                 </tr>
 			</thead>
-			<tr>
-			    <td>1</td>
-			    <td>Jon Doe</td>
-			    <td>jon@company.com</td>
-			</tr>
-			<tr>
-			    <td>2</td>
-			    <td>Gina Frost</td>
-			    <td>gina@company.com</td>
-			</tr>
-			<tr>
-			    <td>3</td>
-			    <td>Julius Back</td>
-			    <td>julius@company.com</td>
-			</tr>
-			<tr>
-			    <td>4</td>
-			    <td>Angelina Lovin</td>
-			    <td>angel@company</td>
-			</tr>
-			<tr>
-			    <td>5</td>
-			    <td>Mike Sparks</td>
-			    <td>mike@company.com</td>
-			</tr>
-			<tr>
-			    <td>6</td>
-			    <td>Dimitry Solitano</td>
-			    <td>dimi@company.com</td>
-			</tr>
 		</table> 
 	</div>
 </body>  
