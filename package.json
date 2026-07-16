@@ -11,8 +11,6 @@
     "build": "rm -rf public/libs/@pablovaz && mkdir -p public/libs/@pablovaz && cp -RL node_modules/@pablovaz/. public/libs/@pablovaz"
   },
   "dependencies": {
-    
-    "@pablovaz/tables": "file:../tables"
-
+    "@pablovaz/tables": "^1.1.0"
   }
 }
