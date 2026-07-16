@@ -7,9 +7,12 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf public/libs/@pablovaz && mkdir -p public/libs/@pablovaz && cp -RL node_modules/@pablovaz/. public/libs/@pablovaz"
   },
   "dependencies": {
-    "@pablovaz/tables": "^1.0.0"
+    
+    "@pablovaz/tables": "file:../tables"
+
   }
 }
