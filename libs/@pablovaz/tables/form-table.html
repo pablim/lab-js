@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<title>Página HTML</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+		<link rel="stylesheet" href="./table.css"> 
+		<link rel="stylesheet" href="./scrolled-table.css"> 
+
+		<style>
+			body {
+				padding: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<template id="rowData">
+			<!-- put only children in template -->
+			<tr>
+				<td>	
+					<div data-row-number></div>
+		    	 	<input
+		    			data-row-number 
+		    			type="hidden" 
+		    			disabled
+		    			name="info[#][numero]">
+				</td>
+				<td>
+					<input id="nome"
+						disabled
+						type="text" 
+						class="w3-input" 
+						name="info[#][nome]" 
+						disabled
+						oninput="localStorage.setItem(this.id, this.value);"/>
+				</td>
+				<td>
+					<select id="sexo"
+							disabled
+							class="w3-select" 
+							onchange="localStorage.setItem(this.id, this.options[this.options.selectedIndex].value);">
+						<option value="1">Masculino</option>
+						<option value="2">Feminio</option>
+					</select>
+				</td>
+				<td>
+					<a 
+						class="w3-button w3-teal" 
+						onclick="deleteRow('tabela', this)"
+					>
+						Excluir
+					</a>
+				</td>
+			</tr>
+		</template>
+
+		<a class="w3-button w3-margin w3-teal" 
+			onclick="addRowByTemplate('.form-table')">+</a>
+
+		<table id="tabela" 
+			class="form-table scrolled-table responsive" 
+			data-templateId="rowData"
+			data-row-count="1"
+		>
+			<thead>
+			<tr id="header">
+				<th>Número</th>
+				<th>Nome</th>
+				<th>Sexo</th>
+				<th>Ações</th>
+			</tr>
+			</thead>
+            <tbody></tbody>
+		</table>
+
+		<script type="module">
+			import { 
+				addRowByTemplate, 
+				deleteRow 
+			} from '../../src/form-table.js';
+
+			window.addRowByTemplate = addRowByTemplate;
+			window.deleteRow = deleteRow;
+		</script>
+	</body>
+</html>
